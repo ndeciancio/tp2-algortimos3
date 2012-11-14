@@ -20,7 +20,23 @@ public class Posicion {
 	}
 
 
+	public void moverEnX(Integer x){
+		this.x += x; 
+	}
+	
+	public void moverEnY(Integer y){
+		this.y += y;
+	}
 
+	public Boolean estaCercaDe(Posicion pos, Integer radio){
+		Integer distanciaX = (pos.getX()-this.getX());
+		distanciaX = distanciaX*distanciaX;
+		Integer distanciaY = (pos.getY()-this.getY());
+		distanciaY = distanciaY*distanciaY;
+		Integer distanciaCuadrada = distanciaX + distanciaY;
+		return Math.sqrt(distanciaCuadrada) <= radio;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,3 +1,4 @@
+import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Stack;
 
@@ -12,7 +13,15 @@ public class Trayectoria {
 	}
 	
 	public Posicion getPosicionSiguiente(){
-		return posiciones.pop();
+		try{
+			return posiciones.peek();
+		}catch(EmptyStackException e){
+			return null;
+		}
+	}
+	
+	public void eliminarPosicion(){
+		posiciones.pop();
 	}
 	
 }

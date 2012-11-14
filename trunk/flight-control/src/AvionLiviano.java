@@ -2,15 +2,24 @@
 public class AvionLiviano extends Avion {
 
 	
-	public AvionLiviano(Posicion posicion, Pista pista){
-		super(posicion, pista);
+	private AvionLiviano(Posicion posicion, Integer radio){
+		super(posicion, radio);
 	}
 	
+	public static AvionLiviano crearAvionLivianoSimple(Posicion posicion,Integer radio, Integer velocidad, Double direccion){
+		AvionLiviano avion = new AvionLiviano(posicion, radio);
+		Movimiento mov = new MovimientoSimple(velocidad, direccion);
+		avion.setMovimiento(mov);
+		return avion;
+	}
 	
 	@Override
-	public void avanzar() {
-		// TODO Auto-generated method stub
-		
+	public Boolean intentarAterrizar(Pista p){
+		return p.puedeAterrizar(this);
 	}
+	
+	
+	
+	
 
 }
