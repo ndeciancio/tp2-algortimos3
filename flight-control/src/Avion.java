@@ -1,29 +1,64 @@
+import java.util.List;
+
 
 public abstract class Avion {
 	
 	protected Posicion posicion;
-	private Pista pista;
-	private Trayectoria trayectoria;
-	private Boolean aterrizado;
 	
-	public Avion(Posicion posicion, Pista pista){
+	private Trayectoria trayectoria;
+	private Boolean aterrizado = false;
+	private Movimiento movimiento;
+	private Integer radio;
+	
+	public Avion(Posicion posicion, Integer radio){
 		this.posicion = posicion;
-		this.pista = pista;
+		this.radio = radio;
 	}
 	
-	public abstract void avanzar();
+	
+	public void avanzar() {
+		getMovimiento().avanzar(getTrayectoria(), getPosicion());
+	}
 
+	public void vivir() throws Exception{
+		if(!estaAterrizado()){
+			avanzar();
+			chequearChoques();
+			chequearAterrizaje();
+		}
+	}
+	
+	public void chequearChoques() throws ChoqueException{
+		List<Avion> avionesCercanos = Mapa.getInstance().getAvionesCercanos(this);
+		if (avionesCercanos.size() > 1){
+			throw new ChoqueException();
+		}
+	}
+	
 	public Boolean chequearAterrizaje(){
+		List<Pista> pistas = Mapa.getInstance().getPistas();
+		for(Pista p : pistas){
+			if(intentarAterrizar(p)){
+				aterrizar();
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public abstract Boolean intentarAterrizar(Pista p);
+	
+	
+	public Boolean estaCercaDe(Avion a){
+		return getPosicion().estaCercaDe(a.getPosicion(),a.getRadio()+this.getRadio());
+	}
+	
+	public void aterrizar(){
 		aterrizado = true;
-		return true; //TODO HARDCODED!!!!!
 	}
 	
 	public Posicion getPosicion() {
 		return posicion;
-	}
-
-	public Pista getPista() {
-		return pista;
 	}
 
 	public void setTrayectoria(Trayectoria trayectoria) {
@@ -37,4 +72,25 @@ public abstract class Avion {
 	public Boolean estaAterrizado() {
 		return aterrizado;
 	}
+
+
+	public void setMovimiento(Movimiento movimiento) {
+		this.movimiento = movimiento;
+	}
+
+
+	public Movimiento getMovimiento() {
+		return movimiento;
+	}
+
+
+	public Integer getRadio() {
+		return radio;
+	}
+
+
+	public void setRadio(Integer radio) {
+		this.radio = radio;
+	}
+
 }
