@@ -1,27 +1,23 @@
-import java.util.EmptyStackException;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Queue;
 
 
 public class Trayectoria {
 
-	private Stack<Posicion> posiciones;
+	private Queue<Posicion> posiciones;
 	
 	public Trayectoria(List<Posicion> posiciones){
-		this.posiciones = new Stack<Posicion>();
+		this.posiciones = new LinkedList<Posicion>();
 		this.posiciones.addAll(posiciones);
 	}
 	
 	public Posicion getPosicionSiguiente(){
-		try{
 			return posiciones.peek();
-		}catch(EmptyStackException e){
-			return null;
-		}
 	}
 	
 	public void eliminarPosicion(){
-		posiciones.pop();
+		posiciones.poll();
 	}
 	
 }

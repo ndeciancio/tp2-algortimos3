@@ -13,7 +13,7 @@ public class MovimientoSimple extends Movimiento {
 			Integer desfasajeX = siguiente.getX() - actualPos.getX();
 			Integer desfasajeY = siguiente.getY() - actualPos.getY();
 			setDireccion(Math.atan2(desfasajeY, desfasajeX)); 
-			if(desfasajeX.equals(0) && desfasajeY.equals(0)){
+			if(siguiente.estaCercaDe(actualPos, getVelocidad())){
 				trayectoria.eliminarPosicion();
 			}
 		}
