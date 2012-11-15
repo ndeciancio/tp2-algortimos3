@@ -13,13 +13,8 @@ public abstract class Pista {
 		return posicion;
 	}
 	
-	public Boolean puedeAterrizar(Avion a){
-		return false;
-	}
 	
-	public Boolean puedeAterrizar(AvionLiviano a){
-		return false;
-	}
+	public abstract Boolean puedeAterrizar(AvionLiviano a);
 
 	public Integer getRadio() {
 		return radio;
