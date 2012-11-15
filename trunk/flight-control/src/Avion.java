@@ -89,8 +89,4 @@ public abstract class Avion {
 	}
 
 
-	public void setRadio(Integer radio) {
-		this.radio = radio;
-	}
-
 }

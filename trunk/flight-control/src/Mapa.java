@@ -6,8 +6,8 @@ public class Mapa {
 
 	private static Mapa singleton;
 	
-	private List<Pista> pistas;
-	private List<Avion> aviones;
+	private List<Pista> pistas = new ArrayList<Pista>();
+	private List<Avion> aviones = new ArrayList<Avion>();
 	
 	private Mapa(){
 	}
@@ -20,16 +20,10 @@ public class Mapa {
 	}
 	
 	public void addPista(Pista p){
-		if (pistas == null){
-			pistas = new ArrayList<Pista>();
-		}
 		pistas.add(p);
 	}
 	
 	public void addAvion(Avion a){
-		if(aviones == null){
-			aviones = new ArrayList<Avion>();
-		}
 		aviones.add(a);
 	}
 	

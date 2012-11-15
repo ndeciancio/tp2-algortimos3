@@ -15,9 +15,7 @@ public abstract class Movimiento {
 	public Integer getVelocidad() {
 		return velocidad;
 	}
-	public void setVelocidad(Integer velocidad) {
-		this.velocidad = velocidad;
-	}
+
 	public Double getDireccion() {
 		return direccion;
 	}
