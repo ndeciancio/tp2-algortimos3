@@ -15,10 +15,10 @@ public abstract class Pista {
 	
 	
 	public abstract Boolean puedeAterrizar(AvionLiviano a);
-
+	public abstract Boolean puedeAterrizar(AvionPesado avion);
+	
 	public Integer getRadio() {
 		return radio;
 	}
-	
 
 }
