@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.aviones.Avion;
+import modelo.aviones.AvionLiviano;
+import modelo.exceptions.ChoqueException;
+import modelo.general.Mapa;
+import modelo.general.Posicion;
+import modelo.general.Trayectoria;
+
 import org.junit.Test;
 
 

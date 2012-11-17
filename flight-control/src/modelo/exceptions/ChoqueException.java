@@ -1,3 +1,4 @@
+package modelo.exceptions;
 
 public class ChoqueException extends Exception {
 

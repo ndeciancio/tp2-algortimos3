@@ -1,0 +1,56 @@
+<project name="flight-control" basedir="." default="empaquetar">
+	<property name="build" location="build" />
+	<property name="libs" location="libs" />
+	<property name="classes.dir" location="build" />
+	<property name="instrumented.dir" location="${build}/instrumented" />
+	<property name="cobertura.dir" location="${libs}" />
+	<property name="reports.dir" location="${build}/reports" />
+	<property name="reports.xml.dir" location="${reports.dir}/junit-xml" />
+	<property name="reports.html.dir" location="${reports.dir}/junit-html" />
+	<property name="src.dir" location="src" />
+	<property name="coverage.xml.dir" location="${reports.dir}/cobertura-xml" />
+	<property name="coverage.summaryxml.dir" location="${reports.dir}/cobertura-summary-xml" />
+	<property name="coverage.html.dir" location="${reports.dir}/cobertura-html" />
+
+	<path id="classpath">
+		<fileset dir="${libs}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="${build}" />
+		<pathelement location="${instrumented.dir}" />
+		<pathelement location="${build}/tests" />
+	</path>
+
+	<path id="cobertura.classpath">
+		<fileset dir="${cobertura.dir}">
+			<include name="cobertura.jar" />
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="setup">
+		<delete dir="${build}" />
+		<mkdir dir="${build}"/>
+		<mkdir dir="${build}/classes"/>
+		<mkdir dir="${build}/tests"/>
+	</target>
+
+	<target name="compilar.aplicacion" depends="setup">
+		<javac srcdir="src" destdir="${build}/classes" includeantruntime="false" debug="yes" target="1.6">
+		</javac>
+	</target>
+	
+	<target name="init">
+		<mkdir dir="${instrumented.dir}" />
+		<mkdir dir="${reports.xml.dir}" />
+		<mkdir dir="${reports.html.dir}" />
+	</target>
+
+
+	<target name="empaquetar" depends="compilar.aplicacion">
+		<jar destfile="${build}/flight-control.jar" basedir="${build}/classes"/>
+	</target>
+
+	
+
+</project>

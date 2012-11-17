@@ -1,4 +1,12 @@
+package modelo.aviones;
 import java.util.List;
+
+import modelo.exceptions.ChoqueException;
+import modelo.general.Mapa;
+import modelo.general.Posicion;
+import modelo.general.Trayectoria;
+import modelo.movimientos.Movimiento;
+import modelo.pistas.Pista;
 
 
 public abstract class Avion {

@@ -1,3 +1,7 @@
+package modelo.movimientos;
+
+import modelo.general.Posicion;
+import modelo.general.Trayectoria;
 
 public class MovimientoInteligente extends Movimiento {
 
