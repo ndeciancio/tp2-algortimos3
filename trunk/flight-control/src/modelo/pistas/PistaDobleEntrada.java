@@ -1,6 +1,7 @@
 package modelo.pistas;
 
 import modelo.aviones.AvionLiviano;
+import modelo.aviones.AvionHelicoptero;
 import modelo.aviones.AvionPesado;
 import modelo.general.Posicion;
 
@@ -28,6 +29,10 @@ public class PistaDobleEntrada extends Pista {
 
 	@Override
 	public Boolean puedeAterrizar(AvionPesado avion) {
+		return false;
+	}
+	
+	public Boolean puedeAterrizar(AvionHelicoptero avion) {
 		return false;
 	}
 

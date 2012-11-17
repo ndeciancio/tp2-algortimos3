@@ -12,9 +12,9 @@ import modelo.pistas.Pista;
 public abstract class Avion {
 	
 	protected Posicion posicion;
+	protected Boolean aterrizado = false;
 	
 	private Trayectoria trayectoria;
-	private Boolean aterrizado = false;
 	private Movimiento movimiento;
 	private Integer radio;
 	
@@ -29,6 +29,10 @@ public abstract class Avion {
 	}
 
 	public void vivir() throws Exception{
+		realizarElMovimiento();
+	}
+	
+	protected void realizarElMovimiento () throws Exception {
 		if(!estaAterrizado()){
 			avanzar();
 			chequearChoques();

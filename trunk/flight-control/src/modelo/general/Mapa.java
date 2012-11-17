@@ -32,7 +32,8 @@ public class Mapa {
 	}
 	
 	public void resetMapa(){
-		singleton = new Mapa();
+		singleton.aviones = new ArrayList<Avion>();
+		singleton.pistas = new ArrayList<Pista>();
 	}
 	
 	public List<Avion> getAvionesCercanos(Avion a){
