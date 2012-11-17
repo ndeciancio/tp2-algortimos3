@@ -26,4 +26,6 @@ public abstract class Movimiento {
 	protected void setDireccion(Double direccion) {
 		this.direccion = direccion;
 	}
+
+
 }
