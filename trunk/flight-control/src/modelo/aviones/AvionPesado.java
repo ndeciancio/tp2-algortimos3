@@ -1,3 +1,9 @@
+package modelo.aviones;
+
+import modelo.general.Posicion;
+import modelo.movimientos.Movimiento;
+import modelo.movimientos.MovimientoSimple;
+import modelo.pistas.Pista;
 
 public class AvionPesado extends Avion {
 

@@ -1,3 +1,8 @@
+package modelo.pistas;
+
+import modelo.aviones.AvionLiviano;
+import modelo.aviones.AvionPesado;
+import modelo.general.Posicion;
 
 public class PistaDobleEntrada extends Pista {
 

@@ -1,3 +1,4 @@
+package modelo.general;
 
 public class Posicion {
 

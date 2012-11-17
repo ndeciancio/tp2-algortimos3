@@ -4,6 +4,14 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.aviones.Avion;
+import modelo.aviones.AvionLiviano;
+import modelo.general.Mapa;
+import modelo.general.Posicion;
+import modelo.general.Trayectoria;
+import modelo.pistas.Pista;
+import modelo.pistas.PistaSimple;
+
 import org.junit.Test;
 
 public class AterrizajeTest {

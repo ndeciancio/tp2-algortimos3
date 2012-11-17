@@ -1,5 +1,9 @@
+package modelo.general;
 import java.util.ArrayList;
 import java.util.List;
+
+import modelo.aviones.Avion;
+import modelo.pistas.Pista;
 
 
 public class Mapa {
