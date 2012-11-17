@@ -2,6 +2,7 @@ package modelo.pistas;
 
 import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionPesado;
+import modelo.aviones.AvionHelicoptero;
 import modelo.general.Posicion;
 
 public class PistaLarga extends Pista {
@@ -12,6 +13,11 @@ public class PistaLarga extends Pista {
 
 	@Override
 	public Boolean puedeAterrizar(AvionLiviano a) {
+		return false;
+	}
+	
+	@Override
+	public Boolean puedeAterrizar(AvionHelicoptero a) {
 		return false;
 	}
 	

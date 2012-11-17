@@ -23,7 +23,7 @@ public abstract class Movimiento {
 	public Double getDireccion() {
 		return direccion;
 	}
-	public void setDireccion(Double direccion) {
+	protected void setDireccion(Double direccion) {
 		this.direccion = direccion;
 	}
 }

@@ -1,7 +1,7 @@
 package modelo.pistas;
 
-import modelo.aviones.AvionLiviano;
-import modelo.aviones.AvionPesado;
+import modelo.aviones.*;
+
 import modelo.general.Posicion;
 
 public abstract class Pista {
@@ -21,6 +21,7 @@ public abstract class Pista {
 	
 	public abstract Boolean puedeAterrizar(AvionLiviano a);
 	public abstract Boolean puedeAterrizar(AvionPesado avion);
+	public abstract Boolean puedeAterrizar(AvionHelicoptero avion);
 	
 	public Integer getRadio() {
 		return radio;
