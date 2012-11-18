@@ -1,5 +1,6 @@
 package modelo.general;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import modelo.aviones.Avion;
@@ -50,4 +51,23 @@ public class Mapa {
 		return pistas;
 	}
 	
+	public Integer obtenerCantidadAviones(){
+		return aviones.size();
+	}
+
+	public void sacarAvionesAterrizados() {
+		
+		Iterator <Avion> iteradorAviones = aviones.iterator();
+		
+		while (iteradorAviones.hasNext()){
+
+			if (iteradorAviones.next().estaAterrizado())
+			{
+				iteradorAviones.remove();
+			}
+		}
+		
+	}
+
+
 }

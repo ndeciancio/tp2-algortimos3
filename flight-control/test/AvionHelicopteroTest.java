@@ -6,7 +6,6 @@ import java.util.List;
 
 import modelo.aviones.Avion;
 import modelo.aviones.AvionHelicoptero;
-import modelo.aviones.AvionLiviano;
 import modelo.general.Mapa;
 import modelo.general.Posicion;
 import modelo.general.Trayectoria;
