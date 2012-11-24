@@ -1,5 +1,8 @@
 package modelo.general;
 
+import java.util.Random;
+
+
 public class Posicion {
 
 	private Integer x;
@@ -68,5 +71,51 @@ public class Posicion {
 		} else if (!y.equals(other.y))
 			return false;
 		return true;
+	}
+
+
+
+	public static Posicion crearPosicionSobreBordeX(Integer bordeX, Integer bordeY) {
+		Random randomX = new Random ();
+		Random randomY = new Random ();
+		Integer posicionX = randomX.nextInt(bordeX);
+		Integer posicionY = randomY.nextInt(bordeY);
+		
+				
+		if (posicionY >= (bordeY / 2))
+		{
+			posicionY = bordeY;
+		}
+		else{
+			posicionY =0;
+		}
+		
+		
+		return new Posicion(posicionX, posicionY);
+	}
+	public static Posicion crearPosicionSobreBordeY(Integer bordeX, Integer bordeY) {
+		Random randomX = new Random ();
+		Random randomY = new Random ();
+		Integer posicionX = randomX.nextInt(bordeX);
+		Integer posicionY = randomY.nextInt(bordeY);
+		
+				
+		if (posicionX >= (bordeX / 2))
+		{
+			posicionX = bordeX;
+		}
+		else{
+			posicionX =0;
+		}
+		
+		
+		return new Posicion(posicionX, posicionY);
+	}
+
+
+
+	public boolean verificarIgualdad(Posicion posicionAComprobar) {
+
+		return ( this.x == posicionAComprobar.x ) && (this.y == posicionAComprobar.y) ;
 	}
 }
