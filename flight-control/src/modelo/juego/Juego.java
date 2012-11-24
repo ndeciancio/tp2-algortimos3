@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import modelo.aviones.Avion;
+import modelo.exceptions.FalloEnFabricacionAvionException;
 import modelo.factories.FactoryAvion;
 import modelo.general.Mapa;
 import modelo.pistas.Pista;
@@ -23,9 +24,9 @@ public class Juego {
 	
 
 	
-	public Juego (Integer cantidadAviones, List <Pista> pistasDelMapa, List <FactoryAvion> fabricas)
+	public Juego (Integer cantidadAvionesMaximaPorNivel, List <Pista> pistasDelMapa, List <FactoryAvion> fabricas)
 	{
-		cantidadMaximaAvionesPorNivel = cantidadAviones;
+		cantidadMaximaAvionesPorNivel = cantidadAvionesMaximaPorNivel;
 		agregarPistasAlMapa(pistasDelMapa);
 		agregarFabricas(fabricas);
 	}
@@ -50,11 +51,13 @@ public class Juego {
 	}
 	
 	public void vivir(){
+		
 
 		crearAvion();
 		aumentarDificultad();
 		retirarAvionDelJuego();
-		
+
+
 	}
 
 
@@ -62,12 +65,18 @@ public class Juego {
 		//aca no se bien como funciona el random, pero supongo que se le pasa por
 		//parametro el tope
 		
-		Random fabricaRandom = new Random (fabricasDeAviones.size());
-		Integer fabricaElegida = fabricaRandom.nextInt();
+		if (this.fabricasDeAviones.size() == 0){
+			FalloEnFabricacionAvionException falloEnFabricacion = new FalloEnFabricacionAvionException("Fallo En La Fabricacion De Un Avion");
+			throw falloEnFabricacion;
+			
+		}
+		
+		Random fabricaRandom = new Random ();
+		Integer fabricaElegida = fabricaRandom.nextInt(fabricasDeAviones.size());
 				
 		if (turnosParaCreacionSiguienteAvion >= interverloDeCreacionAviones){
 			turnosParaCreacionSiguienteAvion = 0;
-			Avion avionNuevo = this.fabricasDeAviones.get(fabricaElegida).fabricarAvion();
+			Avion avionNuevo = this.fabricasDeAviones.get(fabricaElegida).fabricarAvion(this.mapaDeJuego);
 			mapaDeJuego.addAvion(avionNuevo);
 		}
 		
@@ -77,7 +86,7 @@ public class Juego {
 
 	private void aumentarDificultad() {
 		if (this.verificarPasarDeNivel()){
-			this.interverloDeCreacionAviones -= 5;
+			interverloDeCreacionAviones -= 5;
 		}
 		//habria que haber algo que indique que se aumento la dificultad
 	}

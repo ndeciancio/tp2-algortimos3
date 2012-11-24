@@ -13,6 +13,8 @@ public class Mapa {
 	
 	private List<Pista> pistas = new ArrayList<Pista>();
 	private List<Avion> aviones = new ArrayList<Avion>();
+	private Integer dimensionEnX = 100;
+	private Integer dimensionEnY = 100;
 	
 	private Mapa(){
 	}
@@ -68,6 +70,18 @@ public class Mapa {
 		}
 		
 	}
+
+	public Integer getBordeX() {
+
+		return dimensionEnX;
+	}
+
+	public Integer getBordeY() {
+
+		return dimensionEnY;
+	}
+
+
 
 
 }
