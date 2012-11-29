@@ -57,4 +57,24 @@ public class PosicionTest {
 		assertTrue(resultadoPrueba);
 		
 	}
+	
+	@Test
+	public void testcrearPrimerDestinoSobreBordeXDeDeberiaCrearUnaPosicionSiguienASuPosicionOriginalSobreXEnY0() {
+		Posicion posicionSobreX = new Posicion (5,0);
+		Posicion posicionSiguiente = Posicion.crearPrimerDestinoSobreBordeX(posicionSobreX);
+		int posicionSiguienteSobreY = posicionSobreX.getY() + 1;
+		
+		assertTrue ( posicionSiguienteSobreY == posicionSiguiente.getY() );
+		
+	}
+	
+	@Test
+	public void testcrearPrimerDestinoSobreBordeXDeDeberiaCrearUnaPosicionSiguienASuPosicionOriginalSobreXEnY100() {
+		Posicion posicionSobreX = new Posicion (5,100);
+		Posicion posicionSiguiente = Posicion.crearPrimerDestinoSobreBordeX(posicionSobreX);
+		int posicionSiguienteSobreY = posicionSobreX.getY() - 1;
+		
+		assertTrue ( posicionSiguienteSobreY == posicionSiguiente.getY() );
+		
+	}
 }
