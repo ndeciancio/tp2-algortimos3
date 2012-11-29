@@ -118,4 +118,42 @@ public class Posicion {
 
 		return ( this.x == posicionAComprobar.x ) && (this.y == posicionAComprobar.y) ;
 	}
+
+
+
+	public static Posicion crearPrimerDestinoSobreBordeX(Posicion posicionInicial) {
+		Integer posicionY;
+		
+		if (posicionInicial.getY() > 0 )
+		{
+			posicionY = posicionInicial.getY() - 1; 
+		}
+		else
+		{
+			posicionY = posicionInicial.getY() + 1;
+		}
+		
+		Posicion posicionPrimerDestino = new Posicion (posicionInicial.getX(), posicionY);
+		
+		return posicionPrimerDestino;
+	}
+
+
+
+	public static Posicion crearPrimerDestinoSobreBordeY(Posicion posicionInicial) {
+		Integer posicionX;
+		
+		if (posicionInicial.getX() > 0 )
+		{
+			posicionX = posicionInicial.getY() - 1; 
+		}
+		else
+		{
+			posicionX = posicionInicial.getY() + 1;
+		}
+		
+		Posicion posicionPrimerDestino = new Posicion (posicionX, posicionInicial.getY());
+		
+		return posicionPrimerDestino;
+	}
 }
