@@ -12,7 +12,7 @@ public class AvionHelicoptero extends Avion {
 	private AvionHelicoptero(Posicion posicion, Integer radio) {
 		super(posicion, radio);
 
-	}
+	} 
 	public static AvionHelicoptero crearAvionHelicopteroSimple(Posicion posicion,Integer radio, Integer velocidad, Double direccion){
 		AvionHelicoptero avion = new AvionHelicoptero(posicion, radio);
 		Movimiento mov = new MovimientoSimple(velocidad, direccion);
