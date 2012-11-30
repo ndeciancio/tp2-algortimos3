@@ -3,6 +3,7 @@ package modelo.general;
 import java.util.Random;
 
 public class Posicion {
+	private static Random r = new Random(2048);
 
 	private Integer x;
 	private Integer y;
@@ -70,44 +71,40 @@ public class Posicion {
 
 	public static Posicion crearPosicionSobreBorde(Integer bordeX,
 			Integer bordeY) {
-		Random randomX = new Random(345);
-		Random randomY = new Random(678);
-		Integer posicionX=0;
-		Integer posicionY =0;
-		Random randomBorde = new Random();
-		Integer borde = randomBorde.nextInt(4);
+		Integer posicionX = 0;
+		Integer posicionY = 0;
+		Integer borde = r.nextInt(4);
 		switch (borde) {
 		case 0:
 			posicionX = 0;
-			posicionY = randomY.nextInt(bordeY);
+			posicionY = r.nextInt(bordeY);
 			break;
 		case 1:
 			posicionX = bordeX;
-			posicionY = randomY.nextInt(bordeY);
+			posicionY = r.nextInt(bordeY);
 			break;
 		case 2:
 			posicionY = bordeY;
-			posicionX = randomX.nextInt(bordeX);
+			posicionX = r.nextInt(bordeX);
 			break;
 		case 3:
 			posicionY = 0;
-			posicionX = randomX.nextInt(bordeX);
+			posicionX = r.nextInt(bordeX);
 			break;
 		}
 
 		return new Posicion(posicionX, posicionY);
 	}
-	
-	public static Posicion crearPrimerDestino(Integer bordeX, Integer bordeY) {
-		Random randomX = new Random(2048);
-		Random randomY = new Random(1234);
-		Integer posicionX= randomX.nextInt(bordeX);
-		Integer posicionY =randomY.nextInt(bordeY);
 
-		Posicion posicionPrimerDestino = new Posicion(posicionX,
-				posicionY);
+	public static synchronized Posicion crearPrimerDestino(Integer bordeX,
+			Integer bordeY) {
+
+		Integer posicionX = r.nextInt(bordeX);
+		Integer posicionY = r.nextInt(bordeY);
+		Posicion posicionPrimerDestino = new Posicion(posicionX, posicionY);
 
 		return posicionPrimerDestino;
+
 	}
-	
+
 }

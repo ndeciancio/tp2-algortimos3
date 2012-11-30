@@ -12,7 +12,6 @@ import modelo.general.Trayectoria;
 import modelo.pistas.Pista;
 import modelo.pistas.PistaHelipuerto;
 
-
 import org.junit.Test;
 
 public class AvionHelicopteroTest {

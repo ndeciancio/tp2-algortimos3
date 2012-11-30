@@ -1,7 +1,7 @@
 package modelo.pistas;
 
-import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionHelicoptero;
+import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionPesado;
 import modelo.general.Posicion;
 

@@ -16,8 +16,8 @@ public class Juego implements ObjetoVivo{
 
 	private Mapa mapaDeJuego = Mapa.getInstance();
 	private Integer cantidadMaximaAvionesPorNivel;
-	private Integer interverloDeCreacionAviones = 30;
-	private Integer turnosParaCreacionSiguienteAvion = 15;
+	private Integer interverloDeCreacionAviones = 2;
+	private Integer turnosParaCreacionSiguienteAvion = 30;
 	private List<FactoryAvion> fabricasDeAviones;
 
 	private Boolean perdido = false;
@@ -63,9 +63,7 @@ public class Juego implements ObjetoVivo{
 		Random fabricaRandom = new Random();
 		Integer fabricaElegida = fabricaRandom
 				.nextInt(fabricasDeAviones.size());
-		System.out.println("Pasando Por creacion de aviones");
 		if (turnosParaCreacionSiguienteAvion >= interverloDeCreacionAviones) {
-			System.out.println("Intentando crear avion");
 			turnosParaCreacionSiguienteAvion = 0;
 			Avion avionNuevo = this.fabricasDeAviones.get(fabricaElegida)
 					.fabricarAvion(this.mapaDeJuego, this);
