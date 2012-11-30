@@ -26,4 +26,9 @@ public class AvionHelicoptero extends Avion {
 		return pista.puedeAterrizar(this);
 	}
 
+	@Override
+	public Boolean puedoAterrizarEnEstaPista(Pista p) {
+		return p.esLaPista(this);
+	}
+
 }

@@ -6,11 +6,13 @@ import java.util.Queue;
 
 public class Trayectoria {
 
-	private Queue<Posicion> posiciones;
+	private Queue<Posicion> posiciones = new LinkedList<Posicion>();;
 	
 	public Trayectoria(List<Posicion> posiciones){
-		this.posiciones = new LinkedList<Posicion>();
 		this.posiciones.addAll(posiciones);
+	}
+	
+	public Trayectoria(){
 	}
 	
 	public Posicion getPosicionSiguiente(){
@@ -19,6 +21,10 @@ public class Trayectoria {
 	
 	public void eliminarPosicion(){
 		posiciones.poll();
+	}
+	
+	public void agregarPosicion(Posicion pos){
+		posiciones.add(pos);
 	}
 	
 }

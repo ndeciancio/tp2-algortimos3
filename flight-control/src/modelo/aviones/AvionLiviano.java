@@ -25,6 +25,7 @@ public class AvionLiviano extends Avion {
 		AvionLiviano avion = new AvionLiviano(posicion, radio, juego);
 		Movimiento mov = new MovimientoInteligente(velocidad, direccion);
 		avion.setMovimiento(mov);
+		mov.setAvion(avion);
 		return avion;
 	}
 	
@@ -33,7 +34,10 @@ public class AvionLiviano extends Avion {
 		return p.puedeAterrizar(this);
 	}
 	
-	
+	@Override
+	public Boolean puedoAterrizarEnEstaPista(Pista p) {
+		return p.esLaPista(this);
+	}
 	
 	
 

@@ -17,9 +17,11 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 	protected Posicion posicion;
 	protected Boolean aterrizado = false;
 	
-	private Trayectoria trayectoria;
+	private Trayectoria trayectoria = new Trayectoria();
 	private Movimiento movimiento;
 	private Integer radio;
+	
+	private Boolean seleccionado = false;
 	
 	private Juego juego;
 	
@@ -41,7 +43,6 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 				chequearChoques();
 			}catch(ChoqueException e){
 				juego.huboUnChoque();
-				System.out.println("HUBO UN CHOQUE");
 			}
 			chequearAterrizaje();
 		}
@@ -67,7 +68,7 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 	}
 	
 	public abstract Boolean intentarAterrizar(Pista p);
-	
+	public abstract Boolean puedoAterrizarEnEstaPista(Pista p);
 	
 	public Boolean estaCercaDe(Avion a){
 		return getPosicion().estaCercaDe(a.getPosicion(),a.getRadio()+this.getRadio());
@@ -75,6 +76,11 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 	
 	public void aterrizar(){
 		aterrizado = true;
+		juego.aterrizo(this);
+	}
+	
+	public void agregarPosicionATrayectoria(Posicion pos){
+		trayectoria.agregarPosicion(pos);
 	}
 	
 	public Posicion getPosicion() {
@@ -116,5 +122,16 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 		return this.getPosicion().getY();
 	}
 	
-
+	public void seleccionar(){
+		trayectoria = new Trayectoria();
+		seleccionado = true;
+	}
+	
+	public void desSeleccionar(){
+		seleccionado = false;
+	}
+	
+	public Boolean estaSeleccionado(){
+		return seleccionado;
+	}
 }

@@ -8,20 +8,23 @@ import modelo.aviones.Avion;
 import modelo.exceptions.FalloEnFabricacionAvionException;
 import modelo.factories.FactoryAvion;
 import modelo.general.Mapa;
+import modelo.general.Posicion;
 import modelo.pistas.Pista;
 import vista.ViewManager;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
-public class Juego implements ObjetoVivo{
+public class Juego implements ObjetoVivo {
 
 	private Mapa mapaDeJuego = Mapa.getInstance();
 	private Integer cantidadMaximaAvionesPorNivel;
-	private Integer interverloDeCreacionAviones = 2;
+	private Integer interverloDeCreacionAviones = 30;
 	private Integer turnosParaCreacionSiguienteAvion = 30;
 	private List<FactoryAvion> fabricasDeAviones;
 
 	private Boolean perdido = false;
 	private List<ViewManager> viewManagers;
+	
+	private Integer cantAvionesAterrizados = 0;
 
 	public Juego(Integer cantidadAvionesMaximaPorNivel,
 			List<Pista> pistasDelMapa, List<FactoryAvion> fabricas,
@@ -68,7 +71,7 @@ public class Juego implements ObjetoVivo{
 			Avion avionNuevo = this.fabricasDeAviones.get(fabricaElegida)
 					.fabricarAvion(this.mapaDeJuego, this);
 			mapaDeJuego.addAvion(avionNuevo);
-			for(ViewManager manager: viewManagers){
+			for (ViewManager manager : viewManagers) {
 				manager.addAvion(avionNuevo);
 			}
 		}
@@ -100,4 +103,16 @@ public class Juego implements ObjetoVivo{
 		this.perdido = true;
 	}
 
+	public void huboUnClick(Integer x, Integer y){
+		if(!Mapa.getInstance().seleccionarAvion(new Posicion(x,y))){
+			Mapa.getInstance().agregarPosicionAlAvionSeleccionado(new Posicion(x,y));
+		}
+	}
+	
+	public void aterrizo(Avion a){
+		cantAvionesAterrizados++;
+		for(ViewManager manager: viewManagers){
+			manager.removerAvion(a);
+		}
+	}
 }

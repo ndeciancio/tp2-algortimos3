@@ -24,6 +24,7 @@ public class AvionPesado extends Avion {
 		AvionPesado avion = new AvionPesado(posicion, radio, juego);
 		Movimiento mov = new MovimientoInteligente(velocidad, direccion);
 		avion.setMovimiento(mov);
+		mov.setAvion(avion);
 		return avion;
 	}
 	
@@ -32,4 +33,9 @@ public class AvionPesado extends Avion {
 		return p.puedeAterrizar(this);
 	}
 
+	@Override
+	public Boolean puedoAterrizarEnEstaPista(Pista p) {
+		return p.esLaPista(this);
+	}
+	
 }

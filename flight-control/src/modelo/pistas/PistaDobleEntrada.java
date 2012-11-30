@@ -26,6 +26,8 @@ public class PistaDobleEntrada extends Pista {
 			return false;
 		}
 	}
+	
+	
 
 	@Override
 	public Boolean puedeAterrizar(AvionPesado avion) {
@@ -42,6 +44,21 @@ public class PistaDobleEntrada extends Pista {
 
 	public Integer getRadio2() {
 		return radio2;
+	}
+
+	@Override
+	public Boolean esLaPista(AvionLiviano avion) {
+		return true;
+	}
+
+	@Override
+	public Boolean esLaPista(AvionPesado avion) {
+		return false;
+	}
+
+	@Override
+	public Boolean esLaPista(AvionHelicoptero avion) {
+		return false;
 	}
 
 }

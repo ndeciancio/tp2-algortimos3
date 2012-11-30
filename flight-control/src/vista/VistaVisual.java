@@ -98,8 +98,8 @@ public class VistaVisual implements ViewManager {
 		panel.setBounds(40, 50, 840, 650);
 		frame.getContentPane().add(panel);
 		
-		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
-		this.viewLoop = new ViewLoop((SuperficieDeDibujo) panel);
+		this.gameLoop = new GameLoop(100,(SuperficieDeDibujo) panel);
+		this.viewLoop = new ViewLoop(20,(SuperficieDeDibujo) panel);
 		
 		
 		List<Pista> pistas = new ArrayList<Pista>();
@@ -110,7 +110,7 @@ public class VistaVisual implements ViewManager {
 		factories.add(f);
 		List<ViewManager> managers = new ArrayList<ViewManager>();
 		managers.add(this);
-		Juego juego = new Juego(15,pistas,factories,managers);
+		final Juego juego = new Juego(15,pistas,factories,managers);
 		this.gameLoop.agregar(juego);
 		VistaPista vp = new VistaPista(p);
 		this.viewLoop.agregar(vp);
@@ -119,7 +119,7 @@ public class VistaVisual implements ViewManager {
 					
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//modelo.moverA(arg0.getX(), arg0.getY());
+				juego.huboUnClick(arg0.getX(),arg0.getY());
 					
 			}});
 
@@ -160,5 +160,12 @@ public class VistaVisual implements ViewManager {
 		this.viewLoop.agregar(va);
 		this.gameLoop.agregar(a);
 	}
+	
+	public void removerAvion(Avion a){
+		this.gameLoop.remover(a);
+		VistaAvion va = new VistaAvion(a);
+		this.viewLoop.remover(va);
+	}
+
 
 }

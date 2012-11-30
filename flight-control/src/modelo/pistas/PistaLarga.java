@@ -30,4 +30,19 @@ public class PistaLarga extends Pista {
 		}
 	}
 
+	@Override
+	public Boolean esLaPista(AvionLiviano avion) {
+		return false;
+	}
+
+	@Override
+	public Boolean esLaPista(AvionPesado avion) {
+		return true;
+	}
+
+	@Override
+	public Boolean esLaPista(AvionHelicoptero avion) {
+		return false;
+	}
+
 }
