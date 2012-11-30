@@ -13,8 +13,8 @@ public class Mapa {
 	
 	private List<Pista> pistas = new ArrayList<Pista>();
 	private List<Avion> aviones = new ArrayList<Avion>();
-	private Integer dimensionEnX = 100;
-	private Integer dimensionEnY = 100;
+	private Integer dimensionEnX = 800;
+	private Integer dimensionEnY = 600;
 	
 	private Mapa(){
 	}

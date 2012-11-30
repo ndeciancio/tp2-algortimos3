@@ -14,13 +14,11 @@ public class PistaHelipuerto extends Pista {
 
 	@Override
 	public Boolean puedeAterrizar(AvionLiviano a) {
-
 		return false;
 	}
 
 	@Override
 	public Boolean puedeAterrizar(AvionPesado avion) {
-
 		return false;
 	}
 
@@ -31,7 +29,6 @@ public class PistaHelipuerto extends Pista {
 		}else{
 			return false;
 		}
-
 	}
 
 }

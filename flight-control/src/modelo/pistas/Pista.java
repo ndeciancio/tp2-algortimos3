@@ -1,10 +1,11 @@
 package modelo.pistas;
 
+import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import modelo.aviones.*;
 
 import modelo.general.Posicion;
 
-public abstract class Pista {
+public abstract class Pista implements ObjetoPosicionable {
 
 	private Posicion posicion;
 	private Integer radio;
@@ -25,6 +26,14 @@ public abstract class Pista {
 	
 	public Integer getRadio() {
 		return radio;
+	}
+	
+	public int getX(){
+		return this.getPosicion().getX();
+	}
+	
+	public int getY(){
+		return this.getPosicion().getY();
 	}
 
 }
