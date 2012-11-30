@@ -1,8 +1,8 @@
 package modelo.pistas;
 
+import modelo.aviones.AvionHelicoptero;
 import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionPesado;
-import modelo.aviones.AvionHelicoptero;
 import modelo.general.Posicion;
 
 public class PistaSimple extends Pista {

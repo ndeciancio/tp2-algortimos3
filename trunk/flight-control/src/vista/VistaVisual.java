@@ -26,12 +26,14 @@ import modelo.pistas.PistaSimple;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
+import fiuba.algo3.titiritero.modelo.ViewLoop;
 
 public class VistaVisual implements ViewManager {
 
 	private JFrame frame;
 	private GameLoop gameLoop;
 
+	private ViewLoop viewLoop;
 	/**
 	 * Launch the application.
 	 */
@@ -75,6 +77,7 @@ public class VistaVisual implements ViewManager {
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				gameLoop.iniciarEjecucion();
+				viewLoop.iniciarEjecucion();
 			}
 		});
 		btnIniciar.setBounds(42, 16, 77, 25);
@@ -84,6 +87,7 @@ public class VistaVisual implements ViewManager {
 		btnDetener.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameLoop.detenerEjecucion();
+				viewLoop.detenerEjecucion();
 			}
 		});
 		btnDetener.setBounds(325, 16, 92, 25);
@@ -95,6 +99,8 @@ public class VistaVisual implements ViewManager {
 		frame.getContentPane().add(panel);
 		
 		this.gameLoop = new GameLoop((SuperficieDeDibujo) panel);
+		this.viewLoop = new ViewLoop((SuperficieDeDibujo) panel);
+		
 		
 		List<Pista> pistas = new ArrayList<Pista>();
 		Pista p = new PistaSimple(new Posicion(40,50), 15);
@@ -107,7 +113,7 @@ public class VistaVisual implements ViewManager {
 		Juego juego = new Juego(15,pistas,factories,managers);
 		this.gameLoop.agregar(juego);
 		VistaPista vp = new VistaPista(p);
-		this.gameLoop.agregar(vp);
+		this.viewLoop.agregar(vp);
 		
 		panel.addMouseListener(new MouseAdapter() {
 					
@@ -151,8 +157,8 @@ public class VistaVisual implements ViewManager {
 	@Override
 	public void addAvion(Avion a) {
 		VistaAvion va = new VistaAvion(a);
-		this.gameLoop.agregar(va);
-		System.out.println("Avion Creado");
+		this.viewLoop.agregar(va);
+		this.gameLoop.agregar(a);
 	}
 
 }

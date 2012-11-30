@@ -13,6 +13,8 @@ import modelo.juego.Juego;
 
 public class FactoryAvionLiviano implements FactoryAvion {
 
+	private static Random r = new Random(1024);
+	
 	@Override
 	public Avion fabricarAvion(Mapa mapa, Juego juego) {
 		Double direccion = 0d;
@@ -26,14 +28,15 @@ public class FactoryAvionLiviano implements FactoryAvion {
 		listaPrimerMovimiento.add(primerMovimiento);
 		Trayectoria trayectoriaAvionNuevo = new Trayectoria(
 				listaPrimerMovimiento);
-		Random r = new Random(1024);
-		Integer x = r.nextInt(2);
+		
+		Integer x = 0;
+		r.nextInt(2000);
 		Avion avionLigeroSimple =null;
-		if(x>0){
+		if(x>1000){
 			avionLigeroSimple = AvionLiviano.crearAvionLivianoSimple(
 					posicionInicial, radio, velocidad, direccion, juego);
 		}else{
-			avionLigeroSimple = AvionLiviano.crearAvionLivianoInteligente(
+			avionLigeroSimple = AvionLiviano.crearAvionLivianoSimple(
 					posicionInicial, radio, velocidad, direccion, juego);
 		}
 		avionLigeroSimple.setTrayectoria(trayectoriaAvionNuevo);

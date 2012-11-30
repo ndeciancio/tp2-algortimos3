@@ -3,14 +3,13 @@ package modelo.juego;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
 import modelo.exceptions.FalloEnFabricacionAvionException;
 import modelo.factories.FactoryAvion;
 import modelo.general.Posicion;
-import modelo.juego.Juego;
 import modelo.pistas.Pista;
 import modelo.pistas.PistaSimple;
+
+import org.junit.Test;
 
 public class JuegoTest {
 

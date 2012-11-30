@@ -25,7 +25,6 @@ public class MovimientoSimple extends Movimiento {
 		Integer despY = Long.valueOf(Math.round(getVelocidad() * Math.sin(getDireccion()))).intValue();
 		actualPos.moverEnX(despX);
 		actualPos.moverEnY(despY);
-		
 	} 
 
 }

@@ -1,9 +1,10 @@
 package modelo.pistas;
 
-import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
-import modelo.aviones.*;
-
+import modelo.aviones.AvionHelicoptero;
+import modelo.aviones.AvionLiviano;
+import modelo.aviones.AvionPesado;
 import modelo.general.Posicion;
+import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 
 public abstract class Pista implements ObjetoPosicionable {
 

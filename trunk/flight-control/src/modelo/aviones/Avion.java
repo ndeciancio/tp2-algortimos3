@@ -41,6 +41,7 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 				chequearChoques();
 			}catch(ChoqueException e){
 				juego.huboUnChoque();
+				System.out.println("HUBO UN CHOQUE");
 			}
 			chequearAterrizaje();
 		}
