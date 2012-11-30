@@ -28,5 +28,20 @@ public class PistaSimple extends Pista {
 	public Boolean puedeAterrizar(AvionHelicoptero avion) {
 		return false;
 	}
+
+	@Override
+	public Boolean esLaPista(AvionLiviano avion) {
+		return true;
+	}
+
+	@Override
+	public Boolean esLaPista(AvionPesado avion) {
+		return false;
+	}
+
+	@Override
+	public Boolean esLaPista(AvionHelicoptero avion) {
+		return false;
+	}
 	
 }

@@ -24,6 +24,9 @@ public abstract class Pista implements ObjetoPosicionable {
 	public abstract Boolean puedeAterrizar(AvionLiviano a);
 	public abstract Boolean puedeAterrizar(AvionPesado avion);
 	public abstract Boolean puedeAterrizar(AvionHelicoptero avion);
+	public abstract Boolean esLaPista(AvionLiviano avion);
+	public abstract Boolean esLaPista(AvionPesado avion);
+	public abstract Boolean esLaPista(AvionHelicoptero avion);
 	
 	public Integer getRadio() {
 		return radio;

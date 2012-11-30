@@ -45,7 +45,7 @@ public class Mapa {
 		List<Avion> avionesCercanos = new ArrayList<Avion>();
 		synchronized (aviones) {
 			Iterator<Avion> it = aviones.iterator();
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				Avion avion = it.next();
 				if (avion.estaCercaDe(a)) {
 					avionesCercanos.add(avion);
@@ -77,13 +77,46 @@ public class Mapa {
 	}
 
 	public Integer getBordeX() {
-
 		return dimensionEnX;
 	}
 
 	public Integer getBordeY() {
-
 		return dimensionEnY;
+	}
+
+	public Boolean seleccionarAvion(Posicion pos) {
+		Iterator<Avion> it = aviones.iterator();
+		while (it.hasNext()) {
+			Avion a = it.next();
+			if (pos.estaCercaDe(a.getPosicion(), a.getRadio()*2)) {
+				System.out.println("Seleccionado");
+				desSeleccionarTodos();
+				a.seleccionar();
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public void desSeleccionarTodos() {
+		Iterator<Avion> it = aviones.iterator();
+		while (it.hasNext()) {
+			Avion a = it.next();
+			a.desSeleccionar();
+		}
+	}
+
+	public void agregarPosicionAlAvionSeleccionado(Posicion pos) {
+		Iterator<Avion> it = aviones.iterator();
+		while (it.hasNext()) {
+			Avion a = it.next();
+			if (a.estaSeleccionado()) {
+				System.out.println("Agregando Posicion");
+				a.agregarPosicionATrayectoria(pos);
+			}
+		}
+
 	}
 
 }

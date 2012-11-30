@@ -96,7 +96,7 @@ public class Posicion {
 		return new Posicion(posicionX, posicionY);
 	}
 
-	public static synchronized Posicion crearPrimerDestino(Integer bordeX,
+	public static Posicion crearPrimerDestino(Integer bordeX,
 			Integer bordeY) {
 
 		Integer posicionX = r.nextInt(bordeX);
@@ -106,5 +106,11 @@ public class Posicion {
 		return posicionPrimerDestino;
 
 	}
-
+	
+	public static Double crearPrimerDireccion(Posicion actualPos, Integer bordeX, Integer bordeY){
+		Posicion siguiente = crearPrimerDestino(bordeX, bordeY);
+		Integer desfasajeX = siguiente.getX() - actualPos.getX();
+		Integer desfasajeY = siguiente.getY() - actualPos.getY();
+		return Math.atan2(desfasajeY, desfasajeX); 
+	}
 }

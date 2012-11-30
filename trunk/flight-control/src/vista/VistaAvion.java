@@ -11,6 +11,7 @@ public class VistaAvion extends Circulo{
 		super(arg1.getRadio()*2, arg1);
 		this.setColor(Color.RED);
 	}
-
+	
+	
 
 }
