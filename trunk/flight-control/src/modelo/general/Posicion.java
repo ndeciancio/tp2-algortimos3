@@ -35,7 +35,7 @@ public class Posicion {
 		Integer distanciaY = (pos.getY() - this.getY());
 		distanciaY = distanciaY * distanciaY;
 		Integer distanciaCuadrada = distanciaX + distanciaY;
-		return Math.sqrt(distanciaCuadrada) <= radio;
+		return Math.sqrt(distanciaCuadrada) < radio;
 	}
 
 	@Override
