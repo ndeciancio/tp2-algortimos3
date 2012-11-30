@@ -2,19 +2,16 @@ package modelo.general;
 
 import java.util.Random;
 
-
 public class Posicion {
 
 	private Integer x;
 	private Integer y;
-	
-	public Posicion(Integer x, Integer y){
+
+	public Posicion(Integer x, Integer y) {
 		this.x = x;
 		this.y = y;
 	}
 
-	
-	
 	public Integer getX() {
 		return x;
 	}
@@ -23,24 +20,23 @@ public class Posicion {
 		return y;
 	}
 
-
-	public void moverEnX(Integer x){
-		this.x += x; 
+	public void moverEnX(Integer x) {
+		this.x += x;
 	}
-	
-	public void moverEnY(Integer y){
+
+	public void moverEnY(Integer y) {
 		this.y += y;
 	}
 
-	public Boolean estaCercaDe(Posicion pos, Integer radio){
-		Integer distanciaX = (pos.getX()-this.getX());
-		distanciaX = distanciaX*distanciaX;
-		Integer distanciaY = (pos.getY()-this.getY());
-		distanciaY = distanciaY*distanciaY;
+	public Boolean estaCercaDe(Posicion pos, Integer radio) {
+		Integer distanciaX = (pos.getX() - this.getX());
+		distanciaX = distanciaX * distanciaX;
+		Integer distanciaY = (pos.getY() - this.getY());
+		distanciaY = distanciaY * distanciaY;
 		Integer distanciaCuadrada = distanciaX + distanciaY;
 		return Math.sqrt(distanciaCuadrada) <= radio;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -49,7 +45,6 @@ public class Posicion {
 		result = prime * result + ((y == null) ? 0 : y.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -73,87 +68,46 @@ public class Posicion {
 		return true;
 	}
 
-
-
-	public static Posicion crearPosicionSobreBordeX(Integer bordeX, Integer bordeY) {
-		Random randomX = new Random ();
-		Random randomY = new Random ();
-		Integer posicionX = randomX.nextInt(bordeX);
-		Integer posicionY = randomY.nextInt(bordeY);
-		
-				
-		if (posicionY >= (bordeY / 2))
-		{
-			posicionY = bordeY;
-		}
-		else{
-			posicionY =0;
-		}
-		
-		
-		return new Posicion(posicionX, posicionY);
-	}
-	public static Posicion crearPosicionSobreBordeY(Integer bordeX, Integer bordeY) {
-		Random randomX = new Random ();
-		Random randomY = new Random ();
-		Integer posicionX = randomX.nextInt(bordeX);
-		Integer posicionY = randomY.nextInt(bordeY);
-		
-				
-		if (posicionX >= (bordeX / 2))
-		{
+	public static Posicion crearPosicionSobreBorde(Integer bordeX,
+			Integer bordeY) {
+		Random randomX = new Random(345);
+		Random randomY = new Random(678);
+		Integer posicionX=0;
+		Integer posicionY =0;
+		Random randomBorde = new Random();
+		Integer borde = randomBorde.nextInt(4);
+		switch (borde) {
+		case 0:
+			posicionX = 0;
+			posicionY = randomY.nextInt(bordeY);
+			break;
+		case 1:
 			posicionX = bordeX;
+			posicionY = randomY.nextInt(bordeY);
+			break;
+		case 2:
+			posicionY = bordeY;
+			posicionX = randomX.nextInt(bordeX);
+			break;
+		case 3:
+			posicionY = 0;
+			posicionX = randomX.nextInt(bordeX);
+			break;
 		}
-		else{
-			posicionX =0;
-		}
-		
-		
+
 		return new Posicion(posicionX, posicionY);
 	}
+	
+	public static Posicion crearPrimerDestino(Integer bordeX, Integer bordeY) {
+		Random randomX = new Random(2048);
+		Random randomY = new Random(1234);
+		Integer posicionX= randomX.nextInt(bordeX);
+		Integer posicionY =randomY.nextInt(bordeY);
 
+		Posicion posicionPrimerDestino = new Posicion(posicionX,
+				posicionY);
 
-
-	public boolean verificarIgualdad(Posicion posicionAComprobar) {
-
-		return ( this.x == posicionAComprobar.x ) && (this.y == posicionAComprobar.y) ;
-	}
-
-
-
-	public static Posicion crearPrimerDestinoSobreBordeX(Posicion posicionInicial) {
-		Integer posicionY;
-		
-		if (posicionInicial.getY() > 0 )
-		{
-			posicionY = posicionInicial.getY() - 1; 
-		}
-		else
-		{
-			posicionY = posicionInicial.getY() + 1;
-		}
-		
-		Posicion posicionPrimerDestino = new Posicion (posicionInicial.getX(), posicionY);
-		
 		return posicionPrimerDestino;
 	}
-
-
-
-	public static Posicion crearPrimerDestinoSobreBordeY(Posicion posicionInicial) {
-		Integer posicionX;
-		
-		if (posicionInicial.getX() > 0 )
-		{
-			posicionX = posicionInicial.getY() - 1; 
-		}
-		else
-		{
-			posicionX = posicionInicial.getY() + 1;
-		}
-		
-		Posicion posicionPrimerDestino = new Posicion (posicionX, posicionInicial.getY());
-		
-		return posicionPrimerDestino;
-	}
+	
 }
