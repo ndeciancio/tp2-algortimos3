@@ -23,7 +23,7 @@ public class AterrizajeTest {
 		Integer radio = 1;
 		Pista pistaSimple = new PistaSimple(posPista,radio);
 		Posicion posInicialAvion = new Posicion(3,3);
-		Avion avion = AvionLiviano.crearAvionLivianoSimple(posInicialAvion,radio,2,0d);
+		Avion avion = AvionLiviano.crearAvionLivianoSimple(posInicialAvion,radio,2,0d, null);
 		Mapa.getInstance().addAvion(avion);
 		Mapa.getInstance().addPista(pistaSimple);
 		List<Posicion> posiciones = new ArrayList<Posicion>();
@@ -46,7 +46,7 @@ public class AterrizajeTest {
 		Integer radio = 1;
 		Pista pistaSimple = new PistaSimple(posPista,radio);
 		Posicion posInicialAvion = new Posicion(3,3);
-		Avion avion = AvionLiviano.crearAvionLivianoSimple(posInicialAvion,radio,2,0d);
+		Avion avion = AvionLiviano.crearAvionLivianoSimple(posInicialAvion,radio,2,0d, null);
 		Mapa.getInstance().addAvion(avion);
 		Mapa.getInstance().addPista(pistaSimple);
 		List<Posicion> posiciones = new ArrayList<Posicion>();
