@@ -18,10 +18,14 @@ import javax.swing.JPanel;
 
 import modelo.aviones.Avion;
 import modelo.factories.FactoryAvion;
+import modelo.factories.FactoryAvionHelicoptero;
 import modelo.factories.FactoryAvionLiviano;
+import modelo.factories.FactoryAvionPesado;
 import modelo.general.Posicion;
 import modelo.juego.Juego;
 import modelo.pistas.Pista;
+import modelo.pistas.PistaHelipuerto;
+import modelo.pistas.PistaLarga;
 import modelo.pistas.PistaSimple;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
@@ -104,16 +108,28 @@ public class VistaVisual implements ViewManager {
 		
 		List<Pista> pistas = new ArrayList<Pista>();
 		Pista p = new PistaSimple(new Posicion(40,50), 15);
+		Pista p2 = new PistaLarga(new Posicion(160,70), 15);
+		Pista p3 = new PistaHelipuerto(new Posicion(40,578), 15);
 		pistas.add(p);
+		pistas.add(p2);
+		pistas.add(p3);
 		List<FactoryAvion> factories = new ArrayList<FactoryAvion>();
-		FactoryAvion f = new FactoryAvionLiviano();
-		factories.add(f);
+		FactoryAvion fl = new FactoryAvionLiviano();
+		FactoryAvion fp = new FactoryAvionPesado();
+		FactoryAvion fh = new FactoryAvionHelicoptero();
+		factories.add(fl);
+		factories.add(fp);
+		factories.add(fh);
 		List<ViewManager> managers = new ArrayList<ViewManager>();
 		managers.add(this);
 		final Juego juego = new Juego(15,pistas,factories,managers);
 		this.gameLoop.agregar(juego);
 		VistaPista vp = new VistaPista(p);
+		VistaPista vp2 = new VistaPista(p2);
+		VistaPista vp3 = new VistaPista(p3);
 		this.viewLoop.agregar(vp);
+		this.viewLoop.agregar(vp2);
+		this.viewLoop.agregar(vp3);
 		
 		panel.addMouseListener(new MouseAdapter() {
 					
@@ -164,7 +180,11 @@ public class VistaVisual implements ViewManager {
 	public void removerAvion(Avion a){
 		this.gameLoop.remover(a);
 		VistaAvion va = new VistaAvion(a);
+		System.out.print("Cant "+this.viewLoop.getCantidadDeObjetosDibujables());
 		this.viewLoop.remover(va);
+		System.out.println("Removiendo");
+		System.out.print("Cant Actual"+this.viewLoop.getCantidadDeObjetosDibujables());
+		
 	}
 
 

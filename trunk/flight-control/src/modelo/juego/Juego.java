@@ -25,7 +25,10 @@ public class Juego implements ObjetoVivo {
 	private List<ViewManager> viewManagers;
 	
 	private Integer cantAvionesAterrizados = 0;
-
+	
+	private static Random fabricaRandom = new Random(444);
+	
+	
 	public Juego(Integer cantidadAvionesMaximaPorNivel,
 			List<Pista> pistasDelMapa, List<FactoryAvion> fabricas,
 			List<ViewManager> managers) {
@@ -63,7 +66,7 @@ public class Juego implements ObjetoVivo {
 
 		}
 
-		Random fabricaRandom = new Random();
+		
 		Integer fabricaElegida = fabricaRandom
 				.nextInt(fabricasDeAviones.size());
 		if (turnosParaCreacionSiguienteAvion >= interverloDeCreacionAviones) {
