@@ -23,6 +23,14 @@ public class VistaAvion extends Circulo{
 	}
 
 	@Override
+	public int hashCode() {
+		Avion a=(Avion) this.getPosicionable();
+		System.out.println("HASHCODE"+a.hashCode());
+		return a.hashCode();
+		
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		System.out.print("LALALA");
 		if (this == obj)

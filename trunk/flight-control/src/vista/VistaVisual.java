@@ -178,7 +178,9 @@ public class VistaVisual implements ViewManager {
 	}
 	
 	public void removerAvion(Avion a){
+		System.out.println("Cant GameLoop " +gameLoop.getCantidadDeObjetosVivos());
 		this.gameLoop.remover(a);
+		System.out.println("Cant GameLoop " +gameLoop.getCantidadDeObjetosVivos());
 		VistaAvion va = new VistaAvion(a);
 		System.out.print("Cant "+this.viewLoop.getCantidadDeObjetosDibujables());
 		this.viewLoop.remover(va);
