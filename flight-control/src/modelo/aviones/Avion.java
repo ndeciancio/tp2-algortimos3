@@ -136,15 +136,50 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((aterrizado == null) ? 0 : aterrizado.hashCode());
+		result = prime * result + ((juego == null) ? 0 : juego.hashCode());
+		result = prime * result
+				+ ((movimiento == null) ? 0 : movimiento.hashCode());
+		result = prime * result
+				+ ((posicion == null) ? 0 : posicion.hashCode());
+		result = prime * result + ((radio == null) ? 0 : radio.hashCode());
+		result = prime * result
+				+ ((seleccionado == null) ? 0 : seleccionado.hashCode());
+		result = prime * result
+				+ ((trayectoria == null) ? 0 : trayectoria.hashCode());
+		return result;
+	}
+
+
+	@Override
 	public boolean equals(Object obj) {
+		System.out.println("JAJAJ");
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		System.out.println("Intentando equals");
 		Avion other = (Avion) obj;
+		if (aterrizado == null) {
+			if (other.aterrizado != null)
+				return false;
+		} else if (!aterrizado.equals(other.aterrizado))
+			return false;
+		if (juego == null) {
+			if (other.juego != null)
+				return false;
+		} else if (!juego.equals(other.juego))
+			return false;
+		if (movimiento == null) {
+			if (other.movimiento != null)
+				return false;
+		} else if (!movimiento.equals(other.movimiento))
+			return false;
 		if (posicion == null) {
 			if (other.posicion != null)
 				return false;
@@ -159,6 +194,11 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 			if (other.seleccionado != null)
 				return false;
 		} else if (!seleccionado.equals(other.seleccionado))
+			return false;
+		if (trayectoria == null) {
+			if (other.trayectoria != null)
+				return false;
+		} else if (!trayectoria.equals(other.trayectoria))
 			return false;
 		return true;
 	}
