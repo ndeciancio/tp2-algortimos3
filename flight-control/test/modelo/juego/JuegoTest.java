@@ -22,7 +22,7 @@ public class JuegoTest {
 		PistaSimple pistaSimplePrueba = new PistaSimple (posicionPrueba, 1);
 		pistasPrueba.add(pistaSimplePrueba);
 		
-		Juego juegoPrueba = new Juego (cantidadDeAvionesPorNivel, pistasPrueba, fabricasPrueba);
+		Juego juegoPrueba = new Juego (cantidadDeAvionesPorNivel, pistasPrueba, fabricasPrueba, );
 		juegoPrueba.vivir();
 
 	}
