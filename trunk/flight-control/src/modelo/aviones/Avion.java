@@ -143,6 +143,7 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		System.out.println("Intentando equals");
 		Avion other = (Avion) obj;
 		if (posicion == null) {
 			if (other.posicion != null)

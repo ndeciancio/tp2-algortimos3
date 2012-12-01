@@ -24,12 +24,14 @@ public class VistaAvion extends Circulo{
 
 	@Override
 	public boolean equals(Object obj) {
+		System.out.print("LALALA");
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		System.out.println("Intentando 1");
 		VistaAvion other = (VistaAvion) obj;
 		Avion a = (Avion) this.getPosicionable();
 		Avion otherA = (Avion) other.getPosicionable();
