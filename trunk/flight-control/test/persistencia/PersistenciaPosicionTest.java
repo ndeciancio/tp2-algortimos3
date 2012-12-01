@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import modelo.general.Posicion;
 
-public class persistenciaPosicionTest {
+public class PersistenciaPosicionTest {
 
 		@Test
 		public void testUnaPosicionPodriaGuardarSuEstadoEnUnArchivoXML() throws IOException

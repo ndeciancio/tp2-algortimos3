@@ -1,5 +1,8 @@
 package modelo.aviones;
 
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 import modelo.general.Posicion;
 import modelo.juego.Juego;
 import modelo.movimientos.Movimiento;
@@ -37,6 +40,14 @@ public class AvionLiviano extends Avion {
 	@Override
 	public Boolean puedoAterrizarEnEstaPista(Pista p) {
 		return p.esLaPista(this);
+	}
+
+	public Element serializarXML() {
+		Element avionSimpleSerializado = new Element ("AvionSimple");
+		Attribute aterrizado = new Attribute("aterrizado",aterrizado.toString());
+		Attribute 
+		
+		return null;
 	}
 	
 	
