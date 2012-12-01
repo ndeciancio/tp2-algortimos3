@@ -103,7 +103,7 @@ public class VistaVisual implements ViewManager {
 		frame.getContentPane().add(panel);
 		
 		this.gameLoop = new GameLoop(100,(SuperficieDeDibujo) panel);
-		this.viewLoop = new ViewLoop(20,(SuperficieDeDibujo) panel);
+		this.viewLoop = new ViewLoop(100,(SuperficieDeDibujo) panel);
 		
 		
 		List<Pista> pistas = new ArrayList<Pista>();

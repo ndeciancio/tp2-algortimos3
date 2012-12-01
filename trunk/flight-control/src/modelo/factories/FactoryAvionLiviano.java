@@ -10,7 +10,7 @@ import modelo.juego.Juego;
 
 public class FactoryAvionLiviano implements FactoryAvion {
 
-	private static Random r = new Random(1024);
+	private static Random r = new Random();
 
 	@Override
 	public Avion fabricarAvion(Mapa mapa, Juego juego) {

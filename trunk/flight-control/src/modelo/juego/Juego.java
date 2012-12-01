@@ -26,7 +26,7 @@ public class Juego implements ObjetoVivo {
 	
 	private Integer cantAvionesAterrizados = 0;
 	
-	private static Random fabricaRandom = new Random(444);
+	private static Random fabricaRandom = new Random();
 	
 	
 	public Juego(Integer cantidadAvionesMaximaPorNivel,
