@@ -134,4 +134,31 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 	public Boolean estaSeleccionado(){
 		return seleccionado;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Avion other = (Avion) obj;
+		if (posicion == null) {
+			if (other.posicion != null)
+				return false;
+		} else if (!posicion.equals(other.posicion))
+			return false;
+		if (radio == null) {
+			if (other.radio != null)
+				return false;
+		} else if (!radio.equals(other.radio))
+			return false;
+		if (seleccionado == null) {
+			if (other.seleccionado != null)
+				return false;
+		} else if (!seleccionado.equals(other.seleccionado))
+			return false;
+		return true;
+	}
 }

@@ -11,7 +11,7 @@ public class FactoryAvionHelicoptero implements FactoryAvion {
 	@Override
 	public Avion fabricarAvion(Mapa mapa, Juego juego) {
 		Double direccion = 0d;
-		Integer velocidad = 2;
+		Integer velocidad = 5;
 		Integer radio = 15;
 		Posicion posicionInicial = Posicion.crearPosicionSobreBorde(mapa
 				.getBordeX(), mapa.getBordeY());

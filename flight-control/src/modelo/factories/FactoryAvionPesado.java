@@ -10,15 +10,16 @@ import modelo.juego.Juego;
 
 public class FactoryAvionPesado implements FactoryAvion {
 
+	private static Random r = new Random(1024);
+	
 	@Override
 	public Avion fabricarAvion(Mapa mapa, Juego juego) {
-		Integer velocidad = 2;
+		Integer velocidad = 4;
 		Integer radio = 20;
 		Posicion posicionInicial = Posicion.crearPosicionSobreBorde(mapa
 				.getBordeX(), mapa.getBordeY());
 		Double direccion = Posicion.crearPrimerDireccion(
 				posicionInicial, mapa.getBordeX(), mapa.getBordeY());
-		Random r = new Random(1024);
 		Integer x = r.nextInt(2000);
 		Avion avionPesado =null;
 		if(x>1000){
