@@ -2,6 +2,9 @@ package modelo.general;
 
 import java.util.Random;
 
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 public class Posicion {
 	private static Random r = new Random();
 
@@ -112,5 +115,25 @@ public class Posicion {
 		Integer desfasajeX = siguiente.getX() - actualPos.getX();
 		Integer desfasajeY = siguiente.getY() - actualPos.getY();
 		return Math.atan2(desfasajeY, desfasajeX); 
+	}
+
+	@SuppressWarnings("unchecked")
+	public Element serializarXML() {
+		Element element = new Element("Posicion");
+		Attribute att1 = new Attribute("x",x.toString());
+		Attribute att2 = new Attribute("y",y.toString());
+		element.getAttributes().add(att1);
+		element.getAttributes().add(att2);
+		return element;
+
+	}
+
+
+
+	public static Posicion cargarDesdeXML(Element elementoXML) {
+		int x = Integer.parseInt(elementoXML.getAttributeValue("x"));
+		int y = Integer.parseInt(elementoXML.getAttributeValue("y"));
+
+		return new Posicion (x,y);
 	}
 }
