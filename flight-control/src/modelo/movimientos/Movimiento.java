@@ -1,5 +1,6 @@
 package modelo.movimientos;
 
+import org.jdom.Attribute;
 import org.jdom.Element;
 
 import modelo.aviones.Avion;
@@ -8,9 +9,9 @@ import modelo.general.Trayectoria;
 
 public abstract class Movimiento {
 
-	protected Integer velocidad; // posiciones avanzadas por ciclo
+	private Integer velocidad; // posiciones avanzadas por ciclo
 
-	protected Double direccion; // angulo medido en radianes
+	private Double direccion; // angulo medido en radianes
 	private Avion avion;
 
 	public Movimiento(Integer velocidad, Double direccion) {
@@ -38,7 +39,17 @@ public abstract class Movimiento {
 	public Avion getAvion(){
 		return avion;
 	}
+	
 	public abstract Element serializarXML();
+
+
+	protected Element cargarElemento(Element elementoXMLConDatosMovimiento) {
+		Attribute velocidad = new Attribute ("velocidad",this.velocidad.toString());
+		Attribute direccion = new Attribute ("direccion", this.direccion.toString());
+		elementoXMLConDatosMovimiento.setAttribute(velocidad);
+		elementoXMLConDatosMovimiento.setAttribute(direccion);
+		return elementoXMLConDatosMovimiento;
+	}
 
 
 	
@@ -47,7 +58,12 @@ public abstract class Movimiento {
 		if (movimiento.equals("MovimientoSimple")){
 			return MovimientoSimple.cargarDesdeXML(elementoXML);
 		}
-		
+		if (movimiento.equals("MovimientoHelicoptero")){
+			return MovimientoHelicoptero.cargarDesdeXML(elementoXML);
+		}
+		if (movimiento.equals("MovimientoInteligente")){
+			return MovimientoHelicoptero.cargarDesdeXML(elementoXML);
+		}
 		
 		return null;
 	} 
