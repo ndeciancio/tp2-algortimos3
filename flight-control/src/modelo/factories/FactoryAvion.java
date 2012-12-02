@@ -2,9 +2,9 @@ package modelo.factories;
 
 import modelo.aviones.Avion;
 import modelo.general.Mapa;
-import modelo.juego.Juego;
+import modelo.juego.Escenario;
 
 public abstract interface FactoryAvion {
 	
-	public abstract Avion fabricarAvion(Mapa mapa, Juego juego);
+	public abstract Avion fabricarAvion(Mapa mapa, Escenario escenario);
 }

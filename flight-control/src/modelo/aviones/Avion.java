@@ -5,7 +5,7 @@ import modelo.exceptions.ChoqueException;
 import modelo.general.Mapa;
 import modelo.general.Posicion;
 import modelo.general.Trayectoria;
-import modelo.juego.Juego;
+import modelo.juego.Escenario;
 import modelo.movimientos.Movimiento;
 import modelo.pistas.Pista;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
@@ -23,12 +23,12 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 	
 	private Boolean seleccionado = false;
 	
-	private Juego juego;
+	private Escenario escenario;
 	
-	public Avion(Posicion posicion, Integer radio, Juego juego){
+	public Avion(Posicion posicion, Integer radio, Escenario escenario){
 		this.posicion = posicion;
 		this.radio = radio;
-		this.juego = juego;
+		this.escenario = escenario;
 	}
 	
 	
@@ -42,7 +42,7 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 			try{
 				chequearChoques();
 			}catch(ChoqueException e){
-				juego.huboUnChoque();
+				escenario.huboUnChoque();
 			}
 			chequearAterrizaje();
 		}
@@ -76,7 +76,7 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 	
 	public void aterrizar(){
 		aterrizado = true;
-		juego.aterrizo(this);
+		escenario.aterrizo(this);
 	}
 	
 	public void agregarPosicionATrayectoria(Posicion pos){
@@ -141,7 +141,7 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 		int result = 1;
 		result = prime * result
 				+ ((aterrizado == null) ? 0 : aterrizado.hashCode());
-		result = prime * result + ((juego == null) ? 0 : juego.hashCode());
+		result = prime * result + ((escenario == null) ? 0 : escenario.hashCode());
 		result = prime * result
 				+ ((movimiento == null) ? 0 : movimiento.hashCode());
 		result = prime * result
@@ -170,10 +170,10 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 				return false;
 		} else if (!aterrizado.equals(other.aterrizado))
 			return false;
-		if (juego == null) {
-			if (other.juego != null)
+		if (escenario == null) {
+			if (other.escenario != null)
 				return false;
-		} else if (!juego.equals(other.juego))
+		} else if (!escenario.equals(other.escenario))
 			return false;
 		if (movimiento == null) {
 			if (other.movimiento != null)

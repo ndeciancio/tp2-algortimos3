@@ -6,14 +6,14 @@ import modelo.aviones.Avion;
 import modelo.aviones.AvionLiviano;
 import modelo.general.Mapa;
 import modelo.general.Posicion;
-import modelo.juego.Juego;
+import modelo.juego.Escenario;
 
 public class FactoryAvionLiviano implements FactoryAvion {
 
 	private static Random r = new Random();
 
 	@Override
-	public Avion fabricarAvion(Mapa mapa, Juego juego) {
+	public Avion fabricarAvion(Mapa mapa, Escenario escenario) {
 		Integer velocidad = 5;
 		Integer radio = 15;
 		Posicion posicionInicial = Posicion.crearPosicionSobreBorde(mapa
@@ -24,10 +24,10 @@ public class FactoryAvionLiviano implements FactoryAvion {
 		Avion avionLigeroSimple = null;
 		if (x > 1000) {
 			avionLigeroSimple = AvionLiviano.crearAvionLivianoSimple(
-					posicionInicial, radio, velocidad, direccion, juego);
+					posicionInicial, radio, velocidad, direccion, escenario);
 		} else {
 			avionLigeroSimple = AvionLiviano.crearAvionLivianoInteligente(
-					posicionInicial, radio, velocidad, direccion, juego);
+					posicionInicial, radio, velocidad, direccion, escenario);
 		}
 		return avionLigeroSimple;
 	}

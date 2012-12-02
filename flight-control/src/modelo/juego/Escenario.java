@@ -10,10 +10,11 @@ import modelo.factories.FactoryAvion;
 import modelo.general.Mapa;
 import modelo.general.Posicion;
 import modelo.pistas.Pista;
+import vista.FlightControl;
 import vista.ViewManager;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
-public class Juego implements ObjetoVivo {
+public class Escenario implements ObjetoVivo {
 
 	private Mapa mapaDeJuego = Mapa.getInstance();
 	private Integer cantidadMaximaAvionesPorNivel;
@@ -22,20 +23,19 @@ public class Juego implements ObjetoVivo {
 	private List<FactoryAvion> fabricasDeAviones;
 
 	private Boolean perdido = false;
-	private List<ViewManager> viewManagers;
-	
+	private FlightControl flightControl;
+
 	private Integer cantAvionesAterrizados = 0;
-	
+
 	private static Random fabricaRandom = new Random();
-	
-	
-	public Juego(Integer cantidadAvionesMaximaPorNivel,
+
+	public Escenario(Integer cantidadAvionesMaximaPorNivel,
 			List<Pista> pistasDelMapa, List<FactoryAvion> fabricas,
-			List<ViewManager> managers) {
+			FlightControl flightControl) {
 		cantidadMaximaAvionesPorNivel = cantidadAvionesMaximaPorNivel;
 		agregarPistasAlMapa(pistasDelMapa);
 		this.fabricasDeAviones = fabricas;
-		this.viewManagers = managers;
+		this.flightControl = flightControl;
 	}
 
 	private void agregarPistasAlMapa(List<Pista> pistasDelMapa) {
@@ -66,7 +66,6 @@ public class Juego implements ObjetoVivo {
 
 		}
 
-		
 		Integer fabricaElegida = fabricaRandom
 				.nextInt(fabricasDeAviones.size());
 		if (turnosParaCreacionSiguienteAvion >= interverloDeCreacionAviones) {
@@ -74,9 +73,7 @@ public class Juego implements ObjetoVivo {
 			Avion avionNuevo = this.fabricasDeAviones.get(fabricaElegida)
 					.fabricarAvion(this.mapaDeJuego, this);
 			mapaDeJuego.addAvion(avionNuevo);
-			for (ViewManager manager : viewManagers) {
-				manager.addAvion(avionNuevo);
-			}
+			flightControl.addAvion(avionNuevo);
 		}
 
 		turnosParaCreacionSiguienteAvion++;
@@ -106,16 +103,15 @@ public class Juego implements ObjetoVivo {
 		this.perdido = true;
 	}
 
-	public void huboUnClick(Integer x, Integer y){
-		if(!Mapa.getInstance().seleccionarAvion(new Posicion(x,y))){
-			Mapa.getInstance().agregarPosicionAlAvionSeleccionado(new Posicion(x,y));
+	public void huboUnClick(Integer x, Integer y) {
+		if (!Mapa.getInstance().seleccionarAvion(new Posicion(x, y))) {
+			Mapa.getInstance().agregarPosicionAlAvionSeleccionado(
+					new Posicion(x, y));
 		}
 	}
-	
-	public void aterrizo(Avion a){
+
+	public void aterrizo(Avion a) {
 		cantAvionesAterrizados++;
-		for(ViewManager manager: viewManagers){
-			manager.removerAvion(a);
-		}
+		flightControl.removerAvion(a);
 	}
 }

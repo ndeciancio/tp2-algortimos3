@@ -1,7 +1,7 @@
 package modelo.aviones;
 
 import modelo.general.Posicion;
-import modelo.juego.Juego;
+import modelo.juego.Escenario;
 import modelo.movimientos.Movimiento;
 import modelo.movimientos.MovimientoInteligente;
 import modelo.movimientos.MovimientoSimple;
@@ -9,19 +9,19 @@ import modelo.pistas.Pista;
 
 public class AvionPesado extends Avion {
 
-	private AvionPesado(Posicion posicion, Integer radio, Juego juego) {
-		super(posicion, radio, juego);
+	private AvionPesado(Posicion posicion, Integer radio, Escenario escenario) {
+		super(posicion, radio, escenario);
 	}
 
-	public static AvionPesado crearAvionPesadoSimple(Posicion posicion,Integer radio, Integer velocidad, Double direccion, Juego juego){
-		AvionPesado avion = new AvionPesado(posicion, radio, juego);
+	public static AvionPesado crearAvionPesadoSimple(Posicion posicion,Integer radio, Integer velocidad, Double direccion, Escenario escenario){
+		AvionPesado avion = new AvionPesado(posicion, radio, escenario);
 		Movimiento mov = new MovimientoSimple(velocidad, direccion);
 		avion.setMovimiento(mov);
 		return avion;
 	}
 	
-	public static AvionPesado crearAvionPesadoInteligente(Posicion posicion,Integer radio, Integer velocidad, Double direccion, Juego juego){
-		AvionPesado avion = new AvionPesado(posicion, radio, juego);
+	public static AvionPesado crearAvionPesadoInteligente(Posicion posicion,Integer radio, Integer velocidad, Double direccion, Escenario escenario){
+		AvionPesado avion = new AvionPesado(posicion, radio, escenario);
 		Movimiento mov = new MovimientoInteligente(velocidad, direccion);
 		avion.setMovimiento(mov);
 		mov.setAvion(avion);
