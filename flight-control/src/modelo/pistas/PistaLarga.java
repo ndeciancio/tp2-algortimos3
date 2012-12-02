@@ -47,10 +47,17 @@ public class PistaLarga extends Pista {
 		return false;
 	}
 
-	@Override
+	
 	public Element serializarXML() {
-		// TODO Auto-generated method stub
-		return null;
+		Element pistaLargaSerializada = new Element ("PistaLarga");
+		this.cargarElemento(pistaLargaSerializada);
+		return pistaLargaSerializada;
 	}
-
+	
+	public static PistaLarga cargarDesdeXML(Element elementoXML) {
+		Posicion posicionDelXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
+		Integer radioDelXML = Integer.parseInt(elementoXML.getAttributeValue("radio1"));
+		return new PistaLarga (posicionDelXML, radioDelXML);
+		
+	}
 }
