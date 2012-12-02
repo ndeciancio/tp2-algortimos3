@@ -48,10 +48,17 @@ public class MovimientoInteligente extends Movimiento {
 
 	}
 
-	@Override
-	public Element serializarXML() {
-		// TODO Auto-generated method stub
-		return null;
+	public static MovimientoInteligente cargarDesdeXML(Element elementoXML) {
+		Integer velocidad = Integer.parseInt(elementoXML.getAttributeValue("velocidad"));
+		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("velocidad"));
+		return new MovimientoInteligente (velocidad, direccion);
 	}
 
+
+	public Element serializarXML() {
+		Element movimientoInteligenteSerializado = new Element ("MovimientoInteligente");
+		this.cargarElemento(movimientoInteligenteSerializado);
+
+		return movimientoInteligenteSerializado;
+	}
 }

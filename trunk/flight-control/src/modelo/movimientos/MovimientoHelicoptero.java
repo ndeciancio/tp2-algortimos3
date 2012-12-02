@@ -2,8 +2,6 @@ package modelo.movimientos;
 
 
 
-
-
 import org.jdom.Element;
 
 import modelo.general.Posicion;
@@ -34,10 +32,19 @@ public class MovimientoHelicoptero extends Movimiento {
 
 	}
 
-	@Override
+
+
+	public static MovimientoHelicoptero cargarDesdeXML(Element elementoXML) {
+		Integer velocidad = Integer.parseInt(elementoXML.getAttributeValue("velocidad"));
+		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("velocidad"));
+		return new MovimientoHelicoptero (velocidad, direccion);
+	}
+
+
 	public Element serializarXML() {
-		// TODO Auto-generated method stub
-		return null;
+		Element movimientoHelicopteroSerializado = new Element ("MovimientoHelicoptero");
+		this.cargarElemento(movimientoHelicopteroSerializado);
+		return movimientoHelicopteroSerializado;
 	}
 
 

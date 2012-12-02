@@ -2,11 +2,9 @@ package persistencia;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileWriter;
-
 import java.io.IOException;
 
-import modelo.movimientos.Movimiento;
-import modelo.movimientos.MovimientoSimple;
+import modelo.movimientos.MovimientoInteligente;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -15,16 +13,16 @@ import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.junit.Test;
 
-public class PersistenciaMovimientoTest {
+public class PersistenciaMovimientoInteligenteTest {
 	@Test
-	public void testUnMovimientoSimplePodriaPoderSerializarce () throws IOException{
+	public void testUnMovimientoInteligentePodriaPoderSerializarce () throws IOException{
 	
-		String pathArchivo = "XML\\PersitenciaMovimientoSimplePrueba.xml";
+		String pathArchivo = "XML\\PersitenciaMovimientoInteligentePrueba.xml";
 		
 		Integer velocidadAPersistir = 10;
         Double direccionAPersistir = 0d;
         
-        MovimientoSimple moviemientoAPersistir = new MovimientoSimple (velocidadAPersistir, direccionAPersistir);
+        MovimientoInteligente moviemientoAPersistir = new MovimientoInteligente (velocidadAPersistir, direccionAPersistir);
         
         
 		Element posicioAPersistir = moviemientoAPersistir.serializarXML();
@@ -39,21 +37,21 @@ public class PersistenciaMovimientoTest {
 	}
 	
 	@Test
-	public void testUnaPosicionSePodriaCrearApartirDeUnArchivoXML() throws IOException
+	public void testUnMovimientoInteligenteSePodriaCrearApartirDeUnArchivoXML() throws IOException
 	{
-		MovimientoSimple movimientoSimpleXML;
+		MovimientoInteligente movimientoInteligenteXML;
 		try {
-			String pathArchivo = "XML\\PersitenciaMovimientoSimplePrueba.xml";
+			String pathArchivo = "XML\\PersitenciaMovimientoInteligentePrueba.xml";
 	        SAXBuilder builder = new SAXBuilder();
 	        Document document = builder.build(pathArchivo);
 	        
-	        movimientoSimpleXML = MovimientoSimple.cargarDesdeXML(document.getRootElement());
+	        movimientoInteligenteXML = MovimientoInteligente.cargarDesdeXML(document.getRootElement());
 	        
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}
 		
-			assertTrue(movimientoSimpleXML instanceof MovimientoSimple);
+			assertTrue(movimientoInteligenteXML instanceof MovimientoInteligente);
 		
 	}
 }
