@@ -44,8 +44,8 @@ public class AvionLiviano extends Avion {
 
 	public Element serializarXML() {
 		Element avionSimpleSerializado = new Element ("AvionSimple");
-		Attribute aterrizado = new Attribute("aterrizado",aterrizado.toString());
-		Attribute 
+		Attribute aterrizado = new Attribute("aterrizado",this.aterrizado.toString());
+
 		
 		return null;
 	}

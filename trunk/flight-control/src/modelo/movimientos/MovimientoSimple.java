@@ -1,5 +1,10 @@
 package modelo.movimientos;
 
+
+
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 import modelo.general.Posicion;
 import modelo.general.Trayectoria;
 
@@ -25,6 +30,25 @@ public class MovimientoSimple extends Movimiento {
 		Integer despY = Long.valueOf(Math.round(getVelocidad() * Math.sin(getDireccion()))).intValue();
 		actualPos.moverEnX(despX);
 		actualPos.moverEnY(despY);
-	} 
+	}
+
+	@Override
+	
+	public Element serializarXML() {
+		Element movimientoSimpleSerializado = new Element ("MovimientoSimple");
+		Attribute velocidad = new Attribute ("velocidad",this.velocidad.toString());
+		Attribute direccion = new Attribute ("direccion", this.direccion.toString());
+		movimientoSimpleSerializado.setAttribute(velocidad);
+		movimientoSimpleSerializado.setAttribute(direccion);
+		return movimientoSimpleSerializado;
+	}
+
+	public static MovimientoSimple cargarDesdeXML(Element elementoXML) {
+		Integer velocidad = Integer.parseInt(elementoXML.getAttributeValue("velocidad"));
+		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("velocidad"));
+		
+		return new MovimientoSimple (velocidad, direccion);
+		
+	}
 
 }

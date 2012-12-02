@@ -1,5 +1,7 @@
 package modelo.movimientos;
 
+import org.jdom.Element;
+
 import modelo.general.Mapa;
 import modelo.general.Posicion;
 import modelo.general.Trayectoria;
@@ -44,6 +46,12 @@ public class MovimientoInteligente extends Movimiento {
 		actualPos.moverEnX(despX);
 		actualPos.moverEnY(despY);
 
+	}
+
+	@Override
+	public Element serializarXML() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
