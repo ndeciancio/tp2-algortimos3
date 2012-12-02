@@ -1,55 +1,70 @@
 package vista;
 
-import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
 
 import modelo.aviones.Avion;
-import modelo.aviones.AvionLiviano;
-import modelo.aviones.AvionPesado;
-import fiuba.algo3.titiritero.dibujables.Circulo;
+import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
+import fiuba.algo3.titiritero.modelo.ObjetoDibujable;
+import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
+import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 
-public class VistaAvion extends Circulo {
+public class VistaAvion implements ObjetoDibujable {
 
-	public Integer i;
+	private BufferedImage imagen;
+	private ObjetoPosicionable posicionable;
+	private AffineTransform tx;
+	private AffineTransformOp op;
 
-	public VistaAvion(Avion arg1) {
-		super(arg1.getRadio() * 2, arg1);
-	}
-
-	public Color getColor(){
-		Avion objeto = (Avion)this.getPosicionable();
-		if(objeto.estaSeleccionado()){
-			return Color.CYAN;
-		}else if(objeto instanceof AvionLiviano){
-			return Color.RED;
-		}else if(objeto instanceof AvionPesado){
-			return Color.BLUE;
-		}else{
-			return Color.GREEN;
+	public VistaAvion(Avion avion) {
+		this.posicionable = avion;
+		String className = avion.getClass().getSimpleName();
+		try {
+			URL dir = this.getClass().getResource(
+					"/images/" + className + ".png");
+			System.out.println(dir.getPath());
+			this.imagen = ImageIO.read(dir);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public int hashCode() {
-		Avion a = (Avion) this.getPosicionable();
-		System.out.println("HASHCODE" + a.hashCode());
-		return a.hashCode();
-
-	}
-
-	@Override
 	public boolean equals(Object obj) {
-		System.out.print("LALALA");
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		System.out.println("Intentando 1");
 		VistaAvion other = (VistaAvion) obj;
 		Avion a = (Avion) this.getPosicionable();
 		Avion otherA = (Avion) other.getPosicionable();
 		return a.equals(otherA);
+	}
+
+	public ObjetoPosicionable getPosicionable() {
+		return this.posicionable;
+	}
+
+	@Override
+	public void dibujar(SuperficieDeDibujo superficieDeDibujo) {
+		Avion a = (Avion) this.getPosicionable();
+		tx = new AffineTransform();
+		tx.rotate(a.getDireccion(), imagen.getWidth() / 2,
+				imagen.getHeight() / 2);
+		op = new AffineTransformOp(tx,
+				AffineTransformOp.TYPE_BILINEAR);
+		BufferedImage imagen = op.filter( this.imagen, null);
+		Graphics grafico = ((SuperficiePanel) superficieDeDibujo).getBuffer();
+		grafico.drawImage(imagen, this.posicionable.getX(),
+				this.posicionable.getY(),null);
+		// grafico.drawImage(im, at,null);
 	}
 
 }

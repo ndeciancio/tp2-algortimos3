@@ -134,6 +134,10 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 	public Boolean estaSeleccionado(){
 		return seleccionado;
 	}
+	
+	public Double getDireccion(){
+		return this.movimiento.getDireccion();
+	}
 
 	@Override
 	public int hashCode() {
@@ -157,7 +161,6 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 
 	@Override
 	public boolean equals(Object obj) {
-		System.out.println("JAJAJ");
 		if (this == obj)
 			return true;
 		if (obj == null)
