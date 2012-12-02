@@ -104,10 +104,6 @@ public class VistaVisual implements ViewManager {
 	@Override
 	public void removerVistaAvion(VistaAvion va) {
 		this.viewLoop.remover(va);
-		System.out.println("Removiendo");
-		System.out.print("Cant Actual"
-				+ this.viewLoop.getCantidadDeObjetosDibujables());
-
 	}
 
 	@Override
