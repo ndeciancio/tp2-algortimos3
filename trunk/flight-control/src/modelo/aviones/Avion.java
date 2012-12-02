@@ -1,6 +1,9 @@
 package modelo.aviones;
 import java.util.List;
 
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 import modelo.exceptions.ChoqueException;
 import modelo.general.Mapa;
 import modelo.general.Posicion;
@@ -205,4 +208,40 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 			return false;
 		return true;
 	}
+	
+	public abstract Element serializarXML();
+
+
+	@SuppressWarnings("unchecked")
+	protected Element cargarElemento(Element elementoXMLConDatosAvion) {
+		Attribute radio = new Attribute ("radio",this.radio.toString());
+		
+		Element posicion = this.posicion.serializarXML();
+		Element trayectoria = this.trayectoria.serializarXML();
+		Element movimiento = this.movimiento.serializarXML();
+		
+		elementoXMLConDatosAvion.setAttribute(radio);
+		elementoXMLConDatosAvion.getChildren().add(posicion);
+		elementoXMLConDatosAvion.getChildren().add(trayectoria);
+		elementoXMLConDatosAvion.getChildren().add(movimiento);
+		
+		return elementoXMLConDatosAvion;
+	}
+
+
+	
+	public static Avion cargarDesdeXML(Element elementoXML, Escenario escenario) {
+		String movimiento = elementoXML.getName();
+		if (movimiento.equals("MovimientoSimple")){
+			return AvionLiviano.cargarDesdeXML(elementoXML, escenario);
+		}
+		if (movimiento.equals("MovimientoHelicoptero")){
+			return AvionPesado.cargarDesdeXML(elementoXML, escenario);
+		}
+		if (movimiento.equals("MovimientoInteligente")){
+			return AvionHelicoptero.cargarDesdeXML(elementoXML, escenario);
+		}
+		
+		return null;
+	} 
 }

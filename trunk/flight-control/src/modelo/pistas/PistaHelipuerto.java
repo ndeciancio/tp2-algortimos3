@@ -1,5 +1,6 @@
 package modelo.pistas;
 
+
 import org.jdom.Element;
 
 import modelo.aviones.AvionHelicoptero;
@@ -48,10 +49,17 @@ public class PistaHelipuerto extends Pista {
 		return true;
 	}
 
-	@Override
 	public Element serializarXML() {
-		// TODO Auto-generated method stub
-		return null;
+		Element pistaHelipuertoSerializada = new Element ("PistaHelipuerto");
+		this.cargarElemento(pistaHelipuertoSerializada);
+		return pistaHelipuertoSerializada;
+	}
+	
+	public static PistaHelipuerto cargarDesdeXML(Element elementoXML) {
+		Posicion posicionDelXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
+		Integer radioDelXML = Integer.parseInt(elementoXML.getAttributeValue("radio1"));
+		return new PistaHelipuerto (posicionDelXML, radioDelXML);
+		
 	}
 
 }

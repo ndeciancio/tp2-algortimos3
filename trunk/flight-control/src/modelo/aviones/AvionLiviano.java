@@ -1,5 +1,7 @@
 package modelo.aviones;
 
+
+
 import org.jdom.Attribute;
 import org.jdom.Element;
 
@@ -43,12 +45,17 @@ public class AvionLiviano extends Avion {
 	}
 
 	public Element serializarXML() {
-		Element avionSimpleSerializado = new Element ("AvionSimple");
-		Attribute aterrizado = new Attribute("aterrizado",this.aterrizado.toString());
+		Element avionLivianoSerializado = new Element ("AvionLiviano");
+		this.cargarElemento(avionLivianoSerializado);
+		return avionLivianoSerializado;
+	}
 
+
+	public static AvionLiviano cargarDesdeXML(Element elementoXML, Escenario escenario){
 		
 		return null;
 	}
+	
 	
 	
 

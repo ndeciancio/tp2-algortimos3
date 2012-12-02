@@ -1,5 +1,7 @@
 package modelo.aviones;
 
+import org.jdom.Element;
+
 import modelo.general.Posicion;
 import modelo.juego.Escenario;
 import modelo.movimientos.Movimiento;
@@ -29,6 +31,12 @@ public class AvionHelicoptero extends Avion {
 	@Override
 	public Boolean puedoAterrizarEnEstaPista(Pista p) {
 		return p.esLaPista(this);
+	}
+
+	@Override
+	public Element serializarXML() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
