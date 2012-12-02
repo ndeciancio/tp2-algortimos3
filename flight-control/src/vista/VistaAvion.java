@@ -7,27 +7,33 @@ import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionPesado;
 import fiuba.algo3.titiritero.dibujables.Circulo;
 
-public class VistaAvion extends Circulo{
+public class VistaAvion extends Circulo {
 
 	public Integer i;
-	
+
 	public VistaAvion(Avion arg1) {
-		super(arg1.getRadio()*2, arg1);
-		if(arg1 instanceof AvionLiviano){
-			this.setColor(Color.RED);
-		}else if(arg1 instanceof AvionPesado){
-			this.setColor(Color.BLUE);
+		super(arg1.getRadio() * 2, arg1);
+	}
+
+	public Color getColor(){
+		Avion objeto = (Avion)this.getPosicionable();
+		if(objeto.estaSeleccionado()){
+			return Color.CYAN;
+		}else if(objeto instanceof AvionLiviano){
+			return Color.RED;
+		}else if(objeto instanceof AvionPesado){
+			return Color.BLUE;
 		}else{
-			this.setColor(Color.GREEN);
+			return Color.GREEN;
 		}
 	}
 
 	@Override
 	public int hashCode() {
-		Avion a=(Avion) this.getPosicionable();
-		System.out.println("HASHCODE"+a.hashCode());
+		Avion a = (Avion) this.getPosicionable();
+		System.out.println("HASHCODE" + a.hashCode());
 		return a.hashCode();
-		
+
 	}
 
 	@Override
@@ -45,8 +51,5 @@ public class VistaAvion extends Circulo{
 		Avion otherA = (Avion) other.getPosicionable();
 		return a.equals(otherA);
 	}
-	
-	
-	
 
 }

@@ -25,7 +25,7 @@ public class AvionHelicopteroTest {
 		Integer radio = 1;
 		Pista pistaHelipuerto = new PistaHelipuerto(posPista,radio);
 		Posicion posInicialAvion = new Posicion(3,3);
-		Avion avion = AvionHelicoptero.crearAvionHelicopteroSimple(posInicialAvion,radio,2,0d);
+		Avion avion = AvionHelicoptero.crearAvionHelicopteroSimple(posInicialAvion,radio,2,0d, null);
 		
 		mapaPrueba.addAvion(avion);
 		mapaPrueba.addPista(pistaHelipuerto);
@@ -51,7 +51,7 @@ public class AvionHelicopteroTest {
 		Integer radio = 1;
 
 		Posicion posInicialAvion = new Posicion(3,3);
-		AvionHelicoptero avion = AvionHelicoptero.crearAvionHelicopteroSimple(posInicialAvion,radio,2,0d);
+		AvionHelicoptero avion = AvionHelicoptero.crearAvionHelicopteroSimple(posInicialAvion,radio,2,0d,null);
 		
 		mapaPrueba.addAvion(avion);
 		
@@ -60,7 +60,7 @@ public class AvionHelicopteroTest {
 		Trayectoria trayectoria = new Trayectoria(posiciones);
 		avion.setTrayectoria(trayectoria);
 		
-		avion.setOnSenalDeFreno();
+		//avion.setOnSenalDeFreno();
 		
 		avion.vivir();
 		

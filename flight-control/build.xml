@@ -30,16 +30,17 @@
 
 	<target name="setup">
 		<delete dir="${build}" />
-		<mkdir dir="${build}"/>
-		<mkdir dir="${build}/classes"/>
-		<mkdir dir="${build}/tests"/>
+		<mkdir dir="${build}" />
+		<mkdir dir="${build}/classes" />
+		<mkdir dir="${build}/tests" />
 	</target>
 
 	<target name="compilar.aplicacion" depends="setup">
 		<javac srcdir="src" destdir="${build}/classes" includeantruntime="false" debug="yes" target="1.6">
+			<classpath refid="classpath" />
 		</javac>
 	</target>
-	
+
 	<target name="init">
 		<mkdir dir="${instrumented.dir}" />
 		<mkdir dir="${reports.xml.dir}" />
@@ -48,9 +49,14 @@
 
 
 	<target name="empaquetar" depends="compilar.aplicacion">
-		<jar destfile="${build}/flight-control.jar" basedir="${build}/classes"/>
+		<jar destfile="${build}/flight-control.jar" basedir="${build}/classes">
+			<zipgroupfileset dir="${libs}" includes="*.jar" excludes=""/>
+			<manifest>
+				<attribute name="Main-Class" value="vista.FlightControl" />
+			</manifest>
+		</jar>
 	</target>
 
-	
+
 
 </project>
