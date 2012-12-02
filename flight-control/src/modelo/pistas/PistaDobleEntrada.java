@@ -1,5 +1,8 @@
 package modelo.pistas;
 
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 import modelo.aviones.AvionHelicoptero;
 import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionPesado;
@@ -61,4 +64,37 @@ public class PistaDobleEntrada extends Pista {
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
+	public Element serializarXML() {
+		Element pistaDobleSerializada = new Element ("PistaDobleEntrada");
+		
+		Element primeraEntradaSerializada = new Element ("PrimeraEntrada");
+		this.cargarElemento(primeraEntradaSerializada);
+		
+		Element segundaEntradaSerializada = new Element ("SegundaEntrada");
+		Attribute radio2 = new Attribute ("radio2",this.radio2.toString());
+		Element posicion2Serializada = this.posicion2.serializarXML();
+		segundaEntradaSerializada.setAttribute(radio2);
+		segundaEntradaSerializada.setContent(posicion2Serializada);
+		
+		pistaDobleSerializada.getChildren().add(primeraEntradaSerializada);
+		pistaDobleSerializada.getChildren().add(segundaEntradaSerializada);
+		
+		return pistaDobleSerializada;
+	}
+	
+	public static PistaDobleEntrada cargarDesdeXML(Element elementoXML) {
+		Element primeraEntrada = elementoXML.getChild("PrimeraEntrada");
+		Element segundaEntrada = elementoXML.getChild("SegundaEntrada");
+		
+		Posicion primeraPosicion = Posicion.cargarDesdeXML(primeraEntrada.getChild("Posicion"));
+		Posicion segundaPosicion = Posicion.cargarDesdeXML(segundaEntrada.getChild("Posicion"));
+		
+		Integer radio1 = Integer.parseInt(primeraEntrada.getAttributeValue("radio1"));
+		Integer radio2 = Integer.parseInt(segundaEntrada.getAttributeValue("radio2"));
+		
+		return new PistaDobleEntrada (primeraPosicion, segundaPosicion, radio1, radio2);
+		
+	}
+	
 }

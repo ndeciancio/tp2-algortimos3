@@ -1,5 +1,7 @@
 package modelo.pistas;
 
+import org.jdom.Element;
+
 import modelo.aviones.AvionHelicoptero;
 import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionPesado;
@@ -43,6 +45,12 @@ public class PistaLarga extends Pista {
 	@Override
 	public Boolean esLaPista(AvionHelicoptero avion) {
 		return false;
+	}
+
+	@Override
+	public Element serializarXML() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
