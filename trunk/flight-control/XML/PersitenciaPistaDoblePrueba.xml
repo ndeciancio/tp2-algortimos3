@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PistaDobleEntrada>
+  <PrimeraEntrada radio1="2">
+    <Posicion x="2" y="2" />
+  </PrimeraEntrada>
+  <SegundaEntrada radio2="2">
+    <Posicion x="1" y="1" />
+  </SegundaEntrada>
+</PistaDobleEntrada>
+

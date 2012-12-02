@@ -117,7 +117,7 @@ public class Posicion {
 		return Math.atan2(desfasajeY, desfasajeX); 
 	}
 
-	@SuppressWarnings("unchecked")
+
 	public Element serializarXML() {
 		Element element = new Element("Posicion");
 		Attribute x = new Attribute("x",this.x.toString());

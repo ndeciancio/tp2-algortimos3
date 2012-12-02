@@ -1,9 +1,12 @@
 package modelo.pistas;
 
+import org.jdom.Element;
+
 import modelo.aviones.AvionHelicoptero;
 import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionPesado;
 import modelo.general.Posicion;
+
 
 public class PistaSimple extends Pista {
 	
@@ -42,6 +45,19 @@ public class PistaSimple extends Pista {
 	@Override
 	public Boolean esLaPista(AvionHelicoptero avion) {
 		return false;
+	}
+	
+	public Element serializarXML() {
+		Element pistaSimpleSerializada = new Element ("PistaSimple");
+		this.cargarElemento(pistaSimpleSerializada);
+		return pistaSimpleSerializada;
+	}
+	
+	public static PistaSimple cargarDesdeXML(Element elementoXML) {
+		Posicion posicionDelXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
+		Integer radioDelXML = Integer.parseInt(elementoXML.getAttributeValue("radio1"));
+		return new PistaSimple (posicionDelXML, radioDelXML);
+		
 	}
 	
 }
