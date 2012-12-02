@@ -1,34 +1,17 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import modelo.aviones.Avion;
-import modelo.factories.FactoryAvion;
-import modelo.factories.FactoryAvionHelicoptero;
-import modelo.factories.FactoryAvionLiviano;
-import modelo.factories.FactoryAvionPesado;
-import modelo.general.Posicion;
-import modelo.juego.Escenario;
-import modelo.pistas.Pista;
-import modelo.pistas.PistaHelipuerto;
-import modelo.pistas.PistaLarga;
-import modelo.pistas.PistaSimple;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
-import fiuba.algo3.titiritero.modelo.GameLoop;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 import fiuba.algo3.titiritero.modelo.ViewLoop;
 
@@ -99,7 +82,7 @@ public class VistaVisual implements ViewManager {
 		panel.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mousePressed(MouseEvent arg0) {
 				flightControl.huboUnClick(arg0.getX(), arg0.getY());
 
 			}

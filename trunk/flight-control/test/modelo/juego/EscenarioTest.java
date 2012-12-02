@@ -11,7 +11,7 @@ import modelo.pistas.PistaSimple;
 
 import org.junit.Test;
 
-public class JuegoTest {
+public class EscenarioTest {
 
 	@Test (expected = FalloEnFabricacionAvionException.class)
 	public void testVivirDeberiaLanzarUnaExcepcionSiNoHayFabricasEnElJuego() {
@@ -22,7 +22,7 @@ public class JuegoTest {
 		PistaSimple pistaSimplePrueba = new PistaSimple (posicionPrueba, 1);
 		pistasPrueba.add(pistaSimplePrueba);
 		
-		Juego juegoPrueba = new Juego (cantidadDeAvionesPorNivel, pistasPrueba, fabricasPrueba, );
+		Escenario juegoPrueba = new Escenario(cantidadDeAvionesPorNivel, pistasPrueba, fabricasPrueba,null);
 		juegoPrueba.vivir();
 
 	}
