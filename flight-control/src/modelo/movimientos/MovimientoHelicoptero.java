@@ -1,5 +1,11 @@
 package modelo.movimientos;
 
+
+
+
+
+import org.jdom.Element;
+
 import modelo.general.Posicion;
 import modelo.general.Trayectoria;
 
@@ -27,5 +33,14 @@ public class MovimientoHelicoptero extends Movimiento {
 		
 
 	}
+
+	@Override
+	public Element serializarXML() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 
 }

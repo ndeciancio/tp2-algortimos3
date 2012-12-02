@@ -120,10 +120,10 @@ public class Posicion {
 	@SuppressWarnings("unchecked")
 	public Element serializarXML() {
 		Element element = new Element("Posicion");
-		Attribute att1 = new Attribute("x",x.toString());
-		Attribute att2 = new Attribute("y",y.toString());
-		element.getAttributes().add(att1);
-		element.getAttributes().add(att2);
+		Attribute x = new Attribute("x",this.x.toString());
+		Attribute y = new Attribute("y",this.y.toString());
+		element.setAttribute(x);
+		element.setAttribute(y);
 		return element;
 
 	}
