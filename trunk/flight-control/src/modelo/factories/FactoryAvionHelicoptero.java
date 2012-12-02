@@ -4,12 +4,12 @@ import modelo.aviones.Avion;
 import modelo.aviones.AvionHelicoptero;
 import modelo.general.Mapa;
 import modelo.general.Posicion;
-import modelo.juego.Juego;
+import modelo.juego.Escenario;
 
 public class FactoryAvionHelicoptero implements FactoryAvion {
 
 	@Override
-	public Avion fabricarAvion(Mapa mapa, Juego juego) {
+	public Avion fabricarAvion(Mapa mapa, Escenario escenario) {
 		Double direccion = 0d;
 		Integer velocidad = 5;
 		Integer radio = 15;
@@ -17,7 +17,7 @@ public class FactoryAvionHelicoptero implements FactoryAvion {
 				.getBordeX(), mapa.getBordeY());
 		Posicion primerMovimiento = Posicion.crearPrimerDestino(mapa.getBordeX(), mapa.getBordeY());
 		Avion avionHelicoptero = AvionHelicoptero.crearAvionHelicopteroSimple(
-				posicionInicial, radio, velocidad, direccion, juego);
+				posicionInicial, radio, velocidad, direccion, escenario);
 		avionHelicoptero.agregarPosicionATrayectoria(primerMovimiento);
 		return avionHelicoptero;
 	}

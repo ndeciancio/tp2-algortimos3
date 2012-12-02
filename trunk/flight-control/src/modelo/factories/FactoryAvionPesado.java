@@ -6,14 +6,14 @@ import modelo.aviones.Avion;
 import modelo.aviones.AvionPesado;
 import modelo.general.Mapa;
 import modelo.general.Posicion;
-import modelo.juego.Juego;
+import modelo.juego.Escenario;
 
 public class FactoryAvionPesado implements FactoryAvion {
 
 	private static Random r = new Random();
 	
 	@Override
-	public Avion fabricarAvion(Mapa mapa, Juego juego) {
+	public Avion fabricarAvion(Mapa mapa, Escenario escenario) {
 		Integer velocidad = 4;
 		Integer radio = 20;
 		Posicion posicionInicial = Posicion.crearPosicionSobreBorde(mapa
@@ -24,10 +24,10 @@ public class FactoryAvionPesado implements FactoryAvion {
 		Avion avionPesado =null;
 		if(x>1000){
 			avionPesado = AvionPesado.crearAvionPesadoSimple(
-					posicionInicial, radio, velocidad, direccion, juego);
+					posicionInicial, radio, velocidad, direccion, escenario);
 		}else{
 			avionPesado = AvionPesado.crearAvionPesadoInteligente(
-					posicionInicial, radio, velocidad, direccion, juego);
+					posicionInicial, radio, velocidad, direccion, escenario);
 		}
 		return avionPesado;
 	}
