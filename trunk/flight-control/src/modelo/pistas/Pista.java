@@ -15,10 +15,12 @@ public abstract class Pista implements ObjetoPosicionable {
 
 	private Posicion posicion;
 	private Integer radio;
+	private Double direccion;
 	
-	public Pista(Posicion posicion, Integer radio){
+	public Pista(Posicion posicion, Integer radio, Double direccion){
 		this.posicion = posicion;
 		this.radio = radio;
+		this.direccion = direccion;
 	}
 
 	public Posicion getPosicion() {
@@ -35,6 +37,10 @@ public abstract class Pista implements ObjetoPosicionable {
 	
 	public Integer getRadio() {
 		return radio;
+	}
+	
+	public Double getDireccion(){
+		return direccion;
 	}
 	
 	public int getX(){

@@ -9,8 +9,8 @@ import modelo.general.Posicion;
 
 public class PistaLarga extends Pista {
 
-	public PistaLarga(Posicion posicion, Integer radio) {
-		super(posicion, radio);
+	public PistaLarga(Posicion posicion, Integer radio, Double direccion) {
+		super(posicion, radio,direccion);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class PistaLarga extends Pista {
 	public static PistaLarga cargarDesdeXML(Element elementoXML) {
 		Posicion posicionDelXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
 		Integer radioDelXML = Integer.parseInt(elementoXML.getAttributeValue("radio1"));
-		return new PistaLarga (posicionDelXML, radioDelXML);
+		return new PistaLarga (posicionDelXML, radioDelXML,null);
 		
 	}
 }

@@ -10,12 +10,12 @@ import modelo.general.Posicion;
 
 public class PistaSimple extends Pista {
 	
-	public PistaSimple(Posicion posicion, Integer radio){
-		super(posicion, radio);
+	public PistaSimple(Posicion posicion, Integer radio, Double direccion){
+		super(posicion, radio,direccion);
 	}
 	
 	public Boolean puedeAterrizar(AvionLiviano avion){
-		if(getPosicion().estaCercaDe(avion.getPosicion(), avion.getRadio()+this.getRadio())){
+		if(getPosicion().estaCercaDe(avion.getPosicion(), this.getRadio())){
 			return true;
 		}else{
 			return false;
@@ -56,7 +56,7 @@ public class PistaSimple extends Pista {
 	public static PistaSimple cargarDesdeXML(Element elementoXML) {
 		Posicion posicionDelXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
 		Integer radioDelXML = Integer.parseInt(elementoXML.getAttributeValue("radio1"));
-		return new PistaSimple (posicionDelXML, radioDelXML);
+		return new PistaSimple (posicionDelXML, radioDelXML,null);
 		
 	}
 	

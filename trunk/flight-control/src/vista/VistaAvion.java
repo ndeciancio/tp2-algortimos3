@@ -27,7 +27,6 @@ public class VistaAvion implements ObjetoDibujable {
 		try {
 			URL dir = this.getClass().getResource(
 					"/images/" + className + ".png");
-			System.out.println(dir.getPath());
 			this.imagen = ImageIO.read(dir);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,8 +61,8 @@ public class VistaAvion implements ObjetoDibujable {
 				AffineTransformOp.TYPE_BILINEAR);
 		BufferedImage imagen = op.filter( this.imagen, null);
 		Graphics grafico = ((SuperficiePanel) superficieDeDibujo).getBuffer();
-		grafico.drawImage(imagen, this.posicionable.getX(),
-				this.posicionable.getY(),null);
+		grafico.drawImage(imagen, this.posicionable.getX()-a.getRadio(),
+				this.posicionable.getY()-a.getRadio(),null);
 		// grafico.drawImage(im, at,null);
 	}
 
