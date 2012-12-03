@@ -130,7 +130,7 @@ public class VistaVisual implements ViewManager {
 		puntuacion.setSize(200, 20);
 		puntuacion.setHorizontalAlignment(JLabel.LEFT);
 		puntuacion.setVisible(false);
-		
+
 		nivel = new JLabel("Nivel: 1");
 		nivel.setLocation(850, 190);
 		nivel.setSize(200, 20);
@@ -139,7 +139,7 @@ public class VistaVisual implements ViewManager {
 
 		frame.getContentPane().add(puntuacion);
 		frame.getContentPane().add(nivel);
-		
+
 		frame.setFocusable(true);
 		btnDetener.setFocusable(false);
 		btnIniciar.setFocusable(false);
@@ -197,8 +197,7 @@ public class VistaVisual implements ViewManager {
 		btnDetener.setVisible(false);
 		Graphics grafico = ((SuperficiePanel) panel).getBuffer();
 		URL dir = this.getClass().getResource("/images/game-over.jpg");
-		URL dirSound = this.getClass()
-		.getResource("/images/crashSound.wav");
+		URL dirSound = this.getClass().getResource("/images/crashSound.wav");
 		try {
 			clip = AudioSystem.getClip();
 			AudioInputStream inputStream = AudioSystem
