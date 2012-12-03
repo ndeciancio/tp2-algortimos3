@@ -1,7 +1,6 @@
 package vista;
 
 import java.awt.EventQueue;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +22,8 @@ public class FlightControl {
 	private Escenario game;
 	private GameLoop gameLoop;
 	private List<ViewManager> viewManagers;
+	
+	private Integer puntos = 0;
 
 	/**
 	 * @param args
@@ -40,19 +41,23 @@ public class FlightControl {
 	}
 
 	public FlightControl() {
-		try {
 			initialize();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
-	private void initialize() throws IOException {
-		this.gameLoop = new GameLoop(100);
+	public void initialize() {
 		this.viewManagers = new ArrayList<ViewManager>();
 		viewManagers.add(new VistaVisual(this));
 
+	}
+
+	public void setUpGame(){
+		puntos =0;
+		if(this.gameLoop != null){
+			gameLoop.detenerEjecucion();
+			gameLoop.removeAll();
+		}
+		this.gameLoop = new GameLoop(100);
+		clean();
 		List<Pista> pistas = new ArrayList<Pista>();
 		Pista p = new PistaSimple(new Posicion(40, 50), 10,Math.PI/2);
 		Pista p2 = new PistaLarga(new Posicion(160, 70), 10,Math.PI/6);
@@ -77,10 +82,10 @@ public class FlightControl {
 			manager.addVistaPista(vp);
 			manager.addVistaPista(vp2);
 			manager.addVistaPista(vp3);
+			manager.showPuntaje(puntos);
 		}
-
 	}
-
+	
 	public void addAvion(Avion a) {
 		this.gameLoop.agregar(a);
 		VistaAvion va = new VistaAvion(a);
@@ -90,10 +95,12 @@ public class FlightControl {
 	}
 
 	public void removerAvion(Avion a) {
+		puntos++;
 		this.gameLoop.remover(a);
 		VistaAvion va = new VistaAvion(a);
 		for (ViewManager manager : viewManagers) {
 			manager.removerVistaAvion(va);
+			manager.showPuntaje(puntos);
 		}
 	}
 
@@ -108,5 +115,13 @@ public class FlightControl {
 	public void huboUnClick(Integer x, Integer y) {
 		this.game.huboUnClick(x, y);
 	}
+	
+	public void clean(){
+		for(ViewManager manager:viewManagers){
+			manager.detenerEjecucion();
+			manager.removeAll();
+		}
+	}
+
 
 }

@@ -1,6 +1,5 @@
 package vista;
 
-import modelo.aviones.Avion;
 
 public interface ViewManager {
 	public void iniciarEjecucion();
@@ -9,4 +8,6 @@ public interface ViewManager {
 	public void addVistaAvion(VistaAvion va);
 	public void addVistaPista(VistaPista vp);
 	public void removerVistaPista(VistaPista vp);
+	public void showPuntaje(Integer puntos);
+	public void removeAll();
 }

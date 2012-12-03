@@ -8,7 +8,6 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import modelo.aviones.Avion;
 import modelo.pistas.Pista;
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.ObjetoDibujable;
@@ -50,7 +49,6 @@ public class VistaPista implements ObjetoDibujable{
 		Graphics grafico = ((SuperficiePanel) superficieDeDibujo).getBuffer();
 		grafico.drawImage(imagen, this.posicionable.getX()-(p.getRadio()+5),
 				this.posicionable.getY()-(p.getRadio()+5),null);
-		// grafico.drawImage(im, at,null);
 	}
 	
 	
