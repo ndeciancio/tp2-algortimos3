@@ -63,7 +63,6 @@ public class VistaAvion implements ObjetoDibujable {
 		Graphics grafico = ((SuperficiePanel) superficieDeDibujo).getBuffer();
 		grafico.drawImage(imagen, this.posicionable.getX()-a.getRadio(),
 				this.posicionable.getY()-a.getRadio(),null);
-		// grafico.drawImage(im, at,null);
 	}
 
 }
