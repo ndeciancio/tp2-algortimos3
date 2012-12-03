@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JButton;
+
 import modelo.aviones.Avion;
 import modelo.exceptions.FalloEnFabricacionAvionException;
 import modelo.factories.FactoryAvion;
@@ -32,6 +34,7 @@ public class Escenario implements ObjetoVivo {
 	public Escenario(Integer cantidadAvionesMaximaPorNivel,
 			List<Pista> pistasDelMapa, List<FactoryAvion> fabricas,
 			FlightControl flightControl) {
+		Mapa.getInstance().resetMapa();
 		cantidadMaximaAvionesPorNivel = cantidadAvionesMaximaPorNivel;
 		agregarPistasAlMapa(pistasDelMapa);
 		this.fabricasDeAviones = fabricas;
@@ -100,7 +103,9 @@ public class Escenario implements ObjetoVivo {
 	}
 
 	public void huboUnChoque() {
+		System.out.println("HUBO UN CHOQUE");
 		this.perdido = true;
+		flightControl.finalizarJuego();
 	}
 
 	public void huboUnClick(Integer x, Integer y) {

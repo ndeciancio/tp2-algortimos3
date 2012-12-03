@@ -55,6 +55,7 @@ public class FlightControl {
 		if(this.gameLoop != null){
 			gameLoop.detenerEjecucion();
 			gameLoop.removeAll();
+			System.out.println(gameLoop.getCantidadDeObjetosVivos());
 		}
 		this.gameLoop = new GameLoop(100);
 		clean();
@@ -114,6 +115,15 @@ public class FlightControl {
 
 	public void huboUnClick(Integer x, Integer y) {
 		this.game.huboUnClick(x, y);
+	}
+	
+	public void finalizarJuego(){
+		this.gameLoop.detenerEjecucion();
+		for(ViewManager manager:viewManagers){
+			manager.detenerEjecucion();
+			manager.showPerdido();
+		}
+		
 	}
 	
 	public void clean(){

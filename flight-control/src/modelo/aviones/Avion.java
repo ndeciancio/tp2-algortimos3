@@ -45,6 +45,7 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 			try{
 				chequearChoques();
 			}catch(ChoqueException e){
+				System.out.println("HUBO UN CHOQUE EN " + this.getX()+" "+ this.getY() );
 				escenario.huboUnChoque();
 			}
 			chequearAterrizaje();
@@ -74,7 +75,7 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 	public abstract Boolean puedoAterrizarEnEstaPista(Pista p);
 	
 	public Boolean estaCercaDe(Avion a){
-		return getPosicion().estaCercaDe(a.getPosicion(),a.getRadio()+this.getRadio());
+		return getPosicion().estaCercaDe(a.getPosicion(),a.getRadio());
 	}
 	
 	public void aterrizar(){
