@@ -36,6 +36,8 @@ public class VistaVisual implements ViewManager {
 	private JPanel panel;
 	private JButton btnIniciar;
 	private JButton btnDetener;
+	private JButton btnLoad;
+	private JButton btnSave;
 	private Clip clip;
 
 	/**
@@ -68,6 +70,16 @@ public class VistaVisual implements ViewManager {
 		btnIniciar.setBounds(870, 100, 130, 25);
 		frame.getContentPane().add(btnIniciar);
 		btnDetener = new JButton("Pausar");
+		btnDetener.setBounds(870, 135, 130, 25);
+		btnDetener.setVisible(false);
+		frame.getContentPane().add(btnDetener);
+		btnLoad = new JButton("Cargar Partida");
+		btnLoad.setBounds(870, 500, 130, 25);
+		frame.getContentPane().add(btnLoad);
+		btnSave = new JButton("Guardar Partida");
+		btnSave.setBounds(870, 535, 130, 25);
+		btnSave.setVisible(false);
+		frame.getContentPane().add(btnSave);
 
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -84,6 +96,7 @@ public class VistaVisual implements ViewManager {
 				nivel.setVisible(true);
 				btnDetener.setText("Pausar");
 				btnDetener.setVisible(true);
+				btnSave.setVisible(true);
 			}
 		});
 		btnDetener.addActionListener(new ActionListener() {
@@ -104,9 +117,17 @@ public class VistaVisual implements ViewManager {
 
 			}
 		});
-		btnDetener.setBounds(870, 135, 130, 25);
-		btnDetener.setVisible(false);
-		frame.getContentPane().add(btnDetener);
+		btnLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				//TODO CARGAR PARTIDA
+			}
+		});
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				//TODO GUARDAR PARTIDA
+			}
+		});
+		
 
 		panel = new SuperficiePanel();
 		panel.setBackground(new Color(0, 127, 0));
