@@ -64,16 +64,12 @@ public class Mapa {
 	}
 
 	public void sacarAvionesAterrizados() {
-
 		Iterator<Avion> iteradorAviones = aviones.iterator();
-
 		while (iteradorAviones.hasNext()) {
-
 			if (iteradorAviones.next().estaAterrizado()) {
 				iteradorAviones.remove();
 			}
 		}
-
 	}
 
 	public Integer getBordeX() {
@@ -89,13 +85,11 @@ public class Mapa {
 		while (it.hasNext()) {
 			Avion a = it.next();
 			if (pos.estaCercaDe(a.getPosicion(), a.getRadio())) {
-				System.out.println("Seleccionado");
 				desSeleccionarTodos();
 				a.seleccionar();
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -112,11 +106,9 @@ public class Mapa {
 		while (it.hasNext()) {
 			Avion a = it.next();
 			if (a.estaSeleccionado()) {
-				System.out.println("Agregando Posicion");
 				a.agregarPosicionATrayectoria(pos);
 			}
 		}
-
 	}
 
 }

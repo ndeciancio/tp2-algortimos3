@@ -32,6 +32,7 @@ public class VistaVisual implements ViewManager {
 	private ViewLoop viewLoop;
 
 	private JLabel puntuacion;
+	private JLabel nivel;
 	private JPanel panel;
 	private JButton btnIniciar;
 	private JButton btnDetener;
@@ -80,6 +81,7 @@ public class VistaVisual implements ViewManager {
 
 				}
 				puntuacion.setVisible(true);
+				nivel.setVisible(true);
 				btnDetener.setText("Pausar");
 				btnDetener.setVisible(true);
 			}
@@ -125,9 +127,15 @@ public class VistaVisual implements ViewManager {
 		// Agrego Labels para puntuacion
 		puntuacion = new JLabel("Aviones Aterrizados: 0");
 		puntuacion.setLocation(850, 170);
-		puntuacion.setSize(200, 50);
+		puntuacion.setSize(200, 20);
 		puntuacion.setHorizontalAlignment(JLabel.LEFT);
 		puntuacion.setVisible(false);
+		
+		nivel = new JLabel("Nivel: 1");
+		nivel.setLocation(850, 190);
+		nivel.setSize(200, 20);
+		nivel.setHorizontalAlignment(JLabel.LEFT);
+		nivel.setVisible(false);
 
 		frame.getContentPane().add(puntuacion);
 
@@ -196,7 +204,6 @@ public class VistaVisual implements ViewManager {
 					.getAudioInputStream(dirSound);
 			clip.open(inputStream);
 			clip.start();
-			Thread.sleep(100);
 			BufferedImage imagen = ImageIO.read(dir);
 			grafico.drawImage(imagen, 220, 150, null);
 		} catch (Exception e) {
@@ -204,6 +211,11 @@ public class VistaVisual implements ViewManager {
 		}
 		panel.repaint();
 
+	}
+
+	@Override
+	public void showLevelUp(Integer nivel) {
+		this.nivel.setText("Nivel: " + nivel);
 	}
 
 }

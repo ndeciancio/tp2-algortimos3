@@ -11,4 +11,5 @@ public interface ViewManager {
 	public void showPuntaje(Integer puntos);
 	public void removeAll();
 	public void showPerdido();
+	public void showLevelUp(Integer level);
 }
