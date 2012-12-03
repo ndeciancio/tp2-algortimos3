@@ -138,7 +138,8 @@ public class VistaVisual implements ViewManager {
 		nivel.setVisible(false);
 
 		frame.getContentPane().add(puntuacion);
-
+		frame.getContentPane().add(nivel);
+		
 		frame.setFocusable(true);
 		btnDetener.setFocusable(false);
 		btnIniciar.setFocusable(false);
