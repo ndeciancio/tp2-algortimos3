@@ -20,8 +20,9 @@ public class Escenario implements ObjetoVivo {
 
 	private Mapa mapaDeJuego = Mapa.getInstance();
 	private Integer cantidadMaximaAvionesPorNivel;
-	private Integer interverloDeCreacionAviones = 30;
+	private Integer intervaloDeCreacionAviones = 30;
 	private Integer turnosParaCreacionSiguienteAvion = 30;
+	
 	private List<FactoryAvion> fabricasDeAviones;
 
 	private Boolean perdido = false;
@@ -50,18 +51,17 @@ public class Escenario implements ObjetoVivo {
 	}
 
 	public void vivir() {
-
 		crearAvion();
-		aumentarDificultad();
 		retirarAvionDelJuego();
-
 	}
 
 	private void crearAvion() {
 		// aca no se bien como funciona el random, pero supongo que se le pasa
 		// por
 		// parametro el tope
-
+		if(cantAvionesAterrizados > cantidadMaximaAvionesPorNivel){
+			levelUp();
+		}
 		if (this.fabricasDeAviones.size() == 0) {
 			FalloEnFabricacionAvionException falloEnFabricacion = new FalloEnFabricacionAvionException(
 					"Fallo En La Fabricacion De Un Avion");
@@ -71,7 +71,7 @@ public class Escenario implements ObjetoVivo {
 
 		Integer fabricaElegida = fabricaRandom
 				.nextInt(fabricasDeAviones.size());
-		if (turnosParaCreacionSiguienteAvion >= interverloDeCreacionAviones) {
+		if (turnosParaCreacionSiguienteAvion >= intervaloDeCreacionAviones) {
 			turnosParaCreacionSiguienteAvion = 0;
 			Avion avionNuevo = this.fabricasDeAviones.get(fabricaElegida)
 					.fabricarAvion(this.mapaDeJuego, this);
@@ -83,18 +83,6 @@ public class Escenario implements ObjetoVivo {
 
 	}
 
-	private void aumentarDificultad() {
-		if (this.verificarPasarDeNivel()) {
-			interverloDeCreacionAviones -= 5;
-		}
-		// habria que haber algo que indique que se aumento la dificultad
-	}
-
-	private boolean verificarPasarDeNivel() {
-		// alguna forma de contar los aviones aterrizados antes de sacarlos del
-		// mapa
-		return false;
-	}
 
 	private void retirarAvionDelJuego() {
 
@@ -103,7 +91,6 @@ public class Escenario implements ObjetoVivo {
 	}
 
 	public void huboUnChoque() {
-		System.out.println("HUBO UN CHOQUE");
 		this.perdido = true;
 		flightControl.finalizarJuego();
 	}
@@ -119,4 +106,12 @@ public class Escenario implements ObjetoVivo {
 		cantAvionesAterrizados++;
 		flightControl.removerAvion(a);
 	}
+	
+	public void levelUp(){
+		Long l = Math.round(intervaloDeCreacionAviones * 0.9);
+		intervaloDeCreacionAviones= l.intValue();
+		cantAvionesAterrizados =0;
+		flightControl.levelUp();
+	}
+	
 }

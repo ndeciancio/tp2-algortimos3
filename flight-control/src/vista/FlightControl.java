@@ -24,6 +24,7 @@ public class FlightControl {
 	private List<ViewManager> viewManagers;
 	
 	private Integer puntos = 0;
+	private Integer level = 1;
 
 	/**
 	 * @param args
@@ -52,10 +53,10 @@ public class FlightControl {
 
 	public void setUpGame(){
 		puntos =0;
+		level = 1;
 		if(this.gameLoop != null){
 			gameLoop.detenerEjecucion();
 			gameLoop.removeAll();
-			System.out.println(gameLoop.getCantidadDeObjetosVivos());
 		}
 		this.gameLoop = new GameLoop(100);
 		clean();
@@ -74,7 +75,7 @@ public class FlightControl {
 		factories.add(fp);
 		factories.add(fh);
 
-		this.game = new Escenario(15, pistas, factories, this);
+		this.game = new Escenario(5, pistas, factories, this);
 		this.gameLoop.agregar(game);
 		VistaPista vp = new VistaPista(p);
 		VistaPista vp2 = new VistaPista(p2);
@@ -130,6 +131,13 @@ public class FlightControl {
 		for(ViewManager manager:viewManagers){
 			manager.detenerEjecucion();
 			manager.removeAll();
+		}
+	}
+	
+	public void levelUp(){
+		level++;
+		for(ViewManager manager:viewManagers){
+			manager.showLevelUp(level);
 		}
 	}
 
