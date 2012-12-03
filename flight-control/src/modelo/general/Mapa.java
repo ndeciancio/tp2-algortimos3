@@ -88,7 +88,7 @@ public class Mapa {
 		Iterator<Avion> it = aviones.iterator();
 		while (it.hasNext()) {
 			Avion a = it.next();
-			if (pos.estaCercaDe(a.getPosicion(), a.getRadio()*2)) {
+			if (pos.estaCercaDe(a.getPosicion(), a.getRadio())) {
 				System.out.println("Seleccionado");
 				desSeleccionarTodos();
 				a.seleccionar();

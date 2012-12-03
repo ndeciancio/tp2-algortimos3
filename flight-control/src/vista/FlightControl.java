@@ -54,9 +54,9 @@ public class FlightControl {
 		viewManagers.add(new VistaVisual(this));
 
 		List<Pista> pistas = new ArrayList<Pista>();
-		Pista p = new PistaSimple(new Posicion(40, 50), 15);
-		Pista p2 = new PistaLarga(new Posicion(160, 70), 15);
-		Pista p3 = new PistaHelipuerto(new Posicion(40, 578), 15);
+		Pista p = new PistaSimple(new Posicion(40, 50), 10,Math.PI/2);
+		Pista p2 = new PistaLarga(new Posicion(160, 70), 10,Math.PI/6);
+		Pista p3 = new PistaHelipuerto(new Posicion(40, 578), 10,0d);
 		pistas.add(p);
 		pistas.add(p2);
 		pistas.add(p3);

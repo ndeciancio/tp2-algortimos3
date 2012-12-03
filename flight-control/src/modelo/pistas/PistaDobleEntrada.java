@@ -13,8 +13,8 @@ public class PistaDobleEntrada extends Pista {
 	private Posicion posicion2;
 	private Integer radio2;
 	
-	public PistaDobleEntrada(Posicion posicion,Posicion posicion2, Integer radio, Integer radio2) {
-		super(posicion,radio);
+	public PistaDobleEntrada(Posicion posicion,Posicion posicion2, Integer radio, Integer radio2, Double direccion) {
+		super(posicion,radio,direccion);
 		this.posicion2 = posicion2;
 		this.radio2 = radio2;
 	}
@@ -93,7 +93,7 @@ public class PistaDobleEntrada extends Pista {
 		Integer radio1 = Integer.parseInt(primeraEntrada.getAttributeValue("radio1"));
 		Integer radio2 = Integer.parseInt(segundaEntrada.getAttributeValue("radio2"));
 		
-		return new PistaDobleEntrada (primeraPosicion, segundaPosicion, radio1, radio2);
+		return new PistaDobleEntrada (primeraPosicion, segundaPosicion, radio1, radio2,null);
 		
 	}
 	

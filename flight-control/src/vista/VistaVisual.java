@@ -44,9 +44,10 @@ public class VistaVisual implements ViewManager {
 	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.setForeground(new Color(0, 0, 0));
-		frame.setBounds(100, 100, 1050, 900);
+		frame.setBounds(10, 10, 1050, 750);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Flight Control");
 
 		JButton btnIniciar = new JButton("Iniciar");
 		btnIniciar.addActionListener(new ActionListener() {
@@ -73,8 +74,8 @@ public class VistaVisual implements ViewManager {
 		frame.getContentPane().add(btnDetener);
 
 		JPanel panel = new SuperficiePanel();
-		panel.setBackground(new Color(0, 0, 0));
-		panel.setBounds(40, 50, 840, 650);
+		panel.setBackground(new Color(0, 127, 0));
+		panel.setBounds(40, 50, 800, 600);
 		frame.getContentPane().add(panel);
 
 		this.viewLoop = new ViewLoop(100, (SuperficieDeDibujo) panel);
