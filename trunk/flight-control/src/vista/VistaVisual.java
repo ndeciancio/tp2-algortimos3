@@ -1,12 +1,19 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +32,10 @@ public class VistaVisual implements ViewManager {
 	private ViewLoop viewLoop;
 
 	private JLabel puntuacion;
+	private JPanel panel;
+	private JButton btnIniciar;
+	private JButton btnDetener;
+	private Clip clip;
 
 	/**
 	 * Create the application.
@@ -52,10 +63,10 @@ public class VistaVisual implements ViewManager {
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Flight Control");
 
-		final JButton btnIniciar = new JButton("Iniciar Juego");
+		btnIniciar = new JButton("Iniciar Juego");
 		btnIniciar.setBounds(870, 100, 130, 25);
 		frame.getContentPane().add(btnIniciar);
-		final JButton btnDetener = new JButton("Pausar");
+		btnDetener = new JButton("Pausar");
 
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -95,7 +106,7 @@ public class VistaVisual implements ViewManager {
 		btnDetener.setVisible(false);
 		frame.getContentPane().add(btnDetener);
 
-		JPanel panel = new SuperficiePanel();
+		panel = new SuperficiePanel();
 		panel.setBackground(new Color(0, 127, 0));
 		panel.setBounds(5, 5, 800, 600);
 		frame.getContentPane().add(panel);
@@ -125,7 +136,6 @@ public class VistaVisual implements ViewManager {
 		btnIniciar.setFocusable(false);
 
 		frame.setVisible(true);
-
 	}
 
 	@Override
@@ -155,6 +165,9 @@ public class VistaVisual implements ViewManager {
 	}
 
 	public void iniciarEjecucion() {
+		if (panel != null) {
+			panel.setBackground(new Color(0, 127, 0));
+		}
 		viewLoop.iniciarEjecucion();
 	}
 
@@ -166,6 +179,31 @@ public class VistaVisual implements ViewManager {
 
 	public void removeAll() {
 		viewLoop.removeAll();
+	}
+
+	@Override
+	public void showPerdido() {
+		panel.setBackground(new Color(0, 0, 0));
+		btnDetener.setText("Pausar");
+		btnDetener.setVisible(false);
+		Graphics grafico = ((SuperficiePanel) panel).getBuffer();
+		URL dir = this.getClass().getResource("/images/game-over.jpg");
+		URL dirSound = this.getClass()
+		.getResource("/images/crashSound.wav");
+		try {
+			clip = AudioSystem.getClip();
+			AudioInputStream inputStream = AudioSystem
+					.getAudioInputStream(dirSound);
+			clip.open(inputStream);
+			clip.start();
+			Thread.sleep(100);
+			BufferedImage imagen = ImageIO.read(dir);
+			grafico.drawImage(imagen, 220, 150, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		panel.repaint();
+
 	}
 
 }

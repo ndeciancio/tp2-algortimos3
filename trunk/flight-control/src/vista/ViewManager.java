@@ -10,4 +10,5 @@ public interface ViewManager {
 	public void removerVistaPista(VistaPista vp);
 	public void showPuntaje(Integer puntos);
 	public void removeAll();
+	public void showPerdido();
 }
