@@ -15,7 +15,7 @@ public class PistaSimple extends Pista {
 	}
 	
 	public Boolean puedeAterrizar(AvionLiviano avion){
-		if(getPosicion().estaCercaDe(avion.getPosicion(), this.getRadio())){
+		if(getPosicion().estaCercaDe(avion.getPosicion(), avion.getRadio()+this.getRadio())){
 			return true;
 		}else{
 			return false;

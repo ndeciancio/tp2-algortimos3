@@ -35,6 +35,10 @@ public class Mapa {
 			aviones.add(a);
 		}
 	}
+	
+	public void removerAvion(Avion a){
+		aviones.remove(a);
+	}
 
 	public void resetMapa() {
 		singleton.aviones = new ArrayList<Avion>();

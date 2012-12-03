@@ -52,7 +52,6 @@ public class Escenario implements ObjetoVivo {
 
 	public void vivir() {
 		crearAvion();
-		retirarAvionDelJuego();
 	}
 
 	private void crearAvion() {
@@ -84,12 +83,6 @@ public class Escenario implements ObjetoVivo {
 	}
 
 
-	private void retirarAvionDelJuego() {
-
-		mapaDeJuego.sacarAvionesAterrizados();
-
-	}
-
 	public void huboUnChoque() {
 		this.perdido = true;
 		flightControl.finalizarJuego();
@@ -104,11 +97,12 @@ public class Escenario implements ObjetoVivo {
 
 	public void aterrizo(Avion a) {
 		cantAvionesAterrizados++;
+		Mapa.getInstance().removerAvion(a);
 		flightControl.removerAvion(a);
 	}
 	
 	public void levelUp(){
-		Long l = Math.round(intervaloDeCreacionAviones * 0.9);
+		Long l = Math.round(intervaloDeCreacionAviones * 0.8);
 		intervaloDeCreacionAviones= l.intValue();
 		cantAvionesAterrizados =0;
 		flightControl.levelUp();

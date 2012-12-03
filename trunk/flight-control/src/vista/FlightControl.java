@@ -12,6 +12,7 @@ import modelo.factories.FactoryAvionPesado;
 import modelo.general.Posicion;
 import modelo.juego.Escenario;
 import modelo.pistas.Pista;
+import modelo.pistas.PistaDobleEntrada;
 import modelo.pistas.PistaHelipuerto;
 import modelo.pistas.PistaLarga;
 import modelo.pistas.PistaSimple;
@@ -64,9 +65,11 @@ public class FlightControl {
 		Pista p = new PistaSimple(new Posicion(40, 50), 10,Math.PI/2);
 		Pista p2 = new PistaLarga(new Posicion(160, 70), 10,Math.PI/6);
 		Pista p3 = new PistaHelipuerto(new Posicion(40, 578), 10,0d);
+		Pista p4 = new PistaDobleEntrada(new Posicion(200,300), new Posicion(350,300), 10, 10, 0d);
 		pistas.add(p);
 		pistas.add(p2);
 		pistas.add(p3);
+		pistas.add(p4);
 		List<FactoryAvion> factories = new ArrayList<FactoryAvion>();
 		FactoryAvion fl = new FactoryAvionLiviano();
 		FactoryAvion fp = new FactoryAvionPesado();
@@ -75,16 +78,19 @@ public class FlightControl {
 		factories.add(fp);
 		factories.add(fh);
 
-		this.game = new Escenario(5, pistas, factories, this);
+		this.game = new Escenario(10, pistas, factories, this);
 		this.gameLoop.agregar(game);
 		VistaPista vp = new VistaPista(p);
 		VistaPista vp2 = new VistaPista(p2);
 		VistaPista vp3 = new VistaPista(p3);
+		VistaPista vp4 = new VistaPista(p4);
 		for (ViewManager manager : viewManagers) {
 			manager.addVistaPista(vp);
 			manager.addVistaPista(vp2);
 			manager.addVistaPista(vp3);
+			manager.addVistaPista(vp4);
 			manager.showPuntaje(puntos);
+			manager.showLevelUp(level);
 		}
 	}
 	
