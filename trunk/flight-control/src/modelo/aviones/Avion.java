@@ -218,12 +218,15 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 		
 		Element posicion = this.posicion.serializarXML();
 		Element trayectoria = this.trayectoria.serializarXML();
+		Element movimientoCategoria = new Element ("Movimiento");
+		
 		Element movimiento = this.movimiento.serializarXML();
+		movimientoCategoria.setContent(movimiento);
 		
 		elementoXMLConDatosAvion.setAttribute(radio);
 		elementoXMLConDatosAvion.getChildren().add(posicion);
 		elementoXMLConDatosAvion.getChildren().add(trayectoria);
-		elementoXMLConDatosAvion.getChildren().add(movimiento);
+		elementoXMLConDatosAvion.getChildren().add(movimientoCategoria);
 		
 		return elementoXMLConDatosAvion;
 	}

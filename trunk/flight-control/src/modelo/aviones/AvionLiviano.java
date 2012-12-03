@@ -2,10 +2,11 @@ package modelo.aviones;
 
 
 
-import org.jdom.Attribute;
+
 import org.jdom.Element;
 
 import modelo.general.Posicion;
+import modelo.general.Trayectoria;
 import modelo.juego.Escenario;
 import modelo.movimientos.Movimiento;
 import modelo.movimientos.MovimientoInteligente;
@@ -50,10 +51,16 @@ public class AvionLiviano extends Avion {
 		return avionLivianoSerializado;
 	}
 
-
 	public static AvionLiviano cargarDesdeXML(Element elementoXML, Escenario escenario){
+		Integer radioXML = Integer.parseInt(elementoXML.getAttributeValue("radio"));
+		Posicion posicionXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
+		Trayectoria trayectoriaXML = Trayectoria.cargarDesdeXML(elementoXML.getChild("Trayectoria"));
+		Movimiento movitmientoXML = Movimiento.cargarDesdeXML(elementoXML.getChild("Movimiento"));
+		AvionLiviano avionXML = new AvionLiviano(posicionXML, radioXML, escenario);
 		
-		return null;
+		avionXML.setTrayectoria(trayectoriaXML);
+		avionXML.setMovimiento(movitmientoXML);
+		return avionXML;
 	}
 	
 	

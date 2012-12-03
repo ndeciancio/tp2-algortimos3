@@ -9,6 +9,7 @@ import modelo.general.Posicion;
 
 import org.jdom.Document;
 import org.jdom.Element;
+import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
@@ -44,8 +45,8 @@ public class PersistenciaAvionLivianoSimple {
 		writer.close();
 	}
 	
-	/*@Test
-	public void testUnMovimientoSimpleSePodriaCrearApartirDeUnArchivoXML() throws IOException
+@Test
+	public void testUnLivianoSePodriaCrearApartirDeUnArchivoXML() throws IOException, JDOMException
 	{
 		AvionLiviano avionXML;
 		try {
@@ -60,6 +61,6 @@ public class PersistenciaAvionLivianoSimple {
 		}
 		
 			assertTrue(avionXML instanceof AvionLiviano);
-		
-	}*/
+
+	}
 }

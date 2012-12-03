@@ -54,15 +54,15 @@ public abstract class Movimiento {
 
 	
 	public static Movimiento cargarDesdeXML(Element elementoXML) {
-		String movimiento = elementoXML.getName();
-		if (movimiento.equals("MovimientoSimple")){
-			return MovimientoSimple.cargarDesdeXML(elementoXML);
+		
+		if (elementoXML.getChild("MovimientoSimple") != null){
+			return MovimientoSimple.cargarDesdeXML(elementoXML.getChild("MovimientoSimple"));
 		}
-		if (movimiento.equals("MovimientoHelicoptero")){
-			return MovimientoHelicoptero.cargarDesdeXML(elementoXML);
+		if (elementoXML.getChild("MovimientoHelicoptero") != null){
+			return MovimientoHelicoptero.cargarDesdeXML(elementoXML.getChild("MovimientoHelicoptero"));
 		}
-		if (movimiento.equals("MovimientoInteligente")){
-			return MovimientoHelicoptero.cargarDesdeXML(elementoXML);
+		if (elementoXML.getChild("MovimientoInteligente") != null){
+			return MovimientoInteligente.cargarDesdeXML(elementoXML.getChild("MovimientoInteligente"));
 		}
 		
 		return null;
