@@ -151,7 +151,8 @@ public class Escenario implements ObjetoVivo, ObjetoSerializableXML {
 		this.turnosParaCreacionSiguienteAvion = Integer.parseInt(elementoXML.getAttributeValue("turnosParaCreacionSiguienteAvion"));
 		this.intervaloDeCreacionAviones = Integer.parseInt(elementoXML.getAttributeValue("intervaloDeCreacionAviones"));
 		
-		Element aviones = elementoXML.getChild("Aviones");
+		Element mapa = elementoXML.getChild("Mapa");
+		Element aviones = mapa.getChild("Aviones");
 		Iterator<Element> iteradorAviones = aviones.getChildren().iterator(); 
 		while (iteradorAviones.hasNext()){
 			Avion avionXML = Avion.cargarDesdeXML(iteradorAviones.next(), this);
