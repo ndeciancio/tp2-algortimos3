@@ -1,5 +1,5 @@
 package persistencia;
-import static org.junit.Assert.assertTrue;
+
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,8 +14,6 @@ import modelo.general.Posicion;
 
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.junit.Test;
@@ -54,6 +52,8 @@ public class PersistenciaMapaTest {
         AvionHelicoptero helicopteroDelMapaApersistir = AvionHelicoptero.crearAvionHelicopteroSimple(posicionHelicopteroAPersistir, radioApersistir, velocidadAPersistir, direccionHelicopteroAPersistir, null);
         AvionLiviano avionDelMapaApersistir = AvionLiviano.crearAvionLivianoSimple(posicionAvionAPersistir, radioApersistir, velocidadAPersistir, direccionAvionAPersistir, null);
 
+        helicopteroDelMapaApersistir.agregarPosicionATrayectoria(posicionTrayectoriaHelicopteroAPersistir);
+        avionDelMapaApersistir.agregarPosicionATrayectoria(posicionTrayectoriaAvionAPersistir);
         //act
         
         mapaApersistir.addAvion(avionDelMapaApersistir);

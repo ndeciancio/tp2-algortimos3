@@ -1,14 +1,20 @@
 package modelo.factories;
 
+import org.jdom.Element;
+
 import modelo.aviones.Avion;
 import modelo.aviones.AvionHelicoptero;
 import modelo.general.Mapa;
+
 import modelo.general.Posicion;
 import modelo.juego.Escenario;
 
-public class FactoryAvionHelicoptero implements FactoryAvion {
+public class FactoryAvionHelicoptero extends FactoryAvion{
 
-	@Override
+
+	public FactoryAvionHelicoptero(){
+		super();
+	}
 	public Avion fabricarAvion(Mapa mapa, Escenario escenario) {
 		Double direccion = 0d;
 		Integer velocidad = 5;
@@ -21,5 +27,14 @@ public class FactoryAvionHelicoptero implements FactoryAvion {
 		avionHelicoptero.agregarPosicionATrayectoria(primerMovimiento);
 		return avionHelicoptero;
 	}
+
+	@Override
+	public Element serializarXML() {
+		
+		return new Element ("FactoryAvionHelicoptero");
+	}
+
+
+	
 
 }

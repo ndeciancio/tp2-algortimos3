@@ -11,6 +11,9 @@ import modelo.general.Posicion;
 import modelo.general.Trayectoria;
 import modelo.juego.Escenario;
 import modelo.movimientos.Movimiento;
+import modelo.movimientos.MovimientoHelicoptero;
+import modelo.movimientos.MovimientoInteligente;
+import modelo.movimientos.MovimientoSimple;
 import modelo.pistas.Pista;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
@@ -237,17 +240,23 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable,ObjetoSeri
 	
 	public static Avion cargarDesdeXML(Element elementoXML, Escenario escenario) {
 		
-		String movimiento = elementoXML.getName();
-		if (movimiento.equals("MovimientoSimple")){
-			return AvionLiviano.cargarDesdeXML(elementoXML, escenario);
-		}
-		if (movimiento.equals("MovimientoHelicoptero")){
-			return AvionPesado.cargarDesdeXML(elementoXML, escenario);
-		}
-		if (movimiento.equals("MovimientoInteligente")){
-			return AvionHelicoptero.cargarDesdeXML(elementoXML, escenario);
+		Element elementoAvion = elementoXML.getChild("AvionLiviano");
+		
+
+		if (elementoAvion != null){
+			return AvionLiviano.cargarDesdeXML(elementoAvion, escenario);
 		}
 		
+		elementoAvion = elementoXML.getChild("AvionPesado");
+		if (elementoAvion != null){
+			return AvionPesado.cargarDesdeXML(elementoAvion, escenario);
+		}
+		
+		elementoAvion = elementoXML.getChild("Helicoptero");
+		if (elementoAvion != null){
+			return AvionHelicoptero.cargarDesdeXML(elementoAvion, escenario);
+		}
+	
 		return null;
 	} 
 }
