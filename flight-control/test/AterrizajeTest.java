@@ -21,7 +21,8 @@ public class AterrizajeTest {
 		Mapa.getInstance().resetMapa();
 		Posicion posPista = new Posicion(10,3);
 		Integer radio = 1;
-		Pista pistaSimple = new PistaSimple(posPista,radio);
+		Double direccion = 0d;
+		Pista pistaSimple = new PistaSimple(posPista,radio,direccion);
 		Posicion posInicialAvion = new Posicion(3,3);
 		Avion avion = AvionLiviano.crearAvionLivianoSimple(posInicialAvion,radio,2,0d, null);
 		Mapa.getInstance().addAvion(avion);
@@ -44,7 +45,8 @@ public class AterrizajeTest {
 		Mapa.getInstance().resetMapa();
 		Posicion posPista = new Posicion(20,3);
 		Integer radio = 1;
-		Pista pistaSimple = new PistaSimple(posPista,radio);
+		Double direccion = 0d;
+		Pista pistaSimple = new PistaSimple(posPista,radio,direccion);
 		Posicion posInicialAvion = new Posicion(3,3);
 		Avion avion = AvionLiviano.crearAvionLivianoSimple(posInicialAvion,radio,2,0d, null);
 		Mapa.getInstance().addAvion(avion);

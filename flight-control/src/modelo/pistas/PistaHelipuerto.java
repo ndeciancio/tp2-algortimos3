@@ -56,9 +56,11 @@ public class PistaHelipuerto extends Pista {
 	}
 	
 	public static PistaHelipuerto cargarDesdeXML(Element elementoXML) {
+		
+		Double direccionXML = Double.parseDouble(elementoXML.getAttributeValue("direccion"));
 		Posicion posicionDelXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
 		Integer radioDelXML = Integer.parseInt(elementoXML.getAttributeValue("radio1"));
-		return new PistaHelipuerto (posicionDelXML, radioDelXML,null);
+		return new PistaHelipuerto (posicionDelXML, radioDelXML,direccionXML);
 		
 	}
 

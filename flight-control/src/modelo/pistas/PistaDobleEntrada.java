@@ -72,8 +72,10 @@ public class PistaDobleEntrada extends Pista {
 		this.cargarElemento(primeraEntradaSerializada);
 		
 		Element segundaEntradaSerializada = new Element ("SegundaEntrada");
+		
 		Attribute radio2 = new Attribute ("radio2",this.radio2.toString());
 		Element posicion2Serializada = this.posicion2.serializarXML();
+		
 		segundaEntradaSerializada.setAttribute(radio2);
 		segundaEntradaSerializada.setContent(posicion2Serializada);
 		
@@ -87,13 +89,15 @@ public class PistaDobleEntrada extends Pista {
 		Element primeraEntrada = elementoXML.getChild("PrimeraEntrada");
 		Element segundaEntrada = elementoXML.getChild("SegundaEntrada");
 		
+		Double direccion = Double.parseDouble(primeraEntrada.getAttributeValue("direccion"));
+		
 		Posicion primeraPosicion = Posicion.cargarDesdeXML(primeraEntrada.getChild("Posicion"));
 		Posicion segundaPosicion = Posicion.cargarDesdeXML(segundaEntrada.getChild("Posicion"));
 		
 		Integer radio1 = Integer.parseInt(primeraEntrada.getAttributeValue("radio1"));
 		Integer radio2 = Integer.parseInt(segundaEntrada.getAttributeValue("radio2"));
 		
-		return new PistaDobleEntrada (primeraPosicion, segundaPosicion, radio1, radio2,null);
+		return new PistaDobleEntrada (primeraPosicion, segundaPosicion, radio1, radio2,direccion);
 		
 	}
 	

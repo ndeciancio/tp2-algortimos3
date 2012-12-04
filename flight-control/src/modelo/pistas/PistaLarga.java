@@ -55,9 +55,10 @@ public class PistaLarga extends Pista {
 	}
 	
 	public static PistaLarga cargarDesdeXML(Element elementoXML) {
+		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("direccion"));
 		Posicion posicionDelXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
 		Integer radioDelXML = Integer.parseInt(elementoXML.getAttributeValue("radio1"));
-		return new PistaLarga (posicionDelXML, radioDelXML,null);
+		return new PistaLarga (posicionDelXML, radioDelXML,direccion);
 		
 	}
 }

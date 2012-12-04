@@ -19,7 +19,8 @@ public class EscenarioTest {
 		List <FactoryAvion> fabricasPrueba= new ArrayList <FactoryAvion> ();
 		Integer cantidadDeAvionesPorNivel = 10;
 		Posicion posicionPrueba = new Posicion (3,3);
-		PistaSimple pistaSimplePrueba = new PistaSimple (posicionPrueba, 1);
+		Double direccionPrueba = 0d;
+		PistaSimple pistaSimplePrueba = new PistaSimple (posicionPrueba, 1, direccionPrueba);
 		pistasPrueba.add(pistaSimplePrueba);
 		
 		Escenario juegoPrueba = new Escenario(cantidadDeAvionesPorNivel, pistasPrueba, fabricasPrueba,null);
