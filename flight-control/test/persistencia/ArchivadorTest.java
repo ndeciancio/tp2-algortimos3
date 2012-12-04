@@ -1,36 +1,29 @@
 package persistencia;
+
 import static org.junit.Assert.assertTrue;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.juego.Escenario;
-import modelo.pistas.Pista;
-import modelo.pistas.PistaSimple;
-import modelo.aviones.AvionHelicoptero;
 import modelo.factories.FactoryAvion;
 import modelo.factories.FactoryAvionLiviano;
 import modelo.general.Posicion;
+import modelo.juego.Escenario;
+import modelo.pistas.Pista;
+import modelo.pistas.PistaSimple;
 
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
 import org.junit.Test;
 
 import vista.FlightControl;
 
+import control.Archivador;
 
+public class ArchivadorTest {
 
-public class PersistenciaJuegoTest {
 	@Test
-	public void testUnAvionLivianoSimplePodriaPoderSerializarce () throws IOException{
-	
-		String pathArchivo = "XML\\PersitenciaJuegoPrueba.xml";
+	public void unArchivadorPodriaGuardarElEstadoDeUnJuego() throws IOException{
+		//PrepararEscenario
 		FlightControl simulador = new FlightControl ();
 		
 		List <FactoryAvion> fabricasPrueba= new ArrayList <FactoryAvion> ();
@@ -47,23 +40,22 @@ public class PersistenciaJuegoTest {
 		
 		Escenario juegoAPersistir = new Escenario(cantidadDeAvionesPorNivel, pistasPrueba, fabricasPrueba,simulador);
 
-		for (int X=1;X==20;X++)
-		{
-			juegoAPersistir.vivir();
-		}
-
-		Element elementoApersistir = juegoAPersistir.serializarXML();
-		Document document = new Document(elementoApersistir);
-	
-		XMLOutputter outputter = new XMLOutputter();
-		outputter.setFormat(Format.getPrettyFormat());
-    
-		FileWriter writer = new FileWriter(pathArchivo);
-		outputter.output(document,writer);
-		writer.close();
-
+		
+		
+		String pathArchivador = "XML\\Juego.xml";
+		Archivador archivadorPrueba = new Archivador(pathArchivador);
+		archivadorPrueba.archivarJuego(juegoAPersistir);
 	}
-
-
-
+	
+	@Test
+	public 	void unArchivadorPodriaCrearUnJuegoApartirDeUnXML(){
+		FlightControl simulador = new FlightControl ();
+		String pathArchivador = "XML\\Juego.xml";
+		Archivador archivadorPrueba = new Archivador(pathArchivador);
+		
+		Escenario juegoDelXML = archivadorPrueba.crearJuegoDesdeXMLConVista(simulador);
+		
+		assertTrue (juegoDelXML instanceof Escenario);
+		
+	}
 }
