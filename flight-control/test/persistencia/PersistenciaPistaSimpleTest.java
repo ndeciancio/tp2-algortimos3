@@ -26,8 +26,8 @@ public class PersistenciaPistaSimpleTest {
         PistaSimple pistaAPersistir = new PistaSimple (posicionAPersistir, radioApersistir,direccionApersistir);
         
         
-		Element posicioAPersistir = pistaAPersistir.serializarXML();
-		Document document = new Document(posicioAPersistir);
+		Element elementoApersistir = pistaAPersistir.serializarXML();
+		Document document = new Document(elementoApersistir);
 	
 		XMLOutputter outputter = new XMLOutputter();
 		outputter.setFormat(Format.getPrettyFormat());

@@ -7,11 +7,12 @@ import org.jdom.Element;
 import modelo.aviones.AvionHelicoptero;
 import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionPesado;
+import modelo.general.ObjetoSerializableXML;
 import modelo.general.Posicion;
 
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 
-public abstract class Pista implements ObjetoPosicionable {
+public abstract class Pista implements ObjetoPosicionable,ObjetoSerializableXML {
 
 	private Posicion posicion;
 	private Integer radio;

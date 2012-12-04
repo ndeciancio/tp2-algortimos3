@@ -29,8 +29,8 @@ public class PersistenciaTrayectoriaTest {
         
 		
         
-		Element posicioAPersistir = trayectoriaPrueba.serializarXML();
-		Document document = new Document(posicioAPersistir);
+		Element elementoApersistir = trayectoriaPrueba.serializarXML();
+		Document document = new Document(elementoApersistir);
 		
         XMLOutputter outputter = new XMLOutputter();
         outputter.setFormat(Format.getPrettyFormat());

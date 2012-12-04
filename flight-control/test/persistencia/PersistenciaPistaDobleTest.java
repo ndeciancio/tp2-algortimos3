@@ -29,8 +29,8 @@ public class PersistenciaPistaDobleTest {
         PistaDobleEntrada pistaAPersistir = new PistaDobleEntrada (posicion1APersistir, posicion2APersistir, radio1Apersistir, radio2Apersistir,direccionApersistir);
         
         
-		Element posicioAPersistir = pistaAPersistir.serializarXML();
-		Document document = new Document(posicioAPersistir);
+		Element elementoApersistir = pistaAPersistir.serializarXML();
+		Document document = new Document(elementoApersistir);
 	
 		XMLOutputter outputter = new XMLOutputter();
 		outputter.setFormat(Format.getPrettyFormat());

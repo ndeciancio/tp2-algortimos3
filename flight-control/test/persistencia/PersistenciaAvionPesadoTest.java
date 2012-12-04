@@ -34,8 +34,8 @@ public class PersistenciaAvionPesadoTest {
         AvionPesado avionAPersistir = AvionPesado.crearAvionPesadoSimple(posicionAPersistir, radioAPersistir, velocidadAPersistir, direccionAPersistir, null);
         avionAPersistir.agregarPosicionATrayectoria(posicionTrayectoriaAPersistir);
         
-		Element posicioAPersistir = avionAPersistir.serializarXML();
-		Document document = new Document(posicioAPersistir);
+		Element elementoApersistir = avionAPersistir.serializarXML();
+		Document document = new Document(elementoApersistir);
 	
 		XMLOutputter outputter = new XMLOutputter();
 		outputter.setFormat(Format.getPrettyFormat());
