@@ -55,11 +55,13 @@ public class AvionLiviano extends Avion {
 		Integer radioXML = Integer.parseInt(elementoXML.getAttributeValue("radio"));
 		Posicion posicionXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
 		Trayectoria trayectoriaXML = Trayectoria.cargarDesdeXML(elementoXML.getChild("Trayectoria"));
-		Movimiento movitmientoXML = Movimiento.cargarDesdeXML(elementoXML.getChild("Movimiento"));
+		Movimiento movimientoXML = Movimiento.cargarDesdeXML(elementoXML.getChild("Movimiento"));
+	
 		AvionLiviano avionXML = new AvionLiviano(posicionXML, radioXML, escenario);
 		
 		avionXML.setTrayectoria(trayectoriaXML);
-		avionXML.setMovimiento(movitmientoXML);
+		avionXML.setMovimiento(movimientoXML);
+		
 		return avionXML;
 	}
 	
