@@ -25,8 +25,8 @@ public class PersistenciaPistaDobleTest {
         Posicion posicion1APersistir = new Posicion (2,2);
 		Integer radio2Apersistir = 2;
         Posicion posicion2APersistir = new Posicion (1,1);
-        
-        PistaDobleEntrada pistaAPersistir = new PistaDobleEntrada (posicion1APersistir, posicion2APersistir, radio1Apersistir, radio2Apersistir);
+        Double direccionApersistir = 1d;
+        PistaDobleEntrada pistaAPersistir = new PistaDobleEntrada (posicion1APersistir, posicion2APersistir, radio1Apersistir, radio2Apersistir,direccionApersistir);
         
         
 		Element posicioAPersistir = pistaAPersistir.serializarXML();

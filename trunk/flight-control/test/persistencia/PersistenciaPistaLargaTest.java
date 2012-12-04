@@ -24,8 +24,9 @@ public class PersistenciaPistaLargaTest {
 		
 		Integer radioApersistir = 2;
         Posicion posicionAPersistir = new Posicion (2,2);
+        Double direccionApersistir = 0d;
         
-        PistaLarga pistaAPersistir = new PistaLarga (posicionAPersistir, radioApersistir);
+        PistaLarga pistaAPersistir = new PistaLarga (posicionAPersistir, radioApersistir, direccionApersistir);
         
         
 		Element posicioAPersistir = pistaAPersistir.serializarXML();

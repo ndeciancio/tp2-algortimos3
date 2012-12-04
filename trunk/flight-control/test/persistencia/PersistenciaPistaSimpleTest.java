@@ -22,8 +22,8 @@ public class PersistenciaPistaSimpleTest {
 		
 		Integer radioApersistir = 2;
         Posicion posicionAPersistir = new Posicion (2,2);
-        
-        PistaSimple pistaAPersistir = new PistaSimple (posicionAPersistir, radioApersistir);
+        Double direccionApersistir = 0d;
+        PistaSimple pistaAPersistir = new PistaSimple (posicionAPersistir, radioApersistir,direccionApersistir);
         
         
 		Element posicioAPersistir = pistaAPersistir.serializarXML();

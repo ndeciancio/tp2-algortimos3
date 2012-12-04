@@ -11,6 +11,7 @@ import modelo.general.Posicion;
 import modelo.general.Trayectoria;
 import modelo.pistas.Pista;
 import modelo.pistas.PistaHelipuerto;
+import modelo.pistas.PistaSimple;
 
 import org.junit.Test;
 
@@ -23,7 +24,8 @@ public class AvionHelicopteroTest {
 		
 		Posicion posPista = new Posicion(10,3);
 		Integer radio = 1;
-		Pista pistaHelipuerto = new PistaHelipuerto(posPista,radio);
+		Double direccion = 0d;
+		Pista pistaHelipuerto = new PistaHelipuerto(posPista,radio,direccion);
 		Posicion posInicialAvion = new Posicion(3,3);
 		Avion avion = AvionHelicoptero.crearAvionHelicopteroSimple(posInicialAvion,radio,2,0d, null);
 		

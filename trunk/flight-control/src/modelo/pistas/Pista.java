@@ -51,14 +51,19 @@ public abstract class Pista implements ObjetoPosicionable {
 		return this.getPosicion().getY();
 	}
 	
+
+	@SuppressWarnings("unchecked")
 	protected Element cargarElemento(Element elementoXMLConDatosPista) {
+		Attribute radio1 = new Attribute ("radio1", this.radio.toString());
+		Attribute direccion = new Attribute ("direccion", Double.valueOf(this.direccion).toString());
 		
+		elementoXMLConDatosPista.getAttributes().add(radio1);
+		elementoXMLConDatosPista.getAttributes().add(direccion);
 		
 		elementoXMLConDatosPista.setContent(this.posicion.serializarXML());
-		Attribute radio1 = new Attribute ("radio1", this.radio.toString());
-		
-		elementoXMLConDatosPista.setAttribute(radio1);
+
 		return elementoXMLConDatosPista;
+		
 	}
 
 	public abstract Element serializarXML();
