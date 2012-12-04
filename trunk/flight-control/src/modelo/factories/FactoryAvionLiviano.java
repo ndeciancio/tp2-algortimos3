@@ -2,16 +2,22 @@ package modelo.factories;
 
 import java.util.Random;
 
+import org.jdom.Element;
+
 import modelo.aviones.Avion;
 import modelo.aviones.AvionLiviano;
 import modelo.general.Mapa;
+
 import modelo.general.Posicion;
 import modelo.juego.Escenario;
 
-public class FactoryAvionLiviano implements FactoryAvion {
+public class FactoryAvionLiviano extends FactoryAvion {
 
 	private static Random r = new Random();
-
+	
+	public FactoryAvionLiviano(){
+		super();
+	}
 	@Override
 	public Avion fabricarAvion(Mapa mapa, Escenario escenario) {
 		Integer velocidad = 5;
@@ -30,6 +36,11 @@ public class FactoryAvionLiviano implements FactoryAvion {
 					posicionInicial, radio, velocidad, direccion, escenario);
 		}
 		return avionLigeroSimple;
+	}
+
+	public Element serializarXML() {
+		
+		return new Element ("FactoryAvionLiviano");
 	}
 
 }

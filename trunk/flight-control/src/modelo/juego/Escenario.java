@@ -6,17 +6,21 @@ import java.util.Random;
 
 import javax.swing.JButton;
 
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 import modelo.aviones.Avion;
 import modelo.exceptions.FalloEnFabricacionAvionException;
 import modelo.factories.FactoryAvion;
 import modelo.general.Mapa;
+import modelo.general.ObjetoSerializableXML;
 import modelo.general.Posicion;
 import modelo.pistas.Pista;
 import vista.FlightControl;
 import vista.ViewManager;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
-public class Escenario implements ObjetoVivo {
+public class Escenario implements ObjetoVivo, ObjetoSerializableXML {
 
 	private Mapa mapaDeJuego = Mapa.getInstance();
 	private Integer cantidadMaximaAvionesPorNivel;
@@ -107,5 +111,55 @@ public class Escenario implements ObjetoVivo {
 		cantAvionesAterrizados =0;
 		flightControl.levelUp();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Element serializarXML() {
+		Element juegoSerializado = new Element ("Juego");
+		Attribute cantidadMaximaAvionesPorNivel = new Attribute (
+									"cantidadMaximaAvionesPorNivel",
+									this.cantidadMaximaAvionesPorNivel.toString());
+		Attribute intervaloDeCreacionAviones = new Attribute (
+									"intervaloDeCreacionAviones",
+									this.intervaloDeCreacionAviones.toString());	
+		Attribute turnosParaCreacionSiguienteAvion = new Attribute (
+									"turnosParaCreacionSiguienteAvion",
+									this.turnosParaCreacionSiguienteAvion.toString());
+		Attribute cantAvionesAterrizados = new Attribute (
+									"cantAvionesAterrizados",
+									this.cantAvionesAterrizados.toString());
+		Element fabricasDeAviones = new Element ("fabricasDeAviones");
+		Iterator<FactoryAvion> iteradorFabrica = this.fabricasDeAviones.iterator();
+		while (iteradorFabrica.hasNext()){
+			fabricasDeAviones.getChildren().add(iteradorFabrica.next().serializarXML());
+		}
+		
+		Element mapa = this.mapaDeJuego.serializarXML();
+		
+		juegoSerializado.setAttribute(cantAvionesAterrizados);
+		juegoSerializado.setAttribute(turnosParaCreacionSiguienteAvion);
+		juegoSerializado.setAttribute(intervaloDeCreacionAviones);
+		juegoSerializado.setAttribute(cantidadMaximaAvionesPorNivel);
+		juegoSerializado.getChildren().add(mapa);
+		juegoSerializado.getChildren().add(fabricasDeAviones);
+		
+		return juegoSerializado;
+	}
+
+	public void cargarAtributosDesdeXML(Element elementoXML) {
+		this.cantAvionesAterrizados = Integer.parseInt(elementoXML.getAttributeValue("cantAvionesAterrizados"));
+		this.turnosParaCreacionSiguienteAvion = Integer.parseInt(elementoXML.getAttributeValue("turnosParaCreacionSiguienteAvion"));
+		this.intervaloDeCreacionAviones = Integer.parseInt(elementoXML.getAttributeValue("intervaloDeCreacionAviones"));
+		
+		Element aviones = elementoXML.getChild("Aviones");
+		Iterator<Element> iteradorAviones = aviones.getChildren().iterator(); 
+		while (iteradorAviones.hasNext()){
+			Avion avionXML = Avion.cargarDesdeXML(iteradorAviones.next(), this);
+			mapaDeJuego.addAvion(avionXML);
+			flightControl.addAvion(avionXML);
+		}
+		
+	}
+
 	
 }

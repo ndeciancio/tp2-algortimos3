@@ -15,9 +15,13 @@ public class EscenarioTest {
 
 	@Test (expected = FalloEnFabricacionAvionException.class)
 	public void testVivirDeberiaLanzarUnaExcepcionSiNoHayFabricasEnElJuego() {
-		List <Pista> pistasPrueba= new ArrayList <Pista> ();
+		
 		List <FactoryAvion> fabricasPrueba= new ArrayList <FactoryAvion> ();
+
+
 		Integer cantidadDeAvionesPorNivel = 10;
+		
+		List <Pista> pistasPrueba= new ArrayList <Pista> ();
 		Posicion posicionPrueba = new Posicion (3,3);
 		Double direccionPrueba = 0d;
 		PistaSimple pistaSimplePrueba = new PistaSimple (posicionPrueba, 1, direccionPrueba);
