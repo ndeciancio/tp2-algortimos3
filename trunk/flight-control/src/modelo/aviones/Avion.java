@@ -235,6 +235,7 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
 
 	
 	public static Avion cargarDesdeXML(Element elementoXML, Escenario escenario) {
+		
 		String movimiento = elementoXML.getName();
 		if (movimiento.equals("MovimientoSimple")){
 			return AvionLiviano.cargarDesdeXML(elementoXML, escenario);
