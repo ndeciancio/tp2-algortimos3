@@ -25,8 +25,8 @@ public class PersistenciaMovimientoInteligenteTest {
         MovimientoInteligente moviemientoAPersistir = new MovimientoInteligente (velocidadAPersistir, direccionAPersistir);
         
         
-		Element posicioAPersistir = moviemientoAPersistir.serializarXML();
-		Document document = new Document(posicioAPersistir);
+		Element elementoApersistir = moviemientoAPersistir.serializarXML();
+		Document document = new Document(elementoApersistir);
 	
 		XMLOutputter outputter = new XMLOutputter();
 		outputter.setFormat(Format.getPrettyFormat());

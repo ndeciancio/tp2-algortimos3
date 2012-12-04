@@ -1,8 +1,11 @@
 package modelo.general;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
+
+import org.jdom.Element;
 
 import modelo.aviones.Avion;
 import modelo.pistas.Pista;
@@ -113,6 +116,33 @@ public class Mapa {
 				a.agregarPosicionATrayectoria(pos);
 			}
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public Element serializarXML() {
+		Element mapaSerializado = new Element ("Mapa");
+		Element aviones = new Element ("Aviones");
+		Element pistas = new Element ("Pistas");
+		
+		Iterator<Avion> iteradorAviones = this.aviones.iterator();
+		Iterator <Pista> iteradorPista = this.pistas.iterator();
+		
+		while (iteradorAviones.hasNext()){
+			Avion avionLista = iteradorAviones.next();
+			Element avionSerializado = avionLista.serializarXML();
+			aviones.getChildren().add(avionSerializado);
+		}
+		
+		while (iteradorPista.hasNext()){
+			Pista pistaLista = iteradorPista.next();
+			Element pistaSerializada = pistaLista.serializarXML();
+			pistas.getChildren().add(pistaSerializada);
+		}
+		
+		mapaSerializado.addContent(aviones);
+		mapaSerializado.addContent(pistas);
+		
+		return mapaSerializado;
 	}
 
 }

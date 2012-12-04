@@ -6,6 +6,7 @@ import org.jdom.Element;
 
 import modelo.exceptions.ChoqueException;
 import modelo.general.Mapa;
+import modelo.general.ObjetoSerializableXML;
 import modelo.general.Posicion;
 import modelo.general.Trayectoria;
 import modelo.juego.Escenario;
@@ -15,7 +16,7 @@ import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
 
-public abstract class Avion implements ObjetoVivo, ObjetoPosicionable {
+public abstract class Avion implements ObjetoVivo, ObjetoPosicionable,ObjetoSerializableXML {
 	
 	protected Posicion posicion;
 	protected Boolean aterrizado = false;
