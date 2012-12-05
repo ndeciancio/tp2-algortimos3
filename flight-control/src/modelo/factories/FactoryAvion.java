@@ -1,8 +1,10 @@
 package modelo.factories;
 
+
 import org.jdom.Element;
 
 import modelo.aviones.Avion;
+import modelo.exceptions.FalloEnLaCreacionMedianteXML;
 import modelo.general.Mapa;
 import modelo.juego.Escenario;
 
@@ -26,7 +28,9 @@ public abstract class FactoryAvion {
 			return new FactoryAvionPesado();
 		}
 		
-		return null;
+		FalloEnLaCreacionMedianteXML errorEnCreacion = new FalloEnLaCreacionMedianteXML(
+				"Hubo Un Error Al Crear Una FactoryAvion Desde Un Nodo XML");
+		throw errorEnCreacion;
 		
 	}
 }

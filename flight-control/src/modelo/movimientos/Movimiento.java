@@ -1,9 +1,11 @@
 package modelo.movimientos;
 
+
 import org.jdom.Attribute;
 import org.jdom.Element;
 
 import modelo.aviones.Avion;
+import modelo.exceptions.FalloEnLaCreacionMedianteXML;
 import modelo.general.Posicion;
 import modelo.general.Trayectoria;
 
@@ -74,6 +76,8 @@ public abstract class Movimiento {
 			return MovimientoInteligente.cargarDesdeXML(elementoMovimiento);
 		}
 		
-		return null;
+		FalloEnLaCreacionMedianteXML errorEnCreacion = new FalloEnLaCreacionMedianteXML(
+				"Hubo Un Error Al Crear Un Movimiento Desde Un Nodo XML");
+		throw errorEnCreacion;
 	} 
 }
