@@ -1,5 +1,6 @@
 package modelo.pistas;
 
+
 import org.jdom.Attribute;
 import org.jdom.Element;
 
@@ -7,6 +8,7 @@ import org.jdom.Element;
 import modelo.aviones.AvionHelicoptero;
 import modelo.aviones.AvionLiviano;
 import modelo.aviones.AvionPesado;
+import modelo.exceptions.FalloEnLaCreacionMedianteXML;
 import modelo.general.ObjetoSerializableXML;
 import modelo.general.Posicion;
 
@@ -84,6 +86,8 @@ public abstract class Pista implements ObjetoPosicionable,ObjetoSerializableXML 
 			return PistaHelipuerto.cargarDesdeXML(elementoXML);
 		}
 		
-		return null;
+		FalloEnLaCreacionMedianteXML errorEnCreacion = new FalloEnLaCreacionMedianteXML(
+				"Hubo Un Error Al Crear Una Pista Desde Un Nodo XML");
+		throw errorEnCreacion;
 	} 
 }
