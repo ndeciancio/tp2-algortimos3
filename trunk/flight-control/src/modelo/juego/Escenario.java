@@ -4,11 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.JButton;
-
-import org.jdom.Attribute;
-import org.jdom.Element;
-
 import modelo.aviones.Avion;
 import modelo.exceptions.FalloEnFabricacionAvionException;
 import modelo.factories.FactoryAvion;
@@ -16,8 +11,11 @@ import modelo.general.Mapa;
 import modelo.general.ObjetoSerializableXML;
 import modelo.general.Posicion;
 import modelo.pistas.Pista;
+
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 import vista.FlightControl;
-import vista.ViewManager;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
 public class Escenario implements ObjetoVivo, ObjetoSerializableXML {

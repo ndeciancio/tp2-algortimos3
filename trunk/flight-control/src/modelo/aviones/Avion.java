@@ -1,9 +1,6 @@
 package modelo.aviones;
 import java.util.List;
 
-import org.jdom.Attribute;
-import org.jdom.Element;
-
 import modelo.exceptions.ChoqueException;
 import modelo.general.Mapa;
 import modelo.general.ObjetoSerializableXML;
@@ -11,10 +8,11 @@ import modelo.general.Posicion;
 import modelo.general.Trayectoria;
 import modelo.juego.Escenario;
 import modelo.movimientos.Movimiento;
-import modelo.movimientos.MovimientoHelicoptero;
-import modelo.movimientos.MovimientoInteligente;
-import modelo.movimientos.MovimientoSimple;
 import modelo.pistas.Pista;
+
+import org.jdom.Attribute;
+import org.jdom.Element;
+
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
