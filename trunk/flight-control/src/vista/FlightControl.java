@@ -171,6 +171,7 @@ public class FlightControl {
 	}
 
 	public void setUpGameDesdeXML(Element elementoRaiz) {
+
 		this.level = Integer.parseInt(elementoRaiz.getAttributeValue("level"));
 		this.puntos = Integer.parseInt(elementoRaiz.getAttributeValue("puntos"));
 		
@@ -196,9 +197,10 @@ public class FlightControl {
 			Element pistaElemento = iteradorPistas.next();
 			Pista pistaXML =Pista.cargarDesdeXML(pistaElemento);
 			pistas.add(pistaXML);
-			vistasPistas.add(new VistaPista(pistaXML));
+			VistaPista vp = new VistaPista(pistaXML); 
+			vistasPistas.add(vp);
 		}
-		
+
 		while (iteradorFactories.hasNext()){
 			Element fabricaElemento = iteradorFactories.next();
 			factories.add(FactoryAvion.crearDesdeXML(fabricaElemento));
@@ -207,18 +209,17 @@ public class FlightControl {
 		this.game = new Escenario (10, pistas, factories, this);
 		this.gameLoop.agregar(game);
 		
-		Iterator<VistaPista> iteradorVistas = vistasPistas.iterator();
-		while (iteradorVistas.hasNext()){
 
+		for (ViewManager manager : viewManagers) {
+			manager.addVistaPista(vistasPistas.get(0));
+			manager.addVistaPista(vistasPistas.get(1));
+			manager.addVistaPista(vistasPistas.get(2));
+			manager.addVistaPista(vistasPistas.get(3));
+			manager.showPuntaje(puntos);
+			manager.showLevelUp(level);
+			}
+				
 		}
-		
-		
-
-
-		
-		
-		
-	}
 
 
 
