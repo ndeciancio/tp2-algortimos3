@@ -2,13 +2,18 @@ package vista;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import org.jdom.Attribute;
+import org.jdom.Element;
 
 import modelo.aviones.Avion;
 import modelo.factories.FactoryAvion;
 import modelo.factories.FactoryAvionHelicoptero;
 import modelo.factories.FactoryAvionLiviano;
 import modelo.factories.FactoryAvionPesado;
+import modelo.general.ObjetoSerializableXML;
 import modelo.general.Posicion;
 import modelo.juego.Escenario;
 import modelo.pistas.Pista;
@@ -146,6 +151,75 @@ public class FlightControl {
 			manager.showLevelUp(level);
 		}
 	}
+
+	public Escenario getEscenario() {
+		
+		return this.game;
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	public Element serializarXML() {
+		Element flightControl = new Element ("FlightControl");
+		Attribute puntos = new Attribute ("puntos",this.puntos.toString());
+		Attribute level = new Attribute ("level",this.level.toString());
+		flightControl.setAttribute(puntos);
+		flightControl.setAttribute(level);	
+		flightControl.getChildren().add(this.game.serializarXML());
+		return flightControl;
+	}
+
+	public void setUpGameDesdeXML(Element elementoRaiz) {
+		this.level = Integer.parseInt(elementoRaiz.getAttributeValue("level"));
+		this.puntos = Integer.parseInt(elementoRaiz.getAttributeValue("puntos"));
+		
+		if(this.gameLoop != null){
+			gameLoop.detenerEjecucion();
+			gameLoop.removeAll();
+		}
+		this.gameLoop = new GameLoop(100);
+		clean();
+		
+		Element juegoXML = elementoRaiz.getChild("Juego");
+		Element pistasXML = juegoXML.getChild("Mapa").getChild("Pistas");
+		Element factoriesXML = juegoXML.getChild("fabricasDeAviones");
+		
+		Iterator<Element> iteradorPistas = pistasXML.getChildren().iterator();
+		Iterator<Element> iteradorFactories = factoriesXML.getChildren().iterator();
+		
+		List<Pista> pistas = new ArrayList<Pista>();
+		List<VistaPista> vistasPistas = new ArrayList<VistaPista>();
+		List<FactoryAvion> factories = new ArrayList<FactoryAvion>();
+		
+		while (iteradorPistas.hasNext()){
+			Element pistaElemento = iteradorPistas.next();
+			Pista pistaXML =Pista.cargarDesdeXML(pistaElemento);
+			pistas.add(pistaXML);
+			vistasPistas.add(new VistaPista(pistaXML));
+		}
+		
+		while (iteradorFactories.hasNext()){
+			Element fabricaElemento = iteradorFactories.next();
+			factories.add(FactoryAvion.crearDesdeXML(fabricaElemento));
+		}
+		
+		this.game = new Escenario (10, pistas, factories, this);
+		this.gameLoop.agregar(game);
+		
+		Iterator<VistaPista> iteradorVistas = vistasPistas.iterator();
+		while (iteradorVistas.hasNext()){
+
+		}
+		
+		
+
+
+		
+		
+		
+	}
+
 
 
 }

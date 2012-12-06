@@ -19,6 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import control.Archivador;
+
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 import fiuba.algo3.titiritero.modelo.ViewLoop;
@@ -119,12 +121,39 @@ public class VistaVisual implements ViewManager {
 		});
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				//TODO CARGAR PARTIDA
+				//TODO tarminarCargarSimulador
+				if (btnLoad.getText().equals("Cargar Partida")){
+					
+					Archivador archivadorJuego = new Archivador ("XML\\Juego.xml");
+					archivadorJuego.cargarSimuladorDesdeXML(flightControl);
+					flightControl.getGameLoop().iniciarEjecucion();
+					for (ViewManager manager : flightControl.getViewManagers()) {
+						manager.iniciarEjecucion();
+					}
+					
+					if (btnIniciar.getText().equals("Iniciar Juego")) {
+						btnIniciar.setText("Reiniciar Juego");
+
+					}
+					puntuacion.setVisible(true);
+					nivel.setVisible(true);
+					btnDetener.setText("Pausar");
+					btnDetener.setVisible(true);
+					btnSave.setVisible(true);
+					}
 			}
 		});
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				//TODO GUARDAR PARTIDA
+				if (btnSave.getText().equals("Guardar Partida")){
+					Archivador archivadorJuego = new Archivador ("XML\\FlightControl.xml");
+					try {
+						archivadorJuego.archivarJuego(flightControl);
+					} 
+					catch (IOException e1) {
+									e1.printStackTrace();
+									}
+					}
 			}
 		});
 		

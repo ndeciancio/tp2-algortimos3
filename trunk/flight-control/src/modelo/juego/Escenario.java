@@ -155,7 +155,7 @@ public class Escenario implements ObjetoVivo, ObjetoSerializableXML {
 		while (iteradorAviones.hasNext()){
 			Avion avionXML = Avion.cargarDesdeXML(iteradorAviones.next(), this);
 			mapaDeJuego.addAvion(avionXML);
-			flightControl.addAvion(avionXML);
+
 		}
 		
 	}
