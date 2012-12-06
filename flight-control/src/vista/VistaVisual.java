@@ -124,17 +124,16 @@ public class VistaVisual implements ViewManager {
 				//TODO tarminarCargarSimulador
 				if (btnLoad.getText().equals("Cargar Partida")){
 					
-					Archivador archivadorJuego = new Archivador ("XML\\Juego.xml");
+					Archivador archivadorJuego = new Archivador ("XML\\FlightControl.xml");
 					archivadorJuego.cargarSimuladorDesdeXML(flightControl);
 					flightControl.getGameLoop().iniciarEjecucion();
 					for (ViewManager manager : flightControl.getViewManagers()) {
 						manager.iniciarEjecucion();
 					}
 					
-					if (btnIniciar.getText().equals("Iniciar Juego")) {
-						btnIniciar.setText("Reiniciar Juego");
+					btnIniciar.setText("Reiniciar Juego");
 
-					}
+					
 					puntuacion.setVisible(true);
 					nivel.setVisible(true);
 					btnDetener.setText("Pausar");
