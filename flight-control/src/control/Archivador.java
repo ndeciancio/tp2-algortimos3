@@ -26,9 +26,9 @@ public class Archivador {
 		this.path = pathArchivador;
 	}
 
-	public void archivarJuego(Escenario juegoAPersistir) throws IOException {
+	public void archivarJuego(FlightControl simuladorAPersistir) throws IOException {
 		
-		Element elementoAPersitir = juegoAPersistir.serializarXML();
+		Element elementoAPersitir = simuladorAPersistir.serializarXML();
 		Document document = new Document(elementoAPersitir);
 		
 		XMLOutputter outputter = new XMLOutputter();
@@ -39,12 +39,8 @@ public class Archivador {
 		writer.close();
 	}
 
-	public Escenario crearJuegoDesdeXMLConVista(FlightControl simulador) {
+	public void cargarSimuladorDesdeXML(FlightControl flightControl) {
 		Element elementoRaiz; 
-		Escenario escenarioXML;
-		List<Pista> pistas = new ArrayList <Pista> ();
-		List<FactoryAvion> factorys = new ArrayList <FactoryAvion> ();
-		Integer cantidadAvionesMaximaPorNivel;
 		try {
 
 	        SAXBuilder builder = new SAXBuilder();
@@ -55,26 +51,8 @@ public class Archivador {
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}
-		
-		Element factorysXML = elementoRaiz.getChild("fabricasDeAviones");
-		Iterator<Element> iteradorFactorys = factorysXML.getChildren().iterator();
-		while (iteradorFactorys.hasNext()){
-			FactoryAvion fabrica = FactoryAvion.crearDesdeXML(iteradorFactorys.next());
-			factorys.add(fabrica);
-		}
-			
-		Element pistasXML = elementoRaiz.getChild("Mapa").getChild("Pistas");
-		Iterator <Element> iteradorPistas = pistasXML.getChildren().iterator();
-		while (iteradorPistas.hasNext()){
-			Pista pista = Pista.cargarDesdeXML(iteradorPistas.next());
-			pistas.add(pista);
-		}
-		
-		cantidadAvionesMaximaPorNivel = Integer.parseInt(elementoRaiz.getAttributeValue("cantidadMaximaAvionesPorNivel"));
-		escenarioXML = new Escenario (cantidadAvionesMaximaPorNivel, pistas, factorys, simulador);
-		escenarioXML.cargarAtributosDesdeXML(elementoRaiz);
-		return escenarioXML;
-
+		flightControl.setUpGameDesdeXML(elementoRaiz);
 	}
+
 
 }
