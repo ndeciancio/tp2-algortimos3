@@ -42,7 +42,7 @@ public class AvionPesado extends Avion {
 	}
 
 	public Element serializarXML() {
-		Element avionLivianoSerializado = new Element ("AvionHelicoptero");
+		Element avionLivianoSerializado = new Element ("AvionPesado");
 		this.cargarElemento(avionLivianoSerializado);
 		return avionLivianoSerializado;
 	}
