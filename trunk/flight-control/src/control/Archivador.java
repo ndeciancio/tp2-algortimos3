@@ -31,7 +31,7 @@ public class Archivador {
 		writer.close();
 	}
 
-	public void cargarSimuladorDesdeXML(FlightControl flightControl) {
+	public Element getElementoRaiz() {
 		Element elementoRaiz; 
 		try {
 
@@ -43,7 +43,8 @@ public class Archivador {
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}
-		flightControl.setUpGameDesdeXML(elementoRaiz);
+		return elementoRaiz;
+		
 	}
 
 

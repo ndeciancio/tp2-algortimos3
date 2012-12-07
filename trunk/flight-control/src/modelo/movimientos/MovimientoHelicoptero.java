@@ -36,7 +36,7 @@ public class MovimientoHelicoptero extends Movimiento {
 
 	public static MovimientoHelicoptero cargarDesdeXML(Element elementoXML) {
 		Integer velocidad = Integer.parseInt(elementoXML.getAttributeValue("velocidad"));
-		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("velocidad"));
+		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("direccion"));
 		return new MovimientoHelicoptero (velocidad, direccion);
 	}
 

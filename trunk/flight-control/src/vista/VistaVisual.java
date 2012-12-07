@@ -19,6 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.jdom.Element;
+
 import control.Archivador;
 
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
@@ -125,13 +127,14 @@ public class VistaVisual implements ViewManager {
 				if (btnLoad.getText().equals("Cargar Partida")){
 					
 					Archivador archivadorJuego = new Archivador ("XML\\FlightControl.xml");
-					archivadorJuego.cargarSimuladorDesdeXML(flightControl);
-					//flightControl.setUpGame();
+					Element elementoRaiz = archivadorJuego.getElementoRaiz();
+					flightControl.setUpGameDesdeXML(elementoRaiz);
+					flightControl.cargerEscenarioConDatosXML(elementoRaiz);
 					flightControl.getGameLoop().iniciarEjecucion();
 					for (ViewManager manager : flightControl.getViewManagers()) {
 						manager.iniciarEjecucion();
 					}
-					
+					flightControl.cargarAvionesConDatosXML (elementoRaiz);
 					btnIniciar.setText("Reiniciar Juego");
 
 					

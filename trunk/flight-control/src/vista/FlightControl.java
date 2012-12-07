@@ -185,7 +185,6 @@ public class FlightControl {
 		Element juegoXML = elementoRaiz.getChild("Juego");
 		Element pistasXML = juegoXML.getChild("Mapa").getChild("Pistas");
 		Element factoriesXML = juegoXML.getChild("fabricasDeAviones");
-		
 		Iterator<Element> iteradorPistas = pistasXML.getChildren().iterator();
 		Iterator<Element> iteradorFactories = factoriesXML.getChildren().iterator();
 		
@@ -207,7 +206,7 @@ public class FlightControl {
 		}
 		
 		this.game = new Escenario (10, pistas, factories, this);
-
+		game.cargarAtributosDesdeXML(juegoXML);
 		this.gameLoop.agregar(game);
 
 		
@@ -216,12 +215,23 @@ public class FlightControl {
 			while (iteradorVistasPistas.hasNext()){
 				manager.addVistaPista(iteradorVistasPistas.next());	
 			}
-						
 			manager.showPuntaje(puntos);
 			manager.showLevelUp(level);
 			}
 
 		}
+
+	public void cargerEscenarioConDatosXML(Element elementoXML) {
+		this.game.cargarAtributosDesdeXML(elementoXML.getChild("Juego"));
+		
+	}
+
+	public void cargarAvionesConDatosXML(Element elementoRaiz) {
+		this.game.cargarAvionesConXML (elementoRaiz.getChild("Juego"));
+		
+	}
+
+
 
 
 
