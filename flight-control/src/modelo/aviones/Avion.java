@@ -2,6 +2,7 @@ package modelo.aviones;
 import java.util.List;
 
 import modelo.exceptions.ChoqueException;
+import modelo.exceptions.FalloEnLaCreacionMedianteXML;
 import modelo.general.Mapa;
 import modelo.general.ObjetoSerializableXML;
 import modelo.general.Posicion;
@@ -238,23 +239,22 @@ public abstract class Avion implements ObjetoVivo, ObjetoPosicionable,ObjetoSeri
 	
 	public static Avion cargarDesdeXML(Element elementoXML, Escenario escenario) {
 		
-		Element elementoAvion = elementoXML.getChild("AvionLiviano");
+		String elementoAvion = elementoXML.getName();
 		
-
-		if (elementoAvion != null){
-			return AvionLiviano.cargarDesdeXML(elementoAvion, escenario);
+		if (elementoAvion.equals("AvionLiviano")){
+			return AvionLiviano.cargarDesdeXML(elementoXML, escenario);
 		}
 		
-		elementoAvion = elementoXML.getChild("AvionPesado");
-		if (elementoAvion != null){
-			return AvionPesado.cargarDesdeXML(elementoAvion, escenario);
+		if (elementoAvion.equals("AvionPesado")){
+			return AvionPesado.cargarDesdeXML(elementoXML, escenario);
 		}
 		
-		elementoAvion = elementoXML.getChild("Helicoptero");
-		if (elementoAvion != null){
-			return AvionHelicoptero.cargarDesdeXML(elementoAvion, escenario);
+		if (elementoAvion.equals("AvionHelicoptero")){
+			return AvionHelicoptero.cargarDesdeXML(elementoXML, escenario);
 		}
 	
-		return null;
+		FalloEnLaCreacionMedianteXML errorEnCreacion = new FalloEnLaCreacionMedianteXML(
+				"Hubo Un Error Al Crear Un Avion Desde Un Nodo XML");
+		throw errorEnCreacion;
 	} 
 }

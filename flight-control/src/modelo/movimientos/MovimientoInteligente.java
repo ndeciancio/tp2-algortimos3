@@ -50,7 +50,7 @@ public class MovimientoInteligente extends Movimiento {
 
 	public static MovimientoInteligente cargarDesdeXML(Element elementoXML) {
 		Integer velocidad = Integer.parseInt(elementoXML.getAttributeValue("velocidad"));
-		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("velocidad"));
+		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("direccion"));
 		return new MovimientoInteligente (velocidad, direccion);
 	}
 

@@ -48,7 +48,7 @@ public class MovimientoSimple extends Movimiento {
 	
 	public static MovimientoSimple cargarDesdeXML(Element elementoXML) {
 		Integer velocidad = Integer.parseInt(elementoXML.getAttributeValue("velocidad"));
-		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("velocidad"));
+		Double direccion = Double.parseDouble(elementoXML.getAttributeValue("direccion"));
 		
 		return new MovimientoSimple (velocidad, direccion);
 		

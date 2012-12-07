@@ -52,7 +52,7 @@ public class AvionHelicoptero extends Avion {
 		
 		avionXML.setTrayectoria(trayectoriaXML);
 		avionXML.setMovimiento(movimientoXML);
-		
+		movimientoXML.setAvion(avionXML);
 		return avionXML;
 	}
 }

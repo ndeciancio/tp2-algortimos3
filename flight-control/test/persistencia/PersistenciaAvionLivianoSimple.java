@@ -59,7 +59,8 @@ public class PersistenciaAvionLivianoSimple {
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}
-		
+			System.out.println(avionXML.getMovimiento().getClass().toString());
+			assertTrue(avionXML.getDireccion() == 0d);
 			assertTrue(avionXML instanceof AvionLiviano);
 
 	}
