@@ -58,7 +58,7 @@ public class PistaSimple extends Pista {
 		Double direccionXML = Double.parseDouble(elementoXML.getAttributeValue("direccion"));
 		Posicion posicionDelXML = Posicion.cargarDesdeXML(elementoXML.getChild("Posicion"));
 		Integer radioDelXML = Integer.parseInt(elementoXML.getAttributeValue("radio1"));
-		return new PistaSimple (posicionDelXML, radioDelXML,null);
+		return new PistaSimple (posicionDelXML, radioDelXML,direccionXML);
 		
 	}
 	

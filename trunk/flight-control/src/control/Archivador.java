@@ -2,14 +2,6 @@ package control;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import modelo.factories.FactoryAvion;
-import modelo.juego.Escenario;
-import modelo.pistas.Pista;
-
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
