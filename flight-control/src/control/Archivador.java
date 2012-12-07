@@ -2,25 +2,26 @@ package control;
 
 import java.io.FileWriter;
 import java.io.IOException;
+
+import modelo.general.ObjetoSerializableXML;
+
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import vista.FlightControl;
+
 
 public class Archivador {
 
-	private String path;
+	public Archivador() {
 
-	public Archivador(String pathArchivador) {
-		this.path = pathArchivador;
 	}
 
-	public void archivarJuego(FlightControl simuladorAPersistir) throws IOException {
+	public void archivarJuego(ObjetoSerializableXML objetoAArchivarPorSerializacion, String path) throws IOException {
 		
-		Element elementoAPersitir = simuladorAPersistir.serializarXML();
+		Element elementoAPersitir = objetoAArchivarPorSerializacion.serializarXML();
 		Document document = new Document(elementoAPersitir);
 		
 		XMLOutputter outputter = new XMLOutputter();
@@ -31,7 +32,7 @@ public class Archivador {
 		writer.close();
 	}
 
-	public Element getElementoRaiz() {
+	public Element getElementoRaiz(String path) {
 		Element elementoRaiz; 
 		try {
 

@@ -23,7 +23,7 @@ import modelo.pistas.PistaLarga;
 import modelo.pistas.PistaSimple;
 import fiuba.algo3.titiritero.modelo.GameLoop;
 
-public class FlightControl {
+public class FlightControl implements ObjetoSerializableXML {
 
 	private Escenario game;
 	private GameLoop gameLoop;
@@ -221,18 +221,9 @@ public class FlightControl {
 
 		}
 
-	public void cargerEscenarioConDatosXML(Element elementoXML) {
-		this.game.cargarAtributosDesdeXML(elementoXML.getChild("Juego"));
-		
-	}
-
 	public void cargarAvionesConDatosXML(Element elementoRaiz) {
 		this.game.cargarAvionesConXML (elementoRaiz.getChild("Juego"));
 		
 	}
-
-
-
-
 
 }

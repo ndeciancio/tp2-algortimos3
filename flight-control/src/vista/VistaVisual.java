@@ -52,7 +52,7 @@ public class VistaVisual implements ViewManager {
 			this.flightControl = flightControl;
 			initialize();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -123,13 +123,12 @@ public class VistaVisual implements ViewManager {
 		});
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				//TODO tarminarCargarSimulador
+				try{
 				if (btnLoad.getText().equals("Cargar Partida")){
-					
-					Archivador archivadorJuego = new Archivador ("XML\\FlightControl.xml");
-					Element elementoRaiz = archivadorJuego.getElementoRaiz();
+					String path = "XML\\FlightControl.xml";
+					Archivador archivadorJuego = new Archivador ();
+					Element elementoRaiz = archivadorJuego.getElementoRaiz(path);
 					flightControl.setUpGameDesdeXML(elementoRaiz);
-					flightControl.cargerEscenarioConDatosXML(elementoRaiz);
 					flightControl.getGameLoop().iniciarEjecucion();
 					for (ViewManager manager : flightControl.getViewManagers()) {
 						manager.iniciarEjecucion();
@@ -144,14 +143,19 @@ public class VistaVisual implements ViewManager {
 					btnDetener.setVisible(true);
 					btnSave.setVisible(true);
 					}
+				}catch (Exception errorAlCargar){
+					System.out.println("Archivo Hubicado en XML\\FlightControl.xml No Encontrado");
+					
+				}
 			}
 		});
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				if (btnSave.getText().equals("Guardar Partida")){
-					Archivador archivadorJuego = new Archivador ("XML\\FlightControl.xml");
+					String path = "XML\\FlightControl.xml";
+					Archivador archivadorJuego = new Archivador ();
 					try {
-						archivadorJuego.archivarJuego(flightControl);
+						archivadorJuego.archivarJuego(flightControl,path);
 					} 
 					catch (IOException e1) {
 									e1.printStackTrace();
