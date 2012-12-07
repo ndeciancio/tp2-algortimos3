@@ -126,6 +126,7 @@ public class VistaVisual implements ViewManager {
 					
 					Archivador archivadorJuego = new Archivador ("XML\\FlightControl.xml");
 					archivadorJuego.cargarSimuladorDesdeXML(flightControl);
+					//flightControl.setUpGame();
 					flightControl.getGameLoop().iniciarEjecucion();
 					for (ViewManager manager : flightControl.getViewManagers()) {
 						manager.iniciarEjecucion();

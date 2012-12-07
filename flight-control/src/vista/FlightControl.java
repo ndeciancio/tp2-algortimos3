@@ -207,18 +207,20 @@ public class FlightControl {
 		}
 		
 		this.game = new Escenario (10, pistas, factories, this);
-		this.gameLoop.agregar(game);
-		
 
+		this.gameLoop.agregar(game);
+
+		
+		Iterator<VistaPista> iteradorVistasPistas = vistasPistas.iterator();
 		for (ViewManager manager : viewManagers) {
-			manager.addVistaPista(vistasPistas.get(0));
-			manager.addVistaPista(vistasPistas.get(1));
-			manager.addVistaPista(vistasPistas.get(2));
-			manager.addVistaPista(vistasPistas.get(3));
+			while (iteradorVistasPistas.hasNext()){
+				manager.addVistaPista(iteradorVistasPistas.next());	
+			}
+						
 			manager.showPuntaje(puntos);
 			manager.showLevelUp(level);
 			}
-				
+
 		}
 
 

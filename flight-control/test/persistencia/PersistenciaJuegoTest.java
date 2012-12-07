@@ -1,6 +1,4 @@
 package persistencia;
-import static org.junit.Assert.assertTrue;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,15 +7,12 @@ import java.util.List;
 import modelo.juego.Escenario;
 import modelo.pistas.Pista;
 import modelo.pistas.PistaSimple;
-import modelo.aviones.AvionHelicoptero;
 import modelo.factories.FactoryAvion;
 import modelo.factories.FactoryAvionLiviano;
 import modelo.general.Posicion;
 
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.junit.Test;
