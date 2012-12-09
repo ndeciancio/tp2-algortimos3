@@ -28,7 +28,7 @@ public class FactoryAvionLiviano extends FactoryAvion {
 				posicionInicial, mapa.getBordeX(), mapa.getBordeY());
 		Integer x = r.nextInt(2000);
 		Avion avionLigeroSimple = null;
-		if (x > 1000) {
+		if (x > 500) {
 			avionLigeroSimple = AvionLiviano.crearAvionLivianoSimple(
 					posicionInicial, radio, velocidad, direccion, escenario);
 		} else {

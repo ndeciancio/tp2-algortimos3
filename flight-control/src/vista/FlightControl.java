@@ -28,7 +28,7 @@ public class FlightControl implements ObjetoSerializableXML {
 	private Escenario game;
 	private GameLoop gameLoop;
 	private List<ViewManager> viewManagers;
-	
+
 	private Integer puntos = 0;
 	private Integer level = 1;
 
@@ -48,7 +48,7 @@ public class FlightControl implements ObjetoSerializableXML {
 	}
 
 	public FlightControl() {
-			initialize();
+		initialize();
 	}
 
 	public void initialize() {
@@ -57,20 +57,21 @@ public class FlightControl implements ObjetoSerializableXML {
 
 	}
 
-	public void setUpGame(){
-		puntos =0;
+	public void setUpGame() {
+		puntos = 0;
 		level = 1;
-		if(this.gameLoop != null){
+		if (this.gameLoop != null) {
 			gameLoop.detenerEjecucion();
 			gameLoop.removeAll();
 		}
 		this.gameLoop = new GameLoop(100);
 		clean();
 		List<Pista> pistas = new ArrayList<Pista>();
-		Pista p = new PistaSimple(new Posicion(40, 50), 10,Math.PI/2);
-		Pista p2 = new PistaLarga(new Posicion(160, 70), 10,Math.PI/6);
-		Pista p3 = new PistaHelipuerto(new Posicion(40, 578), 10,0d);
-		Pista p4 = new PistaDobleEntrada(new Posicion(200,300), new Posicion(350,300), 10, 10, 0d);
+		Pista p = new PistaSimple(new Posicion(40, 50), 10, Math.PI / 2);
+		Pista p2 = new PistaLarga(new Posicion(260, 70), 10, Math.PI / 6);
+		Pista p3 = new PistaHelipuerto(new Posicion(350, 378), 10, 0d);
+		Pista p4 = new PistaDobleEntrada(new Posicion(500, 300), new Posicion(
+				650, 300), 10, 10, 0d);
 		pistas.add(p);
 		pistas.add(p2);
 		pistas.add(p3);
@@ -98,7 +99,7 @@ public class FlightControl implements ObjetoSerializableXML {
 			manager.showLevelUp(level);
 		}
 	}
-	
+
 	public void addAvion(Avion a) {
 		this.gameLoop.agregar(a);
 		VistaAvion va = new VistaAvion(a);
@@ -128,44 +129,44 @@ public class FlightControl implements ObjetoSerializableXML {
 	public void huboUnClick(Integer x, Integer y) {
 		this.game.huboUnClick(x, y);
 	}
-	
-	public void finalizarJuego(){
-		this.gameLoop.detenerEjecucion();
-		for(ViewManager manager:viewManagers){
+
+	public void finalizarJuego() {
+		if (this.gameLoop.estaEjecutando()) {
+			this.gameLoop.detenerEjecucion();
+		}
+		for (ViewManager manager : viewManagers) {
 			manager.detenerEjecucion();
 			manager.showPerdido();
 		}
-		
+
 	}
-	
-	public void clean(){
-		for(ViewManager manager:viewManagers){
+
+	public void clean() {
+		for (ViewManager manager : viewManagers) {
 			manager.detenerEjecucion();
 			manager.removeAll();
 		}
 	}
-	
-	public void levelUp(){
+
+	public void levelUp() {
 		level++;
-		for(ViewManager manager:viewManagers){
+		for (ViewManager manager : viewManagers) {
 			manager.showLevelUp(level);
 		}
 	}
 
 	public Escenario getEscenario() {
-		
+
 		return this.game;
 	}
 
-
-
 	@SuppressWarnings("unchecked")
 	public Element serializarXML() {
-		Element flightControl = new Element ("FlightControl");
-		Attribute puntos = new Attribute ("puntos",this.puntos.toString());
-		Attribute level = new Attribute ("level",this.level.toString());
+		Element flightControl = new Element("FlightControl");
+		Attribute puntos = new Attribute("puntos", this.puntos.toString());
+		Attribute level = new Attribute("level", this.level.toString());
 		flightControl.setAttribute(puntos);
-		flightControl.setAttribute(level);	
+		flightControl.setAttribute(level);
 		flightControl.getChildren().add(this.game.serializarXML());
 		return flightControl;
 	}
@@ -173,57 +174,58 @@ public class FlightControl implements ObjetoSerializableXML {
 	public void setUpGameDesdeXML(Element elementoRaiz) {
 
 		this.level = Integer.parseInt(elementoRaiz.getAttributeValue("level"));
-		this.puntos = Integer.parseInt(elementoRaiz.getAttributeValue("puntos"));
-		
-		if(this.gameLoop != null){
+		this.puntos = Integer
+				.parseInt(elementoRaiz.getAttributeValue("puntos"));
+
+		if (this.gameLoop != null) {
 			gameLoop.detenerEjecucion();
 			gameLoop.removeAll();
 		}
 		this.gameLoop = new GameLoop(100);
 		clean();
-		
+
 		Element juegoXML = elementoRaiz.getChild("Juego");
 		Element pistasXML = juegoXML.getChild("Mapa").getChild("Pistas");
 		Element factoriesXML = juegoXML.getChild("fabricasDeAviones");
 		Iterator<Element> iteradorPistas = pistasXML.getChildren().iterator();
-		Iterator<Element> iteradorFactories = factoriesXML.getChildren().iterator();
-		
+		Iterator<Element> iteradorFactories = factoriesXML.getChildren()
+				.iterator();
+
 		List<Pista> pistas = new ArrayList<Pista>();
 		List<VistaPista> vistasPistas = new ArrayList<VistaPista>();
 		List<FactoryAvion> factories = new ArrayList<FactoryAvion>();
-		
-		while (iteradorPistas.hasNext()){
+
+		while (iteradorPistas.hasNext()) {
 			Element pistaElemento = iteradorPistas.next();
-			Pista pistaXML =Pista.cargarDesdeXML(pistaElemento);
+			Pista pistaXML = Pista.cargarDesdeXML(pistaElemento);
 			pistas.add(pistaXML);
-			VistaPista vp = new VistaPista(pistaXML); 
+			VistaPista vp = new VistaPista(pistaXML);
 			vistasPistas.add(vp);
 		}
 
-		while (iteradorFactories.hasNext()){
+		while (iteradorFactories.hasNext()) {
 			Element fabricaElemento = iteradorFactories.next();
 			factories.add(FactoryAvion.crearDesdeXML(fabricaElemento));
 		}
-		
-		this.game = new Escenario (10, pistas, factories, this);
+
+		this.game = new Escenario(10, pistas, factories, this);
 		game.cargarAtributosDesdeXML(juegoXML);
 		this.gameLoop.agregar(game);
 
-		
 		Iterator<VistaPista> iteradorVistasPistas = vistasPistas.iterator();
 		for (ViewManager manager : viewManagers) {
-			while (iteradorVistasPistas.hasNext()){
-				manager.addVistaPista(iteradorVistasPistas.next());	
+			while (iteradorVistasPistas.hasNext()) {
+				manager.addVistaPista(iteradorVistasPistas.next());
 			}
 			manager.showPuntaje(puntos);
 			manager.showLevelUp(level);
-			}
-
 		}
 
+	}
+
 	public void cargarAvionesConDatosXML(Element elementoRaiz) {
-		this.game.cargarAvionesConXML (elementoRaiz.getChild("Juego"));
-		
+		this.game.cargarAvionesConXML(elementoRaiz.getChild("Juego"));
+
 	}
 
 }

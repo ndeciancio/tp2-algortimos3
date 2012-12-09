@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -22,7 +23,6 @@ import javax.swing.JPanel;
 import org.jdom.Element;
 
 import control.Archivador;
-
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 import fiuba.algo3.titiritero.modelo.ViewLoop;
@@ -52,7 +52,7 @@ public class VistaVisual implements ViewManager {
 			this.flightControl = flightControl;
 			initialize();
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -122,48 +122,52 @@ public class VistaVisual implements ViewManager {
 			}
 		});
 		btnLoad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				try{
-				if (btnLoad.getText().equals("Cargar Partida")){
-					String path = "XML\\FlightControl.xml";
-					Archivador archivadorJuego = new Archivador ();
-					Element elementoRaiz = archivadorJuego.getElementoRaiz(path);
-					flightControl.setUpGameDesdeXML(elementoRaiz);
-					flightControl.getGameLoop().iniciarEjecucion();
-					for (ViewManager manager : flightControl.getViewManagers()) {
-						manager.iniciarEjecucion();
-					}
-					flightControl.cargarAvionesConDatosXML (elementoRaiz);
-					btnIniciar.setText("Reiniciar Juego");
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (btnLoad.getText().equals("Cargar Partida")) {
+						String path = "./savedGame/FlightControl.xml";
+						Archivador archivadorJuego = new Archivador();
+						Element elementoRaiz = archivadorJuego
+								.getElementoRaiz(path);
+						flightControl.setUpGameDesdeXML(elementoRaiz);
+						flightControl.getGameLoop().iniciarEjecucion();
+						for (ViewManager manager : flightControl
+								.getViewManagers()) {
+							manager.iniciarEjecucion();
+						}
+						flightControl.cargarAvionesConDatosXML(elementoRaiz);
+						btnIniciar.setText("Reiniciar Juego");
 
-					
-					puntuacion.setVisible(true);
-					nivel.setVisible(true);
-					btnDetener.setText("Pausar");
-					btnDetener.setVisible(true);
-					btnSave.setVisible(true);
+						puntuacion.setVisible(true);
+						nivel.setVisible(true);
+						btnDetener.setText("Pausar");
+						btnDetener.setVisible(true);
+						btnSave.setVisible(true);
 					}
-				}catch (Exception errorAlCargar){
-					System.out.println("Archivo Hubicado en XML\\FlightControl.xml No Encontrado");
-					
+				} catch (Exception errorAlCargar) {
+					System.out
+							.println("Archivo Hubicado en XML\\FlightControl.xml No Encontrado");
+
 				}
 			}
 		});
 		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				if (btnSave.getText().equals("Guardar Partida")){
-					String path = "XML\\FlightControl.xml";
-					Archivador archivadorJuego = new Archivador ();
-					try {
-						archivadorJuego.archivarJuego(flightControl,path);
-					} 
-					catch (IOException e1) {
-									e1.printStackTrace();
-									}
+			public void actionPerformed(ActionEvent e) {
+				if (btnSave.getText().equals("Guardar Partida")) {
+					String path = "./savedGame/FlightControl.xml";
+					File f = new File("./savedGame");
+					if (!f.exists()){
+						f.mkdir();
 					}
+					Archivador archivadorJuego = new Archivador();
+					try {
+						archivadorJuego.archivarJuego(flightControl, path);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
 			}
 		});
-		
 
 		panel = new SuperficiePanel();
 		panel.setBackground(new Color(0, 127, 0));

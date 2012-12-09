@@ -1,3 +1,4 @@
+package modelo.aviones;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -9,11 +10,14 @@ import modelo.aviones.AvionHelicoptero;
 import modelo.general.Mapa;
 import modelo.general.Posicion;
 import modelo.general.Trayectoria;
+import modelo.juego.Escenario;
 import modelo.pistas.Pista;
 import modelo.pistas.PistaHelipuerto;
 import modelo.pistas.PistaSimple;
 
 import org.junit.Test;
+
+import vista.FlightControl;
 
 public class AvionHelicopteroTest {
 
@@ -26,8 +30,14 @@ public class AvionHelicopteroTest {
 		Integer radio = 1;
 		Double direccion = 0d;
 		Pista pistaHelipuerto = new PistaHelipuerto(posPista,radio,direccion);
+		List<Pista> ps = new ArrayList<Pista>();
+		ps.add(pistaHelipuerto);
+		FlightControl fc = new FlightControl();
+		fc.setUpGame();
+		Escenario e = new Escenario(10, ps, null,fc);
+		
 		Posicion posInicialAvion = new Posicion(3,3);
-		Avion avion = AvionHelicoptero.crearAvionHelicopteroSimple(posInicialAvion,radio,2,0d, null);
+		Avion avion = AvionHelicoptero.crearAvionHelicopteroSimple(posInicialAvion,radio,2,0d, e);
 		
 		mapaPrueba.addAvion(avion);
 		mapaPrueba.addPista(pistaHelipuerto);
@@ -44,30 +54,5 @@ public class AvionHelicopteroTest {
 		assertTrue(avion.estaAterrizado());
 		
 	}
-	@Test
-	public void testAvionHelicopteroDeberiaPoderQuedarceQuietoSiSeLeMandaUnaSeñal() throws Exception {
-		Mapa mapaPrueba = Mapa.getInstance();
-		mapaPrueba.resetMapa();
-		
-		Posicion posFinal = new Posicion(10,3);
-		Integer radio = 1;
 
-		Posicion posInicialAvion = new Posicion(3,3);
-		AvionHelicoptero avion = AvionHelicoptero.crearAvionHelicopteroSimple(posInicialAvion,radio,2,0d,null);
-		
-		mapaPrueba.addAvion(avion);
-		
-		List<Posicion> posiciones = new ArrayList<Posicion>();
-		posiciones.add(posFinal);
-		Trayectoria trayectoria = new Trayectoria(posiciones);
-		avion.setTrayectoria(trayectoria);
-		
-		//avion.setOnSenalDeFreno();
-		
-		avion.vivir();
-		
-		assertTrue(avion.getPosicion().getX() == 3);
-		assertTrue(avion.getPosicion().getY() == 3);
-		
-	}
 }
