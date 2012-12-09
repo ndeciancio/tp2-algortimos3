@@ -66,18 +66,10 @@ public class Mapa {
 		return pistas;
 	}
 
-	public Integer obtenerCantidadAviones() {
+	public Integer getCantidadAviones() {
 		return aviones.size();
 	}
 
-	public void sacarAvionesAterrizados() {
-		Iterator<Avion> iteradorAviones = aviones.iterator();
-		while (iteradorAviones.hasNext()) {
-			if (iteradorAviones.next().estaAterrizado()) {
-				iteradorAviones.remove();
-			}
-		}
-	}
 
 	public Integer getBordeX() {
 		return dimensionEnX;

@@ -27,7 +27,7 @@ public class PersistenciaJuegoTest {
 	
 		String pathArchivo = "XML\\PersitenciaJuegoPrueba.xml";
 		FlightControl simulador = new FlightControl ();
-		
+		simulador.setUpGame();
 		List <FactoryAvion> fabricasPrueba= new ArrayList <FactoryAvion> ();
 		FactoryAvionLiviano fabricaLivianaPrueba = new FactoryAvionLiviano();
 		fabricasPrueba.add(fabricaLivianaPrueba);
@@ -42,7 +42,7 @@ public class PersistenciaJuegoTest {
 		
 		Escenario juegoAPersistir = new Escenario(cantidadDeAvionesPorNivel, pistasPrueba, fabricasPrueba,simulador);
 
-		for (int X=1;X==20;X++)
+		for (int x=0;x<20;x++)
 		{
 			juegoAPersistir.vivir();
 		}

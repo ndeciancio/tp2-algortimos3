@@ -167,4 +167,8 @@ public class Escenario implements ObjetoVivo, ObjetoSerializableXML {
 		
 	}
 
+	public Boolean getPerdido() {
+		return perdido;
+	}
+
 }
