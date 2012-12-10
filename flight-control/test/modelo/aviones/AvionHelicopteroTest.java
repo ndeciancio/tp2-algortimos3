@@ -1,57 +1,32 @@
 package modelo.aviones;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import modelo.aviones.Avion;
-import modelo.aviones.AvionHelicoptero;
-import modelo.general.Mapa;
 import modelo.general.Posicion;
-import modelo.general.Trayectoria;
-import modelo.juego.Escenario;
+import modelo.movimientos.MovimientoHelicoptero;
 import modelo.pistas.Pista;
 import modelo.pistas.PistaHelipuerto;
-import modelo.pistas.PistaSimple;
 
 import org.junit.Test;
-
-import vista.FlightControl;
 
 public class AvionHelicopteroTest {
 
 	@Test
-	public void testAvionHelicopteroDeberiaPoderAterrizarEnUnHelipuerto() throws Exception {
-		Mapa mapaPrueba = Mapa.getInstance();
-		mapaPrueba.resetMapa();
+	public void testCrearAvionHelicoptero(){
+	
+		Avion a = AvionHelicoptero.crearAvionHelicopteroSimple(new Posicion(10,10),2, 3,0d,null);
+		assertTrue(a.getDireccion().equals(0d));
+		assertTrue(a.getMovimiento().getClass().equals(MovimientoHelicoptero.class));
+		assertTrue(a.getPosicion().equals(new Posicion(10,10)));
+		assertTrue(a.getRadio().equals(2));
 		
-		Posicion posPista = new Posicion(10,3);
-		Integer radio = 1;
-		Double direccion = 0d;
-		Pista pistaHelipuerto = new PistaHelipuerto(posPista,radio,direccion);
-		List<Pista> ps = new ArrayList<Pista>();
-		ps.add(pistaHelipuerto);
-		FlightControl fc = new FlightControl();
-		fc.setUpGame();
-		Escenario e = new Escenario(10, ps, null,fc);
 		
-		Posicion posInicialAvion = new Posicion(3,3);
-		Avion avion = AvionHelicoptero.crearAvionHelicopteroSimple(posInicialAvion,radio,2,0d, e);
+	}
 		
-		mapaPrueba.addAvion(avion);
-		mapaPrueba.addPista(pistaHelipuerto);
-		
-		List<Posicion> posiciones = new ArrayList<Posicion>();
-		posiciones.add(posPista);
-		Trayectoria trayectoria = new Trayectoria(posiciones);
-		avion.setTrayectoria(trayectoria);
-		avion.vivir();
-		assertFalse(avion.estaAterrizado());
-		avion.vivir();
-		assertFalse(avion.estaAterrizado());
-		avion.vivir();
-		assertTrue(avion.estaAterrizado());
+	@Test
+	public void testPuedoAterrizar(){
+		Avion a = AvionHelicoptero.crearAvionHelicopteroSimple(new Posicion(10,10),2, 3,0d,null);
+		Pista p = new PistaHelipuerto(new Posicion(10,10),10,0d);
+		assertTrue(a.intentarAterrizar(p));
+		assertTrue(a.puedoAterrizarEnEstaPista(p));
 		
 	}
 
